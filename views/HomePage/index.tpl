@@ -1,6 +1,6 @@
 {{template "header" .}}
 
-  <title>首页</title>
+  <title>吃货街</title>
 </head>
 <body>
 
@@ -52,94 +52,7 @@
     <p>Cras sit amet nibh libero</p>
   </div>
 </div>
-<div class="media">
-  <div class="media-body">
-    <h4 class="media-heading">Media heading</h4>
-    <p>Cras sit amet nibh libero</p>
-  </div>
-  <div class="media-right media-middle">
-    <a href="#">
-      <img class="media-object" src="../../static/img/HomePage/home_imglabel/IMG_2239.png" alt="...">
-    </a>
-  </div>
-</div>
-<div class="media">
-  <div class="media-left media-middle">
-    <a href="#">
-      <img class="media-object" src="../../static/img/HomePage/home_imglabel/IMG_2239.png" alt="...">
-    </a>
-  </div>
-  <div class="media-body">
-    <h4 class="media-heading">Media heading</h4>
-    <p>Cras sit amet nibh libero</p>
-  </div>
-</div>
-<div class="media">
-  <div class="media-left media-middle">
-    <a href="#">
-      <img class="media-object" src="../../static/img/HomePage/home_imglabel/IMG_2239.png" alt="...">
-    </a>
-  </div>
-  <div class="media-body">
-    <h4 class="media-heading">Media heading</h4>
-    <p>Cras sit amet nibh libero</p>
-  </div>
-</div>
-<div class="media">
-  <div class="media-body">
-    <h4 class="media-heading">Media heading</h4>
-    <p>Cras sit amet nibh libero</p>
-  </div>
-  <div class="media-right media-middle">
-    <a href="#">
-      <img class="media-object" src="../../static/img/HomePage/home_imglabel/IMG_2239.png" alt="...">
-    </a>
-  </div>
-</div>
-<div class="media">
-  <div class="media-left media-middle">
-    <a href="#">
-      <img class="media-object" src="../../static/img/HomePage/home_imglabel/IMG_2239.png" alt="...">
-    </a>
-  </div>
-  <div class="media-body">
-    <h4 class="media-heading">Media heading</h4>
-    <p>Cras sit amet nibh libero</p>
-  </div>
-</div>
-<div class="media">
-  <div class="media-left media-middle">
-    <a href="#">
-      <img class="media-object" src="../../static/img/HomePage/home_imglabel/IMG_2239.png" alt="...">
-    </a>
-  </div>
-  <div class="media-body">
-    <h4 class="media-heading">Media heading</h4>
-    <p>Cras sit amet nibh libero</p>
-  </div>
-</div>
-<div class="media">
-  <div class="media-body">
-    <h4 class="media-heading">Media heading</h4>
-    <p>Cras sit amet nibh libero</p>
-  </div>
-  <div class="media-right media-middle">
-    <a href="#">
-      <img class="media-object" src="../../static/img/HomePage/home_imglabel/IMG_2239.png" alt="...">
-    </a>
-  </div>
-</div>
-<div class="media">
-  <div class="media-left media-middle">
-    <a href="#">
-      <img class="media-object" src="../../static/img/HomePage/home_imglabel/IMG_2239.png" alt="...">
-    </a>
-  </div>
-  <div class="media-body">
-    <h4 class="media-heading">Media heading</h4>
-    <p>Cras sit amet nibh libero</p>
-  </div>
-</div>
+
 <div data-role="footer" data-position="fixed" data-tap-toggle="false">
       <div data-role="navbar"data-iconpos="top">
       <ul>
