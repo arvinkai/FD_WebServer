@@ -10,5 +10,5 @@ type ShopController struct {
 
 func (this *ShopController) Get() {
 	//	beego.SetViewsPath("views/ShopPage")
-	this.TplName = "shop.html"
+	this.TplName = "tab-subpage-shop.html"
 }

@@ -10,5 +10,5 @@ type MainController struct {
 
 func (c *MainController) Get() {
 	//	beego.SetViewsPath("views/HomePage")
-	c.TplName = "home.html"
+	c.TplName = "tab-subpage-home.html"
 }
