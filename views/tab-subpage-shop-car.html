@@ -2,154 +2,150 @@
 <html>
 
 	<head>
-		<meta charset="utf-8">
-		<title>Hello MUI</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-		<link rel="stylesheet" href="../static/css/mui.min.css">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../static/css/mui.min.css" rel="stylesheet" />
 		<style>
-			html,body {
-				background-color: #efeff4;
-			}
-			.title{
+			.title {
 				margin: 20px 15px 10px;
 				color: #6d6d72;
 				font-size: 15px;
-			}
-			 .oa-contact-cell.mui-table .mui-table-cell {
-				padding: 11px 0;
-				vertical-align: middle;
-			}
-			
-			.oa-contact-cell {
-				position: relative;
-				margin: -11px 0;
-			}
-	
-			.oa-contact-avatar {
-				width: 75px;
-			}
-			.oa-contact-avatar img {
-				border-radius: 50%;
-			}
-			.oa-contact-content {
-				width: 100%;
-			}
-			.oa-contact-name {
-				margin-right: 20px;
-			}
-			.oa-contact-name, oa-contact-position {
-				float: left;
 			}
 		</style>
 	</head>
 
 	<body>
 		<div class="mui-content">
-			<div class="title">
-				这是webview模式选项卡中的第3个子页面，该页面展示一个通讯录示例
-			</div>
+			<ul class="mui-table-view">
+				<!--<li class="mui-table-view-cell"></li>-->
+				<li class="mui-table-view-cell">
+					<div class="mui-checkbox mui-col-xs-2">
+						<input name="radio" type="checkbox" style="line-height: 100px;line-width: 10px;">
+					</div>
+					<div class="mui-media mui-col-xs-10 mui-pull-right">
+						<a href="javascript:;">
+							<img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="../static/img/images/showlist-0.JPG" alt="展示图" />
+							<div class="mui-media-body ">
+								<h5 style="line-height:20px;color: black;font-weight:bold;">超级无敌-甜甜圈</h5>
+								<h5 style="color: red;">售价：￥5</h5>
+								<h6>购买数量:</h6>
+								<div class="mui-numbox" data-numbox-min='1' style="width: 110px;height: 30px;">
+									<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+									<input class="mui-input-numbox" type="number" value="1" />
+									<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+								</div>
+							</div>
+						</a>
+					</div>
+				</li>
 
-			<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
 				<li class="mui-table-view-cell">
-					<div class="mui-slider-cell">
-						<div class="oa-contact-cell mui-table">
-							<div class="oa-contact-avatar mui-table-cell">
-								<img src="../images/60x60.gif" />
-							</div>
-							<div class="oa-contact-content mui-table-cell">
-								<div class="mui-clearfix">
-									<h4 class="oa-contact-name">叶文洁</h4>
-									<span class="oa-contact-position mui-h6">董事长</span>
+					<div class="mui-checkbox mui-col-xs-2">
+						<input name="radio" type="checkbox" style="line-height: 100px;line-width: 10px;">
+					</div>
+					<div class="mui-media mui-col-xs-10 mui-pull-right">
+						<a href="javascript:;">
+							<img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="../static/img/images/showlist-0.JPG" alt="展示图" />
+							<div class="mui-media-body ">
+								<h5 style="line-height:20px;color: black;font-weight:bold;">超级无敌-甜甜圈</h5>
+								<h5 style="color: red;">售价：￥5</h5>
+								<h6>购买数量:</h6>
+								<div class="mui-numbox" data-numbox-min='1' style="width: 110px;height: 30px;">
+									<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+									<input class="mui-input-numbox" type="number" value="1" />
+									<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
 								</div>
-								<p class="oa-contact-email mui-h6">
-									yewenjie@sina.com
-								</p>
 							</div>
-						</div>
+						</a>
 					</div>
 				</li>
+
 				<li class="mui-table-view-cell">
-					<div class="mui-slider-cell">
-						<div class="oa-contact-cell mui-table">
-							<div class="oa-contact-avatar mui-table-cell">
-								<img src="../images/60x60.gif" />
-							</div>
-							<div class="oa-contact-content mui-table-cell">
-								<div class="mui-clearfix">
-									<h4 class="oa-contact-name">艾AA</h4>
-									<span class="oa-contact-position mui-h6">总经理</span>
+					<div class="mui-checkbox mui-col-xs-2">
+						<input name="radio" type="checkbox" style="line-height: 100px;line-width: 10px;">
+					</div>
+					<div class="mui-media mui-col-xs-10 mui-pull-right">
+						<a href="javascript:;">
+							<img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="../static/img/images/showlist-0.JPG" alt="展示图" />
+							<div class="mui-media-body ">
+								<h5 style="line-height:20px;color: black;font-weight:bold;">超级无敌-甜甜圈</h5>
+								<h5 style="color: red;">售价：￥5</h5>
+								<h6>购买数量:</h6>
+								<div class="mui-numbox" data-numbox-min='1' style="width: 110px;height: 30px;">
+									<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+									<input class="mui-input-numbox" type="number" value="1" />
+									<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
 								</div>
-								<p class="oa-contact-email mui-h6">
-									aaa@163.com
-								</p>
 							</div>
-						</div>
+						</a>
 					</div>
 				</li>
+
 				<li class="mui-table-view-cell">
-					<div class="mui-slider-cell">
-						<div class="oa-contact-cell mui-table">
-							<div class="oa-contact-avatar mui-table-cell">
-								<img src="../images/60x60.gif" />
-							</div>
-							<div class="oa-contact-content mui-table-cell">
-								<div class="mui-clearfix">
-									<h4 class="oa-contact-name">罗辑</h4>
-									<span class="oa-contact-position mui-h6">员工</span>
+					<div class="mui-checkbox mui-col-xs-2">
+						<input name="radio" type="checkbox" style="line-height: 100px;line-width: 10px;">
+					</div>
+					<div class="mui-media mui-col-xs-10 mui-pull-right">
+						<a href="javascript:;">
+							<img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="../static/img/images/showlist-0.JPG" alt="展示图" />
+							<div class="mui-media-body ">
+								<h5 style="line-height:20px;color: black;font-weight:bold;">超级无敌-甜甜圈</h5>
+								<h5 style="color: red;">售价：￥5</h5>
+								<h6>购买数量:</h6>
+								<div class="mui-numbox" data-numbox-min='1' style="width: 110px;height: 30px;">
+									<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+									<input class="mui-input-numbox" type="number" value="1" />
+									<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
 								</div>
-								<p class="oa-contact-email mui-h6">
-									luoji@126.com
-								</p>
 							</div>
-						</div>
+						</a>
 					</div>
 				</li>
+
 				<li class="mui-table-view-cell">
-					<div class="mui-slider-cell">
-						<div class="oa-contact-cell mui-table">
-							<div class="oa-contact-avatar mui-table-cell">
-								<img src="../images/60x60.gif" />
-							</div>
-							<div class="oa-contact-content mui-table-cell">
-								<div class="mui-clearfix">
-									<h4 class="oa-contact-name">云天明</h4>
-									<span class="oa-contact-position mui-h6">员工</span>
-								</div>
-								<p class="oa-contact-email mui-h6">
-									ytm@163.com
-								</p>
-							</div>
-						</div>
+					<div class="mui-checkbox mui-col-xs-2">
+						<input name="radio" type="checkbox" style="line-height: 100px;line-width: 10px;">
 					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div class="mui-slider-cell">
-						<div class="oa-contact-cell mui-table">
-							<div class="oa-contact-avatar mui-table-cell">
-								<img src="../images/60x60.gif" />
-							</div>
-							<div class="oa-contact-content mui-table-cell">
-								<div class="mui-clearfix">
-									<h4 class="oa-contact-name">史强</h4>
-									<span class="oa-contact-position mui-h6">员工</span>
+					<div class="mui-media mui-col-xs-10 mui-pull-right">
+						<a href="javascript:;">
+							<img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="../static/img/images/showlist-0.JPG" alt="展示图" />
+							<div class="mui-media-body ">
+								<h5 style="line-height:20px;color: black;font-weight:bold;">超级无敌-甜甜圈</h5>
+								<h5 style="color: red;">售价：￥5</h5>
+								<h6>购买数量:</h6>
+								<div class="mui-numbox" data-numbox-min='1' style="width: 110px;height: 30px;">
+									<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+									<input class="mui-input-numbox" type="number" value="1" />
+									<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
 								</div>
-								<p class="oa-contact-email mui-h6">
-									shiqiang@gmail.com
-								</p>
 							</div>
-						</div>
+						</a>
 					</div>
 				</li>
 			</ul>
 		</div>
+		<!--底部占行-->
+		<br />
+		<br />
+		<!--提交购物车-->
+		<footer class="mui-bar mui-bar-footer" style="padding-top: 3px;margin-left: 0px;padding-left:0px ;">
+			<form action="" method="post">
+				<input class="mui-pull-right mui-col-xs-1" type="submit" value="去结账（3）" style="background: red;padding-left: 5px;height: 40px;width: 90px;" />
+				<label class="mui-pull-right mui-col-xs-5"><h4>合计:￥15000</h4><h6>总额:￥15000  立减100</h6></label>
+
+				<div class="mui-checkbox mui-radio mui-left mui-col-xs-3" style="line-height: 40px;">
+					<label style="font-weight:bold;margin: 0px;padding-left: 50px;line-height: 30px;"><h5>全选</h5></label>
+					<input style="padding-left: 0px;" name="checkbox" type="checkbox">
+				</div>
+			</form>
+		</footer>
+		<script src="../static/js/mui.min.js"></script>
+		<script type="text/javascript" charset="UTF-8">
+			mui.init({
+				swipeBack: false
+			});
+		</script>
 	</body>
-	<script src="../static/js/mui.min.js"></script>
-	<script>
-		mui.init({
-			swipeBack:true //启用右滑关闭功能
-		});
-	</script>
+
 </html>
