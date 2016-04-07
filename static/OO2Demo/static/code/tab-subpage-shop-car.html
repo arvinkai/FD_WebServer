@@ -19,10 +19,9 @@
 	<body>
 		<div class="mui-content">
 			<ul class="mui-table-view">
-				<!--<li class="mui-table-view-cell"></li>-->
 				<li id="car1" class="mui-table-view-cell">
 					<div class="mui-checkbox mui-col-xs-2">
-						<input id="car1_r"  name="car1_r" type="checkbox" style="line-height: 100px;line-width: 10px;">
+						<input id="car1_r" name="car_r" class="class_car" type="checkbox" style="line-height: 100px;line-width: 10px;">
 					</div>
 					<div id="car1_v" class="mui-media mui-col-xs-10 mui-pull-right">
 						<a href="javascript:;">
@@ -41,11 +40,11 @@
 					</div>
 				</li>
 
-				<li class="mui-table-view-cell">
+				<li id="car2" class="mui-table-view-cell">
 					<div class="mui-checkbox mui-col-xs-2">
-						<input name="radio" type="checkbox" style="line-height: 100px;line-width: 10px;">
+						<input id="car2_r" name="car_r" class="class_car" type="checkbox" style="line-height: 100px;line-width: 10px;">
 					</div>
-					<div class="mui-media mui-col-xs-10 mui-pull-right">
+					<div id="car2_v" class="mui-media mui-col-xs-10 mui-pull-right">
 						<a href="javascript:;">
 							<img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="../images/showlist-0.JPG" alt="展示图" />
 							<div class="mui-media-body ">
@@ -62,11 +61,11 @@
 					</div>
 				</li>
 
-				<li class="mui-table-view-cell">
+				<li id="car3" class="mui-table-view-cell">
 					<div class="mui-checkbox mui-col-xs-2">
-						<input name="radio" type="checkbox" style="line-height: 100px;line-width: 10px;">
+						<input id="car3_r" name="car_r" class="class_car" type="checkbox" style="line-height: 100px;line-width: 10px;">
 					</div>
-					<div class="mui-media mui-col-xs-10 mui-pull-right">
+					<div id="car1_v" class="mui-media mui-col-xs-10 mui-pull-right">
 						<a href="javascript:;">
 							<img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="../images/showlist-0.JPG" alt="展示图" />
 							<div class="mui-media-body ">
@@ -83,11 +82,11 @@
 					</div>
 				</li>
 
-				<li class="mui-table-view-cell">
+				<li id="car4" class="mui-table-view-cell">
 					<div class="mui-checkbox mui-col-xs-2">
-						<input name="radio" type="checkbox" style="line-height: 100px;line-width: 10px;">
+						<input id="car4_r" name="car_r" class="class_car" type="checkbox" style="line-height: 100px;line-width: 10px;">
 					</div>
-					<div class="mui-media mui-col-xs-10 mui-pull-right">
+					<div id="car1_v" class="mui-media mui-col-xs-10 mui-pull-right">
 						<a href="javascript:;">
 							<img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="../images/showlist-0.JPG" alt="展示图" />
 							<div class="mui-media-body ">
@@ -104,11 +103,11 @@
 					</div>
 				</li>
 
-				<li class="mui-table-view-cell">
+				<li id="car5" class="mui-table-view-cell">
 					<div class="mui-checkbox mui-col-xs-2">
-						<input name="radio" type="checkbox" style="line-height: 100px;line-width: 10px;">
+						<input id="car5_r" name="car_r" class="class_car" type="checkbox" style="line-height: 100px;line-width: 10px;">
 					</div>
-					<div class="mui-media mui-col-xs-10 mui-pull-right">
+					<div id="car1_v" class="mui-media mui-col-xs-10 mui-pull-right">
 						<a href="javascript:;">
 							<img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="../images/showlist-0.JPG" alt="展示图" />
 							<div class="mui-media-body ">
@@ -135,7 +134,7 @@
 				<input class="mui-pull-right mui-col-xs-1" type="submit" value="去结账（3）" style="background: red;padding-left: 5px;height: 40px;width: 90px;" />
 				<label class="mui-pull-right mui-col-xs-5"><h4>合计:￥15000</h4><h6>总额:￥15000  立减100</h6></label>
 
-				<div class="mui-checkbox mui-radio mui-left mui-col-xs-3" style="line-height: 40px;">
+				<div id="selectall" class="mui-checkbox mui-radio mui-left mui-col-xs-3" style="line-height: 40px;">
 					<label style="font-weight:bold;margin: 0px;padding-left: 50px;line-height: 30px;"><h5>全选</h5></label>
 					<input style="padding-left: 0px;" name="checkbox" type="checkbox">
 				</div>
@@ -146,6 +145,12 @@
 			mui.init({
 				swipeBack: false
 			});
+			mui('#selectall').on('change', 'input', function() {
+				var AllCheckboxs = document.getElementsByClassName('class_car');
+				for (var i = 0; i < AllCheckboxs.length; ++i) {
+					AllCheckboxs[i].checked = this.checked;
+				}
+			})
 		</script>
 	</body>
 
