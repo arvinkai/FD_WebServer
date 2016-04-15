@@ -11,43 +11,48 @@
 	</head>
 
 	<body>
-		<div class="mui-content">
+		<!--<div class="mui-content">
 			<ul id="hotview" class="mui-table-view mui-grid-view">
-				<li class="mui-table-view-cell mui-media mui-col-xs-6">
-					<img src="../images/showlist-0.JPG" alt="" class="mui-media-object" />
+				<li class="table-item mui-table-view-cell mui-media mui-col-xs-6">
+					<a href="tab-subpage-home1.html?id=1"><img src="../images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-6">
-					<img src="../images/showlist-0.JPG" alt="" class="mui-media-object" />
+				<li class="table-item mui-table-view-cell mui-media mui-col-xs-6">
+					<a href="tab-subpage-home1.html?id=1"><img src="../images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-6">
-					<img src="../images/showlist-0.JPG" alt="" class="mui-media-object" />
+				<li class="table-item mui-table-view-cell mui-media mui-col-xs-6">
+					<a href="tab-subpage-home1.html?id=1"><img src="../images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-6">
-					<img src="../images/showlist-0.JPG" alt="" class="mui-media-object" />
+				<li class="table-item mui-table-view-cell mui-media mui-col-xs-6">
+					<a href="tab-subpage-home1.html?id=1"><img src="../images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-6">
-					<img src="../images/showlist-0.JPG" alt="" class="mui-media-object" />
+				<li class="table-item mui-table-view-cell mui-media mui-col-xs-6">
+					<a href="tab-subpage-home1.html?id=1"><img src="../images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-6">
-					<img src="../images/showlist-0.JPG" alt="" class="mui-media-object" />
+				<li class="table-item mui-table-view-cell mui-media mui-col-xs-6">
+					<a href="tab-subpage-home1.html?id=1"><img src="../images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
 				</li>
-			</ul>
-		</div>
 
+			</ul>
+		</div>-->
+
+<div>
+	<lable id="lab">这是测试：</lable>
+	<lable id="lab1">1</lable>+
+	<lable id="lab2">2</lable>
+	<input  type="lable" value="10"/>
+	<input type="button" name="" id="test" value="测试" onclick="getvalue()"/>
+</div>
 		<script type="text/javascript">
 			mui.init({
 				swipeBack: true
 			});
-			document.getElementsByClassName('mui-media-object').addEventListener('tap', function() {
-				mui.openWindow({
-					url: 'tap-subpage-home1.html',
-					id: 'tap-subpage-home1.html',
-					extras: {
-						 //自定义扩展参数，可以用来处理页面间传值
-						 name:'testpage'
-					}
-				});
-			});
+			
+			function getvalue(){
+				var text1 = document.getElementById('lab1').outerText;
+				var text2 = document.getElementById('lab2').outerText;
+				
+				alert(Number(text1)+Number(text2));
+			}
 		</script>
 	</body>
 
