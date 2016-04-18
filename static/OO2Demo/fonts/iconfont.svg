@@ -2,8 +2,8 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>
-Created by FontForge 20120731 at Sat Apr  2 15:46:52 2016
- By Ads
+Created by FontForge 20120731 at Mon Apr 18 15:24:32 2016
+ By admin
 </metadata>
 <defs>
 <font id="iconfont" horiz-adv-x="1024" >
@@ -19,7 +19,7 @@ Created by FontForge 20120731 at Sat Apr  2 15:46:52 2016
     bbox="0 -208 1808 896"
     underline-thickness="50"
     underline-position="-100"
-    unicode-range="U+0078-E60A"
+    unicode-range="U+0078-E60C"
   />
 <missing-glyph horiz-adv-x="374" 
 d="M34 0v682h272v-682h-272zM68 34h204v614h-204v-614z" />
@@ -82,5 +82,10 @@ q-12.5 0 -21 8.5t-8.5 21t8.5 21t21 8.5t21 -8.5t8.5 -21t-8.5 -21t-21 -8.5zM280.5 
 q58 16 124 35v183h-110v57h110v164h65v-164h103v-57h-103v-163q44 13 92 28q1 -41 2 -66q-38 -11 -94 -28v-251zM1317 418h-151v-435h-66v435h-205q-2 -299 -115 -440q-23 25 -53 51q103 122 103 388v314q216 1 444 35l22 -65q-247 -26 -401 -29v-193h422v-61zM1540.5 -13
 q-12.5 0 -21 8.5t-8.5 20.5t8.5 21t21 9t21 -9t8.5 -21t-8.5 -20.5t-21 -8.5zM1540.5 130q-12.5 0 -21 9t-8.5 21t8.5 20.5t21 8.5t21 -8.5t8.5 -21t-8.5 -21t-21 -8.5zM1540.5 274q-12.5 0 -21 8.5t-8.5 21t8.5 21t21 8.5t21 -8.5t8.5 -21t-8.5 -21t-21 -8.5zM1540.5 417
 q-12.5 0 -21 9t-8.5 21t8.5 21t21 9t21 -9t8.5 -21t-8.5 -21t-21 -9zM1540.5 561q-12.5 0 -21 8.5t-8.5 21t8.5 21t21 8.5t21 -8.5t8.5 -21t-8.5 -21t-21 -8.5zM1540.5 705q-12.5 0 -21 8.5t-8.5 20.5t8.5 21t21 9t21 -9t8.5 -21t-8.5 -20.5t-21 -8.5z" />
+    <glyph glyph-name="uniE60B" unicode="&#xe60b;" 
+d="M243 -47q-5 0 -10 3q-8 6 -6 16l50 292l-212 206q-7 7 -4 16.5t13 11.5l293 42l131 266q4 9 14 9t15 -9l131 -266l293 -42q10 -2 13 -11.5t-4 -16.5l-212 -206l50 -292q2 -10 -6.5 -16t-16.5 -1l-263 138l-262 -138q-3 -2 -7 -2zM110 471l195 -190q6 -6 5 -14l-46 -269
+l241 127q7 4 15 0l241 -127l-46 269q-2 8 4 14l195 190l-269 39q-8 1 -12 9l-121 244l-120 -244q-4 -8 -12 -9z" />
+    <glyph glyph-name="uniE60C" unicode="&#xe60c;" horiz-adv-x="1118" 
+d="M559 -26l-329 -172l63 365l-266 259l367 53l165 333l164 -333l367 -53l-266 -259l63 -365z" />
   </font>
 </defs></svg>
