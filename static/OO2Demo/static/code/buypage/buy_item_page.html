@@ -11,6 +11,7 @@
 	</head>
 
 	<body>
+		<input type="" name="ItemID" id="ItemID" value="123456" hidden="true"/>
 		<div class="mui-slider">
 			<div class="mui-slider-group">
 				<div class="mui-slider-item">
@@ -147,7 +148,7 @@
 						<span class="mui-icon iconfont icon-shop1"><span class="mui-badge">9</span></span>
 						<span class="mui-tab-label">购物车</span>
 					</a>
-					<a class="mui-tab-item mui-button-row mui-col-xs-6" href="#" style="background: red;">
+					<a id="add2car" class="mui-tab-item mui-button-row mui-col-xs-6" href="#" style="background: red;">
 						<h5 style="font-size:20px;color: white;">加入购物车</h5>
 					</a>
 				</div>
@@ -157,6 +158,11 @@
 		<script src="../../../js/mui.min.js"></script>
 		<script type="text/javascript" charset="UTF-8">
 			mui.init();
+			
+			document.getElementById('add2car').addEventListener('tap',function(){
+				var itemID = document.getElementById('ItemID').value;
+				alert(itemID);
+			})
 		</script>
 	</body>
 

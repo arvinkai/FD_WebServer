@@ -14,6 +14,7 @@
 			body {
 				background-color: #efeff4;
 			}
+			
 			.mui-views,
 			.mui-view,
 			.mui-pages,
@@ -28,26 +29,32 @@
 				height: 100%;
 				background-color: #efeff4;
 			}
+			
 			.mui-pages {
 				top: 46px;
 				height: auto;
 			}
+			
 			.mui-scroll-wrapper,
 			.mui-scroll {
 				background-color: #efeff4;
 			}
+			
 			.mui-page.mui-transitioning {
 				-webkit-transition: -webkit-transform 300ms ease;
 				transition: transform 300ms ease;
 			}
+			
 			.mui-page-left {
 				-webkit-transform: translate3d(0, 0, 0);
 				transform: translate3d(0, 0, 0);
 			}
+			
 			.mui-ios .mui-page-left {
 				-webkit-transform: translate3d(-20%, 0, 0);
 				transform: translate3d(-20%, 0, 0);
 			}
+			
 			.mui-navbar {
 				position: fixed;
 				right: 0;
@@ -56,29 +63,35 @@
 				height: 44px;
 				background-color: #f7f7f8;
 			}
+			
 			.mui-navbar .mui-bar {
 				position: absolute;
 				background: transparent;
 				text-align: center;
 			}
+			
 			.mui-android .mui-navbar-inner.mui-navbar-left {
 				opacity: 0;
 			}
+			
 			.mui-ios .mui-navbar-left .mui-left,
 			.mui-ios .mui-navbar-left .mui-center,
 			.mui-ios .mui-navbar-left .mui-right {
 				opacity: 0;
 			}
+			
 			.mui-navbar .mui-btn-nav {
 				-webkit-transition: none;
 				transition: none;
 				-webkit-transition-duration: .0s;
 				transition-duration: .0s;
 			}
+			
 			.mui-navbar .mui-bar .mui-title {
 				display: inline-block;
 				width: auto;
 			}
+			
 			.mui-page-shadow {
 				position: absolute;
 				right: 100%;
@@ -88,27 +101,34 @@
 				z-index: -1;
 				content: '';
 			}
+			
 			.mui-page-shadow {
 				background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, .01) 50%, rgba(0, 0, 0, .2) 100%);
 				background: linear-gradient(to right, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, .01) 50%, rgba(0, 0, 0, .2) 100%);
 			}
+			
 			.mui-navbar-inner.mui-transitioning,
 			.mui-navbar-inner .mui-transitioning {
 				-webkit-transition: opacity 300ms ease, -webkit-transform 300ms ease;
 				transition: opacity 300ms ease, transform 300ms ease;
 			}
+			
 			.mui-page {
 				display: none;
 			}
+			
 			.mui-pages .mui-page {
 				display: block;
 			}
+			
 			.mui-page .mui-table-view:first-child {
 				margin-top: 15px;
 			}
+			
 			.mui-page .mui-table-view:last-child {
 				margin-bottom: 30px;
 			}
+			
 			.mui-table-view {
 				margin-top: 20px;
 			}
@@ -116,24 +136,30 @@
 			.mui-table-view span.mui-pull-right {
 				color: #999;
 			}
+			
 			.mui-table-view-divider {
 				background-color: #efeff4;
 				font-size: 14px;
 			}
+			
 			.mui-table-view-divider:before,
 			.mui-table-view-divider:after {
 				height: 0;
 			}
+			
 			.head {
 				height: 40px;
 			}
+			
 			#head {
 				line-height: 40px;
 			}
+			
 			.head-img {
 				width: 40px;
 				height: 40px;
 			}
+			
 			#head-img1 {
 				position: absolute;
 				bottom: 10px;
@@ -141,17 +167,20 @@
 				width: 40px;
 				height: 40px;
 			}
+			
 			.update {
 				font-style: normal;
 				color: #999999;
 				margin-right: -25px;
 				font-size: 15px
 			}
+			
 			.mui-fullscreen {
 				position: fixed;
 				z-index: 20;
 				background-color: #000;
 			}
+			
 			.mui-ios .mui-navbar .mui-bar .mui-title {
 				position: static;
 			}
@@ -195,27 +224,7 @@
 								</a>
 							</li>
 						</ul>
-						<ul class="mui-table-view mui-table-view-chevron">
-							<li class="mui-table-view-cell">
-								<a href="#account" class="mui-navigate-right">账号与安全</a>
-							</li>
-						</ul>
-						<ul class="mui-table-view mui-table-view-chevron">
-							<li class="mui-table-view-cell">
-								<a href="#notifications" class="mui-navigate-right">新消息通知</a>
-							</li>
-							<li class="mui-table-view-cell">
-								<a href="#privacy" class="mui-navigate-right">隐私</a>
-							</li>
-							<li class="mui-table-view-cell">
-								<a href="#general" class="mui-navigate-right">通用</a>
-							</li>
-						</ul>
-						<ul class="mui-table-view mui-table-view-chevron">
-							<li class="mui-table-view-cell">
-								<a href="#about" class="mui-navigate-right">关于MUI <i class="mui-pull-right update">V2.8.0</i></a>
-							</li>
-						</ul>
+
 						<ul class="mui-table-view">
 							<li class="mui-table-view-cell" style="text-align: center;">
 								<a>退出登录</a>
@@ -261,6 +270,14 @@
 							</li>
 							<li class="mui-table-view-cell">
 								<a>邮箱地址<span class="mui-pull-right">hbuilder@dcloud.io</span></a>
+							</li>
+						</ul>
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<a href="#notifications" class="mui-navigate-right">新消息通知</a>
+							</li>
+							<li class="mui-table-view-cell">
+								<a href="#about" class="mui-navigate-right">关于MUI <i class="mui-pull-right update">V2.8.0</i></a>
 							</li>
 						</ul>
 					</div>
@@ -354,7 +371,7 @@
 				</div>
 			</div>
 		</div>
-		<div id="privacy" class="mui-page">
+		<!--<div id="privacy" class="mui-page">
 			<div class="mui-navbar-inner mui-bar mui-bar-nav">
 				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
 					<span class="mui-icon mui-icon-left-nav"></span>设置
@@ -415,8 +432,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<div id="general" class="mui-page">
+		</div>-->
+		<!--<div id="general" class="mui-page">
 			<div class="mui-navbar-inner mui-bar mui-bar-nav">
 				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
 					<span class="mui-icon mui-icon-left-nav"></span>设置
@@ -448,7 +465,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>-->
 
 		<div id="about" class="mui-page">
 			<div class="mui-navbar-inner mui-bar mui-bar-nav">
@@ -528,7 +545,6 @@
 		mui('.mui-scroll-wrapper').scroll();
 		//分享操作
 		var shares = {};
-		
 		mui.plusReady(function() {
 			plus.share.getServices(function(s) {
 				if (s && s.length > 0) {
@@ -541,14 +557,12 @@
 				console.log("获取分享服务列表失败");
 			});
 		});
-		
-		setTimeout(function () {
+		setTimeout(function() {
 			defaultImg();
 			setTimeout(function() {
 				initImgPreview();
 			}, 300);
-		},500);
-		
+		}, 500);
 		//分享链接点击事件
 		document.getElementById("share").addEventListener('tap', function() {
 			var ids = [{
@@ -633,12 +647,11 @@
 		});
 		//客服电话
 		document.getElementById("tel").addEventListener('tap', function() {
-			if(mui.os.plus){
+			if (mui.os.plus) {
 				plus.device.dial("114");
-			}else{
+			} else {
 				location.href = 'tel:114';
 			}
-			
 		});
 		//		//意见反馈
 		//		document.getElementById("quest").addEventListener('tap', function() {
@@ -692,7 +705,7 @@
 		})(mui);
 		//更换头像
 		mui(".mui-table-view-cell").on("tap", "#head", function(e) {
-			if(mui.os.plus){
+			if (mui.os.plus) {
 				var a = [{
 					title: "拍照"
 				}, {
@@ -715,9 +728,8 @@
 						default:
 							break
 					}
-				})	
+				})
 			}
-			
 		});
 
 		function getImage() {
@@ -789,7 +801,7 @@
 		};
 
 		function defaultImg() {
-			if(mui.os.plus){
+			if (mui.os.plus) {
 				plus.io.resolveLocalFileSystemURL("_doc/head.jpg", function(entry) {
 					var s = entry.fullPath + "?version=" + new Date().getTime();;
 					document.getElementById("head-img").src = s;
@@ -798,11 +810,10 @@
 					document.getElementById("head-img").src = '../images/logo.png';
 					document.getElementById("head-img1").src = '../images/logo.png';
 				})
-			}else{
+			} else {
 				document.getElementById("head-img").src = '../images/logo.png';
 				document.getElementById("head-img1").src = '../images/logo.png';
 			}
-			
 		}
 		document.getElementById("head-img1").addEventListener('tap', function(e) {
 			e.stopPropagation();
@@ -861,11 +872,9 @@
 				var _slider = mui(slider).slider();
 			}
 		}
-		
-		if(mui.os.stream){
+		if (mui.os.stream) {
 			document.getElementById("check_update").display = "none";
 		}
-		
 	</script>
 
 </html>
