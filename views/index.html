@@ -25,19 +25,19 @@
 			<h1 id="title" class="mui-title">首页</h1>
 		</header>
 		<nav class="mui-bar mui-bar-tab">
-			<a id="defaultTab" class="mui-tab-item mui-active" href="static/code/tab-subpage-home.html">
+			<a id="defaultTab" class="mui-tab-item mui-active" href="http://192.168.80.105:8080/home">
 				<span class="mui-icon mui-icon-home"></span>
 				<span class="mui-tab-label">首页</span>
 			</a>
-			<a class="mui-tab-item" href="static/code/tab-subpage-shop.html">
+			<a class="mui-tab-item" href="http://192.168.80.105:8080/shop">
 				<span class="mui-icon iconfont icon-shop"></span>
 				<span class="mui-tab-label">店铺</span>
 			</a>
-			<a class="mui-tab-item" href="static/code/tab-subpage-shop-car.html">
+			<a class="mui-tab-item" href="http://192.168.80.105:8080/shop-car">
 				<span class="mui-icon iconfont icon-shop1"><span class="mui-badge">9</span></span>
 				<span class="mui-tab-label">购物车</span>
 			</a>
-			<a class="mui-tab-item" href="static/code/tab-subpage-shop-book.html">
+			<a class="mui-tab-item" href="http://192.168.80.105:8080/book">
 				<span class="mui-icon mui-icon-list"></span>
 				<span class="mui-tab-label">订单</span>
 			</a>
@@ -50,8 +50,8 @@
 		<script src="../static/js/mui.min.js"></script>
 		<script type="text/javascript" charset="UTF-8">
 			mui.init();
-			var subpages = ['static/code/tab-subpage-home.html', 'static/code/tab-subpage-shop.html', 'static/code/tab-subpage-shop-car.html',
-				'static/code/tab-subpage-book.html', 'static/code/tab-subpage-user.html'
+			var subpages = ['http://192.168.80.105:8080/home', 'http://192.168.80.105:8080/shop', 'http://192.168.80.105:8080/shop-car',
+				'http://192.168.80.105:8080/book', 'http://192.168.80.105:8080/setting'
 			];
 			var subpage_style = {
 				top: '45px',
@@ -64,6 +64,7 @@
 				for (var i = 0; i < subpages.length; i++) {
 					var temp = {};
 					var sub = plus.webview.create(subpages[i], subpages[i], subpage_style);
+					plus.webview.create
 					if (i > 0) {
 						sub.hide();
 					} else {
@@ -110,5 +111,4 @@
 			});
 		</script>
 	</body>
-
 </html>

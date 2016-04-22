@@ -4,11 +4,10 @@ import (
 	"github.com/astaxie/beego"
 )
 
-type MainController struct {
+type HomePageController struct {
 	beego.Controller
 }
 
-func (c *MainController) Get() {
-	//	beego.SetViewsPath("views/HomePage")
-	c.TplName = "tab-subpage-home.html"
+func (this *HomePageController) Get() {
+	this.TplName = "tab-subpage-home.html"
 }

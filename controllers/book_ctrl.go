@@ -9,6 +9,5 @@ type BookController struct {
 }
 
 func (this *BookController) Get() {
-	//	beego.SetViewsPath("views/OrderPage")
 	this.TplName = "tab-subpage-book.html"
 }

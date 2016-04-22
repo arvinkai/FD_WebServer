@@ -94,14 +94,15 @@
 					<h4>精品推荐</h4>
 				</div>
 				<ul id="bestview" class="mui-table-view">
-					<li class="mui-table-view-cell">
-						<img src="../static/img/images/carousel0.jpg" alt="" />
+					<li class="mui-table-view-cell" style="padding: 5px;">
+						<a href=""><img src="../static/img/images/carousel0.jpg" alt="" /></a>
 					</li>
-					<li class="mui-table-view-cell">
-						<img src="../static/img/images/carousel0.jpg" alt="" />
+					<li class="mui-table-view-cell" style="padding: 5px;">
+						<a href=""><img src="../static/img/images/carousel0.jpg" alt="" /></a>
 					</li>
-					<li class="mui-table-view-cell">
-						<img src="../static/img/images/carousel0.jpg" alt="" />
+					<li class="mui-table-view-cell" style="padding: 5px;">
+						<a href=""><img src="../static/img/images/carousel0.jpg" alt="" /></a>
+					</li>
 				</ul>
 
 				<!--展示-->
@@ -111,22 +112,22 @@
 				<div class="mui-content">
 					<ul id="hotview" class="mui-table-view mui-grid-view">
 						<li class="mui-table-view-cell mui-media mui-col-xs-6">
-							<img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" />
+							<a href="buypage/buy_item_page.html"><img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
 						</li>
 						<li class="mui-table-view-cell mui-media mui-col-xs-6">
-							<img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" />
+							<a href=""><img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
 						</li>
 						<li class="mui-table-view-cell mui-media mui-col-xs-6">
-							<img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" />
+							<a href=""><img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
 						</li>
 						<li class="mui-table-view-cell mui-media mui-col-xs-6">
-							<img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" />
+							<a href=""><img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
 						</li>
 						<li class="mui-table-view-cell mui-media mui-col-xs-6">
-							<img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" />
+							<a href=""><img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
 						</li>
 						<li class="mui-table-view-cell mui-media mui-col-xs-6">
-							<img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" />
+							<a href=""><img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
 						</li>
 					</ul>
 				</div>
@@ -161,7 +162,7 @@
 					for (var i = cells.length, len = i + 4; i < len; i++) {
 						var li = document.createElement('li');
 						li.className = 'mui-table-view-cell mui-media mui-col-xs-6';
-						li.innerHTML = '<img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" />';
+						li.innerHTML = '<a href=""><img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" /></a>';
 						//下拉刷新插到最前面
 						table.insertBefore(li, table.firstChild);
 					}
@@ -175,27 +176,14 @@
 					mui('#homepage').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
 					var cells = document.body.querySelectorAll('.mui-table-view-cell');
 					var table = document.body.querySelector('#hotview');
-					for (var i = cells.length, len = i + 4; i < len; i++) {
+					for (var i = cells.length, len = i + 2; i < len; i++) {
 						var li = document.createElement('li');
 						li.className = 'mui-table-view-cell mui-media mui-col-xs-6';
-						li.innerHTML = '<img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" />';
+						li.innerHTML = '<a href=""><img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" /></a>';
 						table.appendChild(li);
 					}
-				}, 1500);
+				}, 1000);
 			}
-			//			function pullupRefresh() {
-			//				setTimeout(function() {
-			//					mui('#homepage').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
-			//					var cells = document.body.querySelectorAll('.mui-table-view-cell');
-			//					var table = document.body.querySelector('#hotview');
-			//					for (var i = cells.length, len = i + 4; i < len; i++) {
-			//						var li = document.createElement('li');
-			//						li.className = 'mui-table-view-cell mui-media mui-col-xs-6';
-			//						li.innerHTML = '<img src="../images/showlist-0.JPG" alt="" class="mui-media-object" />';
-			//						table.appendChild(li);
-			//					}
-			//				}, 1500);
-			//			}
 			//图片轮播自动播放时间
 			var slider = mui("#slider");
 			slider.slider({

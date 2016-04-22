@@ -7,18 +7,20 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-		<link rel="stylesheet" href="../../css/mui.min.css">
+		<link rel="stylesheet" href="../static/css/mui.min.css">
 		<style>
-			html,body {
+			html,
+			body {
 				background-color: #efeff4;
 			}
-			.title{
+			
+			.title {
 				margin: 20px 15px 10px;
 				color: #6d6d72;
 				font-size: 15px;
 			}
-			 .oa-contact-cell.mui-table .mui-table-cell {
+			
+			.oa-contact-cell.mui-table .mui-table-cell {
 				padding: 11px 0;
 				vertical-align: middle;
 			}
@@ -27,20 +29,25 @@
 				position: relative;
 				margin: -11px 0;
 			}
-	
+			
 			.oa-contact-avatar {
 				width: 75px;
 			}
+			
 			.oa-contact-avatar img {
 				border-radius: 50%;
 			}
+			
 			.oa-contact-content {
 				width: 100%;
 			}
+			
 			.oa-contact-name {
 				margin-right: 20px;
 			}
-			.oa-contact-name, oa-contact-position {
+			
+			.oa-contact-name,
+			oa-contact-position {
 				float: left;
 			}
 		</style>
@@ -48,108 +55,82 @@
 
 	<body>
 		<div class="mui-content">
-			<div class="title">
-				这是webview模式选项卡中的第3个子页面，该页面展示一个通讯录示例
-			</div>
-
 			<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
-				<li class="mui-table-view-cell">
-					<div class="mui-slider-cell">
-						<div class="oa-contact-cell mui-table">
-							<div class="oa-contact-avatar mui-table-cell">
-								<img src="../images/60x60.gif" />
-							</div>
-							<div class="oa-contact-content mui-table-cell">
-								<div class="mui-clearfix">
-									<h4 class="oa-contact-name">叶文洁</h4>
-									<span class="oa-contact-position mui-h6">董事长</span>
-								</div>
-								<p class="oa-contact-email mui-h6">
-									yewenjie@sina.com
-								</p>
-							</div>
-						</div>
+				<li class="mui-table-view-cell mui-media">
+					<div class="mui-table-cell" style="padding-bottom: 5px;">
+						<span class="mui-icon mui-icon-contact"><lable><b style="font-size: 20px;">商品名字</b></lable></span>
+					</div>
+					<div class=" mui-pull-left mui-col-xs-3">
+						<img style="width: auto;height: 70px;margin: 0px;" src="../static/img/images/IMG_2239.png">
+					</div>
+
+					<div class="mui-media-body mui-col-xs-8 mui-pull-right">
+						<p>
+							<h4 style="font-size: 15px;">下单时间：</h4></p>
+						2016-04-20 12:00:00
+						<p class='mui-ellipsis'>总价：￥
+							<lable>15</lable>
+						</p>
+					</div>
+					<div class="mui-table-cell mui-pull-right">
+						<button style="color: red;">付款</button>
 					</div>
 				</li>
-				<li class="mui-table-view-cell">
-					<div class="mui-slider-cell">
-						<div class="oa-contact-cell mui-table">
-							<div class="oa-contact-avatar mui-table-cell">
-								<img src="../images/60x60.gif" />
-							</div>
-							<div class="oa-contact-content mui-table-cell">
-								<div class="mui-clearfix">
-									<h4 class="oa-contact-name">艾AA</h4>
-									<span class="oa-contact-position mui-h6">总经理</span>
-								</div>
-								<p class="oa-contact-email mui-h6">
-									aaa@163.com
-								</p>
-							</div>
-						</div>
+				<li class="mui-table-view-divider"></li>
+				<li class="mui-table-view-cell mui-media">
+					<div class="mui-table-cell" style="padding-bottom: 5px;">
+						<span class="mui-icon mui-icon-contact"><lable><b style="font-size: 20px;">商品名字</b></lable></span>
+					</div>
+					
+					<div class=" mui-pull-left mui-col-xs-3">
+						<img style="width: auto;height: 70px;margin: 0px;" src="../static/img/images/IMG_2239.png">
+					</div>
+
+					<div class="mui-media-body mui-col-xs-8 mui-pull-right">
+						<p>
+							<h4 style="font-size: 15px;">下单时间：</h4></p>
+						2016-04-20 12:00:00
+						<p class='mui-ellipsis'>总价：￥
+							<lable>15</lable>
+						</p>
+					</div>
+					<div class="mui-table-cell mui-pull-right">
+						<button style="color:orange;">评价</button>
 					</div>
 				</li>
-				<li class="mui-table-view-cell">
-					<div class="mui-slider-cell">
-						<div class="oa-contact-cell mui-table">
-							<div class="oa-contact-avatar mui-table-cell">
-								<img src="../images/60x60.gif" />
-							</div>
-							<div class="oa-contact-content mui-table-cell">
-								<div class="mui-clearfix">
-									<h4 class="oa-contact-name">罗辑</h4>
-									<span class="oa-contact-position mui-h6">员工</span>
-								</div>
-								<p class="oa-contact-email mui-h6">
-									luoji@126.com
-								</p>
-							</div>
-						</div>
+				<li class="mui-table-view-divider"></li>
+				<li class="mui-table-view-cell mui-media">
+					<div class="mui-table-cell" style="padding-bottom: 5px;">
+						<span class="mui-icon mui-icon-contact mui-pull-left"><lable><b style="font-size: 20px;">商品名字</b></lable> </span>
 					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div class="mui-slider-cell">
-						<div class="oa-contact-cell mui-table">
-							<div class="oa-contact-avatar mui-table-cell">
-								<img src="../images/60x60.gif" />
-							</div>
-							<div class="oa-contact-content mui-table-cell">
-								<div class="mui-clearfix">
-									<h4 class="oa-contact-name">云天明</h4>
-									<span class="oa-contact-position mui-h6">员工</span>
-								</div>
-								<p class="oa-contact-email mui-h6">
-									ytm@163.com
-								</p>
-							</div>
-						</div>
+					<div class="mui-table-cell mui-pull-right">
+						<b class="mui-pull-right" style="color: green;">已完成</b>
 					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div class="mui-slider-cell">
-						<div class="oa-contact-cell mui-table">
-							<div class="oa-contact-avatar mui-table-cell">
-								<img src="../images/60x60.gif" />
-							</div>
-							<div class="oa-contact-content mui-table-cell">
-								<div class="mui-clearfix">
-									<h4 class="oa-contact-name">史强</h4>
-									<span class="oa-contact-position mui-h6">员工</span>
-								</div>
-								<p class="oa-contact-email mui-h6">
-									shiqiang@gmail.com
-								</p>
-							</div>
-						</div>
+					
+					<div class=" mui-pull-left mui-col-xs-3">
+						<img style="width: auto;height: 70px;margin: 0px;" src="../static/img/images/IMG_2239.png">
+					</div>
+
+					<div class="mui-media-body mui-col-xs-8 mui-pull-right">
+						<p>
+							<h4 style="font-size: 15px;">下单时间：</h4></p>
+						2016-04-20 12:00:00
+						<p class='mui-ellipsis'>总价：￥
+							<lable>15</lable>
+						</p>
+					</div>
+					<div class="mui-table-cell mui-pull-right">
+						<button hidden="true">付款</button>
 					</div>
 				</li>
 			</ul>
 		</div>
 	</body>
-	<script src="../../js/mui.min.js"></script>
+	<script src="../static/js/mui.min.js"></script>
 	<script>
 		mui.init({
-			swipeBack:true //启用右滑关闭功能
+			swipeBack: true //启用右滑关闭功能
 		});
 	</script>
+
 </html>

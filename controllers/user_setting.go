@@ -4,10 +4,10 @@ import (
 	"github.com/astaxie/beego"
 )
 
-type ShopController struct {
+type UserSettingController struct {
 	beego.Controller
 }
 
-func (this *ShopController) Get() {
+func (this *UserSettingController) Get() {
 	this.TplName = "tab-subpage-shop.html"
 }

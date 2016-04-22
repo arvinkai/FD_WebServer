@@ -9,6 +9,5 @@ type ShopCarController struct {
 }
 
 func (this *ShopCarController) Get() {
-	//beego.SetViewsPath("views/HomePage")
 	this.TplName = "tab-subpage-shop-car.html"
 }
