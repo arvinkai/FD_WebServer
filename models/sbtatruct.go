@@ -30,6 +30,10 @@ type Goodsinfo struct {
 	Count           int32
 	Content         string `orm:"size(200)"`
 	DiscountEndtime string
+	Categoryid      int32
+	Categorytype    int32
+	CategoryName    string `orm:size(20)`
+	Couponid        int64
 }
 
 type Book struct {
@@ -56,21 +60,15 @@ type Picture struct {
 	Createtime string
 }
 
-type Category struct {
-	Goodsid      int64 `orm:"pk"`
-	Categoryid   int32 `orm:"pk"`
-	Categorytype int32
-	CategoryName string `orm:size(20)`
-	Couponid     int64
-}
-
 type EverydaySales struct {
+	Id      int64 `orm:"pk;auto"`
 	Goodsid int64
 	Value   int32 //每日销量
 	Date    string
 }
 
 type Evaluate struct {
+	Id         int64 `orm:"pk;auto"`
 	Goodsid    int64
 	Uname      string `orm:"size(20)"`
 	Uid        int64
@@ -89,18 +87,20 @@ type Poster struct {
 
 type Rechage struct {
 	Id      int64 `orm:"pk;auto"`
-	Orderid int64 `orm:"pk"`
+	Orderid int64
 	Uid     int64
 	Type    int8
 	Value   int32
 }
 
 type Collect struct {
-	Uid     int64 `orm:"pk"`
-	Goodsid int64 `orm:"pk"`
+	Id      int64 `orm:"pk;auto"`
+	Uid     int64
+	Goodsid int64
 }
 
 type DiscountCoupon struct {
+	Id         int64 `orm:"pk;auto"`
 	Couponid   int64
 	Uid        int64
 	Count      int32
@@ -110,6 +110,7 @@ type DiscountCoupon struct {
 }
 
 type ExpenseLog struct {
+	Id    int64 `orm:"pk;auto"`
 	Uid   int64
 	Type  int8
 	Money int64
@@ -119,6 +120,7 @@ type ExpenseLog struct {
 }
 
 type Online struct {
+	Id         int64 `orm:"pk;auto"`
 	Uid        int64
 	Uname      string
 	Type       int8
@@ -127,6 +129,7 @@ type Online struct {
 }
 
 type Address struct {
+	Id       int64 `orm:"pk;auto"`
 	Uid      int64
 	Name     string
 	Addr     string `orm:"size(1000)"`
