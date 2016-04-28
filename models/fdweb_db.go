@@ -34,6 +34,7 @@ type Goodsinfo struct {
 	Categorytype    int32  `orm:"null"`
 	CategoryName    string `orm:null;size(20)`
 	Couponid        int64  `orm:"null"`
+	Tourl           string `orm:"null"`
 }
 
 type Book struct {
@@ -58,6 +59,7 @@ type Picture struct {
 	Isshow     int16  `orm:"default(0)"`
 	Updatetime string `orm:"null"`
 	Createtime string
+	Tourl      string `orm:"null"`
 }
 
 type EverydaySales struct {
