@@ -5,35 +5,35 @@ type Character struct {
 	Uid           int64  `orm:"pk;auto"`
 	Uname         string `orm:"size(20)"`
 	Pw            string
-	Icon          string
-	Phone         string `orm:size(11)`
-	Point         int32
-	Money         int32
-	Email         string
-	IdCard        string `orm:size(18)`
-	Local         string
-	CreateTime    uint64
-	LastloginTime uint64
+	Icon          string `orm:"null"`
+	Phone         string `orm:null;size(11)`
+	Point         int32  `orm:"default(0)"`
+	Money         int32  `orm:"default(0)"`
+	Email         string `orm:"null"`
+	IdCard        string `orm:null;size(18)`
+	Local         string `orm:"null"`
+	CreateTime    string
+	LastloginTime string `orm:"null"`
 }
 
 type Goodsinfo struct {
 	Goodsid         int64  `orm:"pk;auto"`
 	Name            string `orm:"size(50)"`
 	Price           int32
-	Discount        int32
-	Barcode         int64
-	Updatetime      string
+	Discount        int32  `orm:"default(0)"`
+	Barcode         int64  `orm:"default(0)"`
+	Updatetime      string `orm:"null"`
 	Createtime      string
 	Editer          string
-	Ishot           int32
-	Ishave          int32
-	Count           int32
-	Content         string `orm:"size(200)"`
-	DiscountEndtime string
-	Categoryid      int32
-	Categorytype    int32
-	CategoryName    string `orm:size(20)`
-	Couponid        int64
+	Ishot           int32  `orm:"default(0)"`
+	Ishave          int32  `orm:"default(0)"`
+	Count           int32  `orm:"default(0)"`
+	Content         string `orm:"null;size(200)"`
+	DiscountEndtime string `orm:"null"`
+	Categoryid      int32  `orm:"null"`
+	Categorytype    int32  `orm:"null"`
+	CategoryName    string `orm:null;size(20)`
+	Couponid        int64  `orm:"null"`
 }
 
 type Book struct {
@@ -45,18 +45,18 @@ type Book struct {
 	Addr       string `orm:"size(100)"`
 	Statues    int16
 	Price      int32
-	Postage    int32
+	Postage    int32 `orm:"default(0)"`
 	Createtime string
-	Endtime    string
+	Endtime    string `orm:"null"`
 }
 
 type Picture struct {
-	Imgid      int64 `orm:"pk;auto"`
-	Goodsid    int64
+	Imgid      int64  `orm:"pk;auto"`
+	Goodsid    int64  `orm:"null"`
 	Imgsrc     string `orm:"size(1000)"`
-	Type       int16  //图片作用
-	Isshow     int16
-	Updatetime string
+	Type       int16  `orm:"null"` //图片作用
+	Isshow     int16  `orm:"default(0)"`
+	Updatetime string `orm:"null"`
 	Createtime string
 }
 
@@ -70,19 +70,12 @@ type EverydaySales struct {
 type Evaluate struct {
 	Id         int64 `orm:"pk;auto"`
 	Goodsid    int64
-	Uname      string `orm:"size(20)"`
+	Uname      string `orm:"null;size(20)"`
 	Uid        int64
-	PictureSrc string `orm:"size(1000)"`
+	PictureSrc string `orm:"null;size(1000)"`
 	Createtime string
-	Good_star  int8
-	Post_star  int8
-}
-
-type Poster struct {
-	Postid   int32  `orm:"pk;auto"`
-	Name     string `orm:"size(20)"`
-	Phone    string `orm:size(11)`
-	Postgift int64
+	Good_star  int8 `orm:"default(0)"`
+	Post_star  int8 `orm:"default(0)"`
 }
 
 type Rechage struct {
@@ -132,6 +125,32 @@ type Address struct {
 	Id       int64 `orm:"pk;auto"`
 	Uid      int64
 	Name     string
-	Addr     string `orm:"size(1000)"`
-	Postcode string `orm:"size(6)"`
+	Addr     string `orm:"null;size(1000)"`
+	Postcode string `orm:"null;size(6)"`
+}
+
+type Poster struct {
+	Posterid int32  `orm:"pk;auto"`
+	Name     string `orm:"size(20)"`
+	Phone    string `orm:size(11)`
+	Postgift int64
+}
+
+type Postergift struct {
+	Id       int64 `orm:"pk;auto"`
+	Posterid int32
+	Giftid   int32
+	Giftname string
+	Count    int32
+	Point    int64
+}
+
+type GiftLog struct {
+	Id       int64
+	Uid      int64
+	Posterid int32
+	Giftid   int32
+	Giftname string
+	Count    int32
+	Point    int64
 }
