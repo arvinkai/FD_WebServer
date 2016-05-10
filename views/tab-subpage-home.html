@@ -22,40 +22,68 @@
 				<div id="slider" class="mui-slider">
 					<div class="mui-slider-group mui-slider-loop">
 						<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-						<div class="mui-slider-item mui-slider-item-duplicate">
+<!-- 						<div class="mui-slider-item mui-slider-item-duplicate">
 							<a href="#">
 								<img src="../static/img/images/slider-2.JPG">
 							</a>
 						</div>
-						<!-- 第一张 -->
+ -->
+
+
+						{{range $v, $k := .Pictures}}
+							{{if eq $v 0}}
+
+							<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="#">
+								<img src="{{$k.Imgsrc}}">
+							</a>
+						</div>
+							{{end}}
 						<div class="mui-slider-item">
+							<a href="#">
+								<img src="{{$k.Imgsrc}}">
+							</a>
+						</div>
+						{{if eq $v 2}}
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="#">
+									<img src="{{$k.Imgsrc}}">
+							</a>
+						</div>
+							{{end}}
+						{{end}}
+						
+
+			
+						<!-- 第一张 -->
+						<!-- <div class="mui-slider-item">
 							<a href="#">
 								<img src="../static/img/images/slider-0.JPG">
 							</a>
-						</div>
+						</div> -->
 						<!-- 第二张 -->
-						<div class="mui-slider-item">
+						<!-- <div class="mui-slider-item">
 							<a href="#">
 								<img src="../static/img/images/slider-1.JPG">
 							</a>
-						</div>
+						</div> -->
 						<!-- 第三张 -->
-						<div class="mui-slider-item">
+						<!-- <div class="mui-slider-item">
 							<a href="#">
 								<img src="../static/img/images/slider-2.JPG">
 							</a>
-						</div>
+						</div> -->
 						<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-						<div class="mui-slider-item mui-slider-item-duplicate">
+<!-- 						<div class="mui-slider-item mui-slider-item-duplicate">
 							<a href="#">
 								<img src="../static/img/images/slider-0.JPG">
 							</a>
-						</div>
+						</div> -->
 					</div>
 					<div class="mui-slider-indicator">
-						<div class="mui-indicator mui-active"></div>
+					<!-- 	<div class="mui-indicator mui-active"></div>
 						<div class="mui-indicator"></div>
-						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div> -->
 					</div>
 				</div>
 
