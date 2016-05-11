@@ -56,7 +56,7 @@ type Picture struct {
 	Goodsid    int64  `orm:"null"`
 	Imgsrc     string `orm:"size(1000)"`
 	Type       string `orm:"size(20);null"` //图片作用
-	Where      string `orm:"size(20);null"`
+	Where      string `orm:"size(20);null"` //什么模块使用
 	Isshow     int8   `orm:"default(0)"`
 	Updatetime string `orm:"null"`
 	Createtime string

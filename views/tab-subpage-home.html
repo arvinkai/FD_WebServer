@@ -21,10 +21,10 @@
 				<!--首页滚动栏-->
 				<div id="slider" class="mui-slider">
 					<div class="mui-slider-group mui-slider-loop">
-
 						{{$len := .PicturesLen}}
 						{{$startpic := .StartPic}}
 						{{$endpic := .Endpic}}
+
 						{{range $k, $v := .Pictures}}
 							<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
 							{{if eq $k 0}}
@@ -50,7 +50,6 @@
 								</div>
 							{{end}}
 						{{end}}
-						
 					</div>
 					<div class="mui-slider-indicator">
 						{{range $k,$v := .Pictures}}
@@ -98,15 +97,11 @@
 					<h4>精品推荐</h4>
 				</div>
 				<ul id="bestview" class="mui-table-view">
-					<li class="mui-table-view-cell" style="padding: 5px;">
-						<a href=""><img src="../static/img/images/carousel0.jpg" alt="" /></a>
-					</li>
-					<li class="mui-table-view-cell" style="padding: 5px;">
-						<a href=""><img src="../static/img/images/carousel0.jpg" alt="" /></a>
-					</li>
-					<li class="mui-table-view-cell" style="padding: 5px;">
-						<a href=""><img src="../static/img/images/carousel0.jpg" alt="" /></a>
-					</li>
+					{{range .Carousels}}
+						<li class="mui-table-view-cell" style="padding: 5px;">
+							<a href=""><img src="{{.Imgsrc}}" alt="" /></a>
+						</li>
+					{{end}}
 				</ul>
 
 				<!--展示-->
@@ -115,24 +110,11 @@
 				</div>
 				<div class="mui-content">
 					<ul id="hotview" class="mui-table-view mui-grid-view">
-						<li class="mui-table-view-cell mui-media mui-col-xs-6">
-							<a href="buypage/buy_item_page.html"><img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
-						</li>
-						<li class="mui-table-view-cell mui-media mui-col-xs-6">
-							<a href=""><img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
-						</li>
-						<li class="mui-table-view-cell mui-media mui-col-xs-6">
-							<a href=""><img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
-						</li>
-						<li class="mui-table-view-cell mui-media mui-col-xs-6">
-							<a href=""><img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
-						</li>
-						<li class="mui-table-view-cell mui-media mui-col-xs-6">
-							<a href=""><img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
-						</li>
-						<li class="mui-table-view-cell mui-media mui-col-xs-6">
-							<a href=""><img src="../static/img/images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
-						</li>
+						{{range .Showlists}}
+							<li class="mui-table-view-cell mui-media mui-col-xs-6">
+								<a href="{{.Tourl}}"><img src="{{.Imgsrc}}" alt="" class="mui-media-object" /></a>
+							</li>
+						{{end}}
 					</ul>
 				</div>
 				<ul class="mui-table-view mui-table-view-chevron">
@@ -159,10 +141,9 @@
 			//下拉刷新
 			function pulldownRefresh() {
 				setTimeout(function() {
-					//										var table = document.body.querySelector('.mui-table-view');
 					var cells = document.body.querySelectorAll('.mui-table-view-cell');
 					var table = document.body.querySelector('#hotview');
-					//					var cells = document.body.querySelectorAll('.mui-col-xs-6');
+				
 					for (var i = cells.length, len = i + 4; i < len; i++) {
 						var li = document.createElement('li');
 						li.className = 'mui-table-view-cell mui-media mui-col-xs-6';
