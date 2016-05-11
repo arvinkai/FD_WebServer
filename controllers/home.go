@@ -12,10 +12,16 @@ type HomePageController struct {
 }
 
 func (this *HomePageController) Get() {
-	pictures := models.GetPicture("Home")
+	pictures, clos, err := models.GetPicture("homehead", "slider", 1)
+	if err != nil {
+		fmt.Println(err)
+		this.Redirect("/", 301)
+	}
 	this.Data["Pictures"] = pictures
-	this.Data["Picture0"] = pictures[0]
-	this.Data["Picture2"] = pictures[1]
+	length := len(pictures)
+	this.Data["PicturesLen"] = length - 1
+	this.Data["StartPic"] = pictures[0]
+	this.Data["EndPic"] = pictures[length-1]
 	fmt.Println(pictures[0])
 	this.TplName = "tab-subpage-home.html"
 }

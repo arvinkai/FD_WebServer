@@ -21,69 +21,45 @@
 				<!--首页滚动栏-->
 				<div id="slider" class="mui-slider">
 					<div class="mui-slider-group mui-slider-loop">
-						<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-<!-- 						<div class="mui-slider-item mui-slider-item-duplicate">
-							<a href="#">
-								<img src="../static/img/images/slider-2.JPG">
-							</a>
-						</div>
- -->
 
-
-						{{range $v, $k := .Pictures}}
-							{{if eq $v 0}}
-
-							<div class="mui-slider-item mui-slider-item-duplicate">
-							<a href="#">
-								<img src="{{$k.Imgsrc}}">
-							</a>
-						</div>
+						{{$len := .PicturesLen}}
+						{{$startpic := .StartPic}}
+						{{$endpic := .Endpic}}
+						{{range $k, $v := .Pictures}}
+							<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+							{{if eq $k 0}}
+								<div class="mui-slider-item mui-slider-item-duplicate">
+									<a href="$endpic.Tourl">
+										<img src="{{$endpic.Imgsrc}}">
+									</a>
+								</div>
 							{{end}}
-						<div class="mui-slider-item">
-							<a href="#">
-								<img src="{{$k.Imgsrc}}">
-							</a>
-						</div>
-						{{if eq $v 2}}
-						<div class="mui-slider-item mui-slider-item-duplicate">
-							<a href="#">
-									<img src="{{$k.Imgsrc}}">
-							</a>
-						</div>
+							<!-- 数据库读取的每张图片数据 -->
+							<div class="mui-slider-item">
+								<a href="$v.Tourl">
+									<img src="{{$v.Imgsrc}}">
+								</a>
+							</div>
+							
+							<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+							{{if eq $k $len}}
+								<div class="mui-slider-item mui-slider-item-duplicate">
+									<a href="$startpic.Tourl">
+											<img src="{{$startpic.Imgsrc}}">
+									</a>
+								</div>
 							{{end}}
 						{{end}}
 						
-
-			
-						<!-- 第一张 -->
-						<!-- <div class="mui-slider-item">
-							<a href="#">
-								<img src="../static/img/images/slider-0.JPG">
-							</a>
-						</div> -->
-						<!-- 第二张 -->
-						<!-- <div class="mui-slider-item">
-							<a href="#">
-								<img src="../static/img/images/slider-1.JPG">
-							</a>
-						</div> -->
-						<!-- 第三张 -->
-						<!-- <div class="mui-slider-item">
-							<a href="#">
-								<img src="../static/img/images/slider-2.JPG">
-							</a>
-						</div> -->
-						<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-<!-- 						<div class="mui-slider-item mui-slider-item-duplicate">
-							<a href="#">
-								<img src="../static/img/images/slider-0.JPG">
-							</a>
-						</div> -->
 					</div>
 					<div class="mui-slider-indicator">
-					<!-- 	<div class="mui-indicator mui-active"></div>
-						<div class="mui-indicator"></div>
-						<div class="mui-indicator"></div> -->
+						{{range $k,$v := .Pictures}}
+							{{if eq $k 0}}
+								<div class="mui-indicator mui-active"></div>
+							{{else}}
+								<div class="mui-indicator"></div>
+							{{end}}
+						{{end}}
 					</div>
 				</div>
 

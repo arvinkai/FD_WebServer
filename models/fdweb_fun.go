@@ -7,26 +7,22 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-func GetPicture(Type string) (resp []*Picture) {
+func GetPicture(Where string, Type string, IsShow int8) (resp []*Picture, cols int64, err error) {
 	fmt.Println(Type)
 	var ptc []*Picture = make([]*Picture, 0)
-	switch Type {
-	case "Home":
-		{
-			o := orm.NewOrm()
-			qs := o.QueryTable("picture")
-			_, err := qs.Filter("type", 1).Filter("isshow", 1).All(&ptc)
-			if err != nil {
-				fmt.Println(err)
-				return nil
-			}
-		}
-	case "shop":
-		{
 
-		}
+	o := orm.NewOrm()
+	qs := o.QueryTable("picture")
+	a, err := qs.Filter("type", Type).Filter("isshow", IsShow).Filter("where", Where).All(&ptc)
+	if err != nil {
+		fmt.Println(err)
+		return nil, a, err
 	}
-	return ptc
+	if a == 0 {
+		return nil, a, nil
+	}
+
+	return ptc, a, nil
 }
 
 func GetGoodsInfo(Type string) string {
