@@ -157,3 +157,11 @@ type GiftLog struct {
 	Count    int32
 	Point    int64
 }
+
+type Shopcar struct {
+	Id         int64
+	Uid        int64
+	Goodsid    int64
+	Count      int32
+	CreateDate string
+}

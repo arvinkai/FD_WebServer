@@ -9,5 +9,6 @@ type ShopCarController struct {
 }
 
 func (this *ShopCarController) Get() {
+
 	this.TplName = "tab-subpage-shop-car.html"
 }
