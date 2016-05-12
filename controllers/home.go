@@ -12,7 +12,7 @@ type HomePageController struct {
 }
 
 func (this *HomePageController) Get() {
-	sliders, slidersCount, err := models.GetPicture("homehead", "slider", 1)
+	sliders, slidersCount, err := models.GetPicturesByUse("homehead", "slider", 1)
 	if err != nil {
 		fmt.Println(slidersCount, err)
 	}
@@ -22,13 +22,13 @@ func (this *HomePageController) Get() {
 	this.Data["StartPic"] = sliders[0]
 	this.Data["EndPic"] = sliders[length-1]
 
-	carousels, carouselCount, err1 := models.GetPicture("homecarousel", "carousel", 1)
+	carousels, carouselCount, err1 := models.GetPicturesByUse("homecarousel", "carousel", 1)
 	if err != nil {
 		fmt.Println(carouselCount, err1)
 	}
 	this.Data["Carousels"] = carousels
 	fmt.Println(carousels[0])
-	showlists, showlistCount, err2 := models.GetPicture("homeshowlist", "showlist", 1)
+	showlists, showlistCount, err2 := models.GetPicturesByUse("homeshowlist", "showlist", 1)
 	if err != nil {
 		fmt.Println(showlistCount, err2)
 	}

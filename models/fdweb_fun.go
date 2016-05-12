@@ -7,7 +7,7 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-func GetPicture(Where string, Type string, IsShow int8) ([]*Picture, int64, error) {
+func GetPicturesByUse(Where string, Type string, IsShow int8) ([]*Picture, int64, error) {
 	var ptc []*Picture = make([]*Picture, 0)
 
 	o := orm.NewOrm()
@@ -24,6 +24,19 @@ func GetPicture(Where string, Type string, IsShow int8) ([]*Picture, int64, erro
 	return ptc, n, err
 }
 
+func GetPictureByGoodsid(Goodsid int64, Where string, Type string, IsShow int8) (*Picture, error) {
+	ptc := &Picture{}
+	o := orm.NewOrm()
+	qs := o.QueryTable("picture")
+	err := qs.Filter("goodsid", Goodsid).Filter("type", Type).Filter("isshow", IsShow).Filter("where", Where).One(ptc)
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+
+	return ptc, err
+}
+
 func GetGoodsInfo(goodsid int64) (*Goodsinfo, error) {
 	var goods *Goodsinfo = &Goodsinfo{} //new(Goodsinfo)
 	o := orm.NewOrm()
@@ -32,11 +45,11 @@ func GetGoodsInfo(goodsid int64) (*Goodsinfo, error) {
 	return goods, err
 }
 
-func GetShopcarGoodsids(uid int64) ([]*Cargoods, int64, error) {
-	Cargoods := make([]*Goodsinfo, 0)
+func GetShopcars(uid int64) ([]*Shopcar, int64, error) {
+	Shopcars := make([]*Shopcar, 0)
 	o := orm.NewOrm()
 	qs := o.QueryTable("shopcar")
-	n, err := qs.Filter("uid", uid).All(&Cargoods)
+	n, err := qs.Filter("uid", uid).All(&Shopcars)
 	if err != nil {
 		return nil, n, err
 	}
@@ -45,11 +58,36 @@ func GetShopcarGoodsids(uid int64) ([]*Cargoods, int64, error) {
 		return nil, 0, err
 	}
 
-	return Cargoods, n, err
+	return Shopcars, n, err
 }
 
 func GetShopCar(uid int64) []*ShopCarData {
 	CarData := make([]*ShopCarData, 0)
-	Cargoodses, n, err := GetShopcarGoodsids(uid)
+	Shopcars, n, err := GetShopcars(uid)
+	if err != nil {
+		fmt.Println("GetShopCar:", err)
+		return nil
+	}
+	if n == 0 {
+		fmt.Println("Fields cols:", n)
+		return nil
+	}
 
+	for k, v := range Shopcars {
+		goodsinfo, err1 := GetGoodsInfo(v.Goodsid)
+		if err1 != nil {
+			fmt.Println(err1)
+			return nil
+		}
+
+		picture, err2 := GetPictureByGoodsid(v.Goodsid, "shopcar", "shopcarlist", 1)
+		if err2 != nil {
+			fmt.Println(err2)
+			return nil
+		}
+		CarData[k] = &ShopCarData{Goodsid: v.Goodsid, Count: v.Count, Price: goodsinfo.Price,
+			Createdate: v.CreateDate, Imgsrc: picture.Imgsrc, Tourl: goodsinfo.Tourl}
+	}
+
+	return CarData
 }
