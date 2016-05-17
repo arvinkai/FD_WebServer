@@ -18,7 +18,30 @@
 	<body>
 		<div class="mui-content">
 			<ul class="mui-table-view">
-				<li id="car1" class="mui-table-view-cell">
+
+			{{range shopcarsData}}
+				<li id="{{.Goodsid}}" class="mui-table-view-cell">
+					<div class="mui-checkbox mui-col-xs-2">
+						<input id="{{.Goodsid}}_r" name="{{.Goodsid}}_r" class="class_car" type="checkbox" style="line-height: 100px;line-width: 10px;">
+					</div>
+					<div id="car1_v" class="mui-media mui-col-xs-10 mui-pull-right">
+						<a href="javascript:;">
+							<img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="{{.Imgsrc}}" alt="展示图" />
+							<div class="mui-media-body ">
+								<h5 style="line-height:20px;color: black;font-weight:bold;">{{.Name}}</h5>
+								<h5 style="color: red;">售价：￥<lable id="{{.Goodsid}}_pay">{{.Price}}</lable></h5>
+								<h6>购买数量:</h6>
+								<div class="mui-numbox" data-numbox-min='1' style="width: 110px;height: 30px;">
+									<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+									<input class="mui-input-numbox" type="number" value="{{.Count}}" />
+									<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+								</div>
+							</div>
+						</a>
+					</div>
+				</li>
+			{{end}}
+<!-- 				<li id="car1" class="mui-table-view-cell">
 					<div class="mui-checkbox mui-col-xs-2">
 						<input id="car1_r" name="car_r" class="class_car" type="checkbox" style="line-height: 100px;line-width: 10px;">
 					</div>
@@ -123,7 +146,7 @@
 					</div>
 				</li>
 			</ul>
-		</div>
+		</div> -->
 		<!--底部占行-->
 		<br />
 		<br />

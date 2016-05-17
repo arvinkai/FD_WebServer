@@ -38,11 +38,47 @@ func GetPictureByGoodsid(Goodsid int64, Where string, Type string, IsShow int8) 
 }
 
 func GetGoodsInfo(goodsid int64) (*Goodsinfo, error) {
-	var goods *Goodsinfo = &Goodsinfo{} //new(Goodsinfo)
+	var goods *Goodsinfo = &Goodsinfo{}
 	o := orm.NewOrm()
 	qs := o.QueryTable("goodsinfo")
 	err := qs.Filter("goodsid", goodsid).One(goods)
 	return goods, err
+}
+
+func OpShopcars(sc []*Shopcar, op string) error {
+	o := orm.NewOrm()
+	if op == "add" {
+		for k, v := range sc {
+			dbShopcar, err := GetShopcarByGoodsid(v.Goodsid)
+			if dbShopcar != nil {
+				o.Update(v)
+			} else {
+				o.Insert(v)
+			}
+		}
+	} else if op == "del" {
+		for k, v := range sc {
+			dbShopcar, err := GetShopcarByGoodsid(v.Goodsid)
+			if dbShopcar != nil {
+				o.Delete(v)
+			} else {
+				return err
+			}
+		}
+	}
+
+	return nil
+}
+
+func GetShopcarByGoodsid(goodsid int64) (*Shopcar, error) {
+	Shopcar := &Shopcar{}
+	o := orm.NewOrm()
+	qs := o.QueryTable("shopcar")
+	err := qs.Filter("goodsid", goodsid).One(&Shopcar)
+	if err != nil {
+		return nil, err
+	}
+	return Shopcar, nil
 }
 
 func GetShopcars(uid int64) ([]*Shopcar, int64, error) {
@@ -61,7 +97,7 @@ func GetShopcars(uid int64) ([]*Shopcar, int64, error) {
 	return Shopcars, n, err
 }
 
-func GetShopCar(uid int64) []*ShopCarData {
+func GetShopCarsData(uid int64) []*ShopCarData {
 	CarData := make([]*ShopCarData, 0)
 	Shopcars, n, err := GetShopcars(uid)
 	if err != nil {
@@ -85,7 +121,7 @@ func GetShopCar(uid int64) []*ShopCarData {
 			fmt.Println(err2)
 			return nil
 		}
-		CarData[k] = &ShopCarData{Goodsid: v.Goodsid, Count: v.Count, Price: goodsinfo.Price,
+		CarData[k] = &ShopCarData{Goodsid: v.Goodsid, Name: goodsinfo.Name, Count: v.Count, Price: goodsinfo.Price,
 			Createdate: v.CreateDate, Imgsrc: picture.Imgsrc, Tourl: goodsinfo.Tourl}
 	}
 
