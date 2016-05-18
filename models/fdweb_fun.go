@@ -98,7 +98,6 @@ func GetShopcars(uid int64) ([]*Shopcar, int64, error) {
 }
 
 func GetShopCarsData(uid int64) []*ShopCarData {
-	CarData := make([]*ShopCarData, 0)
 	Shopcars, n, err := GetShopcars(uid)
 	if err != nil {
 		fmt.Println("GetShopCar:", err)
@@ -108,6 +107,7 @@ func GetShopCarsData(uid int64) []*ShopCarData {
 		fmt.Println("Fields cols:", n)
 		return nil
 	}
+	CarDatas := make([]*ShopCarData, n)
 
 	for k, v := range Shopcars {
 		goodsinfo, err1 := GetGoodsInfo(v.Goodsid)
@@ -121,9 +121,10 @@ func GetShopCarsData(uid int64) []*ShopCarData {
 			fmt.Println(err2)
 			return nil
 		}
-		CarData[k] = &ShopCarData{Goodsid: v.Goodsid, Name: goodsinfo.Name, Count: v.Count, Price: goodsinfo.Price,
+
+		CarDatas[k] = &ShopCarData{Goodsid: v.Goodsid, Name: goodsinfo.Name, Count: v.Count, Price: goodsinfo.Price,
 			Createdate: v.CreateDate, Imgsrc: picture.Imgsrc, Tourl: goodsinfo.Tourl}
 	}
 
-	return CarData
+	return CarDatas
 }
