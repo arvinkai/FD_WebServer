@@ -48,8 +48,8 @@ func GetGoodsInfo(goodsid int64) (*Goodsinfo, error) {
 func OpShopcars(sc []*Shopcar, op string) error {
 	o := orm.NewOrm()
 	if op == "add" {
-		for k, v := range sc {
-			dbShopcar, err := GetShopcarByGoodsid(v.Goodsid)
+		for _, v := range sc {
+			dbShopcar, _ := GetShopcarByGoodsid(v.Goodsid)
 			if dbShopcar != nil {
 				o.Update(v)
 			} else {
@@ -57,7 +57,7 @@ func OpShopcars(sc []*Shopcar, op string) error {
 			}
 		}
 	} else if op == "del" {
-		for k, v := range sc {
+		for _, v := range sc {
 			dbShopcar, err := GetShopcarByGoodsid(v.Goodsid)
 			if dbShopcar != nil {
 				o.Delete(v)
