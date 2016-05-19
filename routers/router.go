@@ -15,4 +15,5 @@ func init() {
 	beego.Router("/book", &controllers.BookController{})
 	beego.Router("/setting", &controllers.UserSettingController{})
 	beego.Router("/buypage", &controllers.BuyPageController{})
+	beego.AutoRouter(&controllers.BuyPageController{})
 }

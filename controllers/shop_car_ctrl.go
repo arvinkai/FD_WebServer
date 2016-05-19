@@ -41,7 +41,3 @@ func (this *ShopCarController) Get() {
 	this.Data["ShopcarData"] = ShopcarsData
 	this.TplName = "tab-subpage-shop-car.html"
 }
-
-func (this *ShopCarController) AddtoCar() {
-
-}

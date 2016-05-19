@@ -70,15 +70,36 @@ func OpShopcars(sc []*Shopcar, op string) error {
 	return nil
 }
 
+func OpShopcar(sc *Shopcar, op string) error {
+	o := orm.NewOrm()
+	if op == "add" {
+		dbShopcar, _ := GetShopcarByGoodsid(sc.Goodsid)
+		if dbShopcar != nil {
+			fmt.Println(sc)
+			dbShopcar.Count = sc.Count
+			o.Update(dbShopcar)
+		} else {
+			o.Insert(sc)
+		}
+	} else if op == "del" {
+		dbShopcar, err := GetShopcarByGoodsid(sc.Goodsid)
+		if dbShopcar != nil {
+			o.Delete(dbShopcar)
+		} else {
+			return err
+		}
+	}
+	return nil
+}
 func GetShopcarByGoodsid(goodsid int64) (*Shopcar, error) {
-	Shopcar := &Shopcar{}
+	Spcar := &Shopcar{}
 	o := orm.NewOrm()
 	qs := o.QueryTable("shopcar")
-	err := qs.Filter("goodsid", goodsid).One(&Shopcar)
+	err := qs.Filter("goodsid", goodsid).One(Spcar)
 	if err != nil {
 		return nil, err
 	}
-	return Shopcar, nil
+	return Spcar, nil
 }
 
 func GetShopcars(uid int64) ([]*Shopcar, int64, error) {

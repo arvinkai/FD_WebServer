@@ -144,10 +144,6 @@
 						<span class="mui-icon iconfont icon-guanzhu"></span>
 						<span class="mui-tab-label">关注</span>
 					</a>
-<!-- 					<a class="mui-tab-item mui-col-xs-3" href="/shop_car">
-						<span class="mui-icon iconfont icon-shop1"><span class="mui-badge">9</span></span>
-						<span class="mui-tab-label">购物车</span>
-					</a> -->
 					<a id="shop_car" href="#" class="mui-tab-item mui-col-xs-3">
 						<span class="mui-icon iconfont icon-shop1"><span class="mui-badge">9</span></span>
 						<span class="mui-tab-label">购物车</span>
@@ -166,17 +162,21 @@
 			// mui('#shop_car').on('tap','.icon-shop1',function(){
 			// 	mui.openWindow({
 			// 		id:'default',
-			// 		url:'/shop_car'
+			// 		url:'http://192.168.80.105:8080/shop_car'
 			// 	})
 			// });//选择的只是icon这一个选择器，所以点击必须点击中间，范围小，不是很敏感
 			
 			document.getElementById('shop_car').addEventListener('tap',function(){
 				mui.openWindow({
-					id:'shop_car',
-					url:'/shop_car'
-				})
+					id:'gocar',
+					url:'http://192.168.80.105:8080/shop_car',
+				});
 			});//整一个超链接范围都是tap点击区，反应更迅速
 			document.getElementById('add2car').addEventListener('tap',function(){
+								mui.openWindow({
+					id:'gocar',
+					url:'http://192.168.80.105:8080/buypage/addtocar',
+				});
 				var itemID = document.getElementById('ItemID').value;
 				alert(itemID);//用自动路由功能调用入库函数
 

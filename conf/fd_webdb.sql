@@ -196,11 +196,11 @@ CREATE TABLE `goodsinfo` (
   `couponid` bigint(20) DEFAULT NULL,
   `tourl` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`goodsid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `goodsinfo` */
 
-insert  into `goodsinfo`(`goodsid`,`name`,`price`,`discount`,`barcode`,`updatetime`,`createtime`,`editer`,`ishot`,`ishave`,`count`,`content`,`discount_endtime`,`categoryid`,`categorytype`,`category_name`,`couponid`,`tourl`) values (1,'超级无敌-甜甜圈1',5,0,0,'1463580479','1463580479','',0,1,100,'超级好吃的超级无敌甜甜圈',NULL,NULL,NULL,'',NULL,NULL),(2,'超级无敌-甜甜圈2',10,0,0,'1463580479','1463580479','',0,1,50,NULL,NULL,NULL,NULL,'',NULL,NULL);
+insert  into `goodsinfo`(`goodsid`,`name`,`price`,`discount`,`barcode`,`updatetime`,`createtime`,`editer`,`ishot`,`ishave`,`count`,`content`,`discount_endtime`,`categoryid`,`categorytype`,`category_name`,`couponid`,`tourl`) values (1,'超级无敌-甜甜圈1',5,0,0,'1463580479','1463580479','',0,1,100,'超级好吃的超级无敌甜甜圈',NULL,NULL,NULL,'',NULL,NULL),(2,'超级无敌-甜甜圈2',10,0,0,'1463580479','1463580479','',0,1,50,'超级好吃的超级无敌甜甜圈',NULL,NULL,NULL,'',NULL,NULL),(3,'超级无敌-甜甜圈2',20,0,0,'1463580479','1463580479','',0,1,10,'超级好吃的超级无敌甜甜圈',NULL,NULL,NULL,'',NULL,NULL);
 
 /*Table structure for table `online` */
 
@@ -233,11 +233,11 @@ CREATE TABLE `picture` (
   `tourl` varchar(255) DEFAULT NULL,
   `where` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`imgid`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 /*Data for the table `picture` */
 
-insert  into `picture`(`imgid`,`goodsid`,`imgsrc`,`type`,`isshow`,`updatetime`,`createtime`,`tourl`,`where`) values (1,10,'../static/img/images/slider-0.JPG','slider',1,'1462889103','1462889103',NULL,'homehead'),(2,11,'../static/img/images/slider-1.JPG','slider',1,'1462889113','1462889113',NULL,'homehead'),(3,3,'../static/img/images/slider-2.JPG','slider',1,'1462889123','1462889123',NULL,'homehead'),(4,4,'../static/img/images/slider-1.JPG','slider',0,'1462889133','1462889133',NULL,'homehead'),(5,5,'../static/img/images/carousel0.jpg','carousel',1,'1462889133','1462889133',NULL,'homecarousel'),(6,6,'../static/img/images/showlist-0.JPG','showlist',1,'1462889133','1462889133','buypage/buy_item_page.html','homeshowlist'),(7,7,'../static/img/images/showlist-0.JPG','showlist',1,'1462889133','1462889133','buypage/buy_item_page.html','homeshowlist'),(8,8,'../static/img/images/showlist-0.JPG','showlist',1,'1462889133','1462889133','buypage/buy_item_page.html','homeshowlist'),(9,9,'../static/img/images/showlist-0.JPG','showlist',1,'1462889133','1462889133','buypage/buy_item_page.html','homeshowlist'),(10,1,'../static/img/images/showlist-0.JPG','shopcarlist',1,'1462889133','1462889133',NULL,'shopcar'),(11,2,'../static/img/images/showlist-0.JPG','shopcarlist',1,'1462889133','1462889133',NULL,'shopcar');
+insert  into `picture`(`imgid`,`goodsid`,`imgsrc`,`type`,`isshow`,`updatetime`,`createtime`,`tourl`,`where`) values (1,10,'../static/img/images/slider-0.JPG','slider',1,'1462889103','1462889103',NULL,'homehead'),(2,11,'../static/img/images/slider-1.JPG','slider',1,'1462889113','1462889113',NULL,'homehead'),(3,12,'../static/img/images/slider-2.JPG','slider',1,'1462889123','1462889123',NULL,'homehead'),(4,4,'../static/img/images/slider-1.JPG','slider',0,'1462889133','1462889133',NULL,'homehead'),(5,5,'../static/img/images/carousel0.jpg','carousel',1,'1462889133','1462889133',NULL,'homecarousel'),(6,6,'../static/img/images/showlist-0.JPG','showlist',1,'1462889133','1462889133','/buypage','homeshowlist'),(7,7,'../static/img/images/showlist-0.JPG','showlist',1,'1462889133','1462889133','buypage/buy_item_page.html','homeshowlist'),(8,8,'../static/img/images/showlist-0.JPG','showlist',1,'1462889133','1462889133','buypage/buy_item_page.html','homeshowlist'),(9,9,'../static/img/images/showlist-0.JPG','showlist',1,'1462889133','1462889133','buypage/buy_item_page.html','homeshowlist'),(10,1,'../static/img/images/showlist-0.JPG','shopcarlist',1,'1462889133','1462889133',NULL,'shopcar'),(11,2,'../static/img/images/showlist-0.JPG','shopcarlist',1,'1462889133','1462889133',NULL,'shopcar'),(12,3,'../static/img/images/showlist-0.JPG','shopcarlist',1,'1462889133','1462889133',NULL,'shopcar');
 
 /*Table structure for table `poster` */
 
@@ -295,11 +295,11 @@ CREATE TABLE `shopcar` (
   `count` int(11) NOT NULL DEFAULT '0',
   `create_date` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `shopcar` */
 
-insert  into `shopcar`(`id`,`uid`,`goodsid`,`count`,`create_date`) values (1,1,1,1,'1463580479'),(2,1,2,1,'1463580479');
+insert  into `shopcar`(`id`,`uid`,`goodsid`,`count`,`create_date`) values (1,1,1,1,'1463580479'),(2,1,2,1,'1463580479'),(3,1,3,2,'1463677376');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

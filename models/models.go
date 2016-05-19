@@ -11,6 +11,11 @@ func RegistDB() {
 	port := beego.AppConfig.String("MySqlPort")
 	user := beego.AppConfig.String("MySqlUser")
 	DBpw := beego.AppConfig.String("MySqlPassWord")
+	if DBpw == "123456" {
+		DBpw = "arvin"
+	} else {
+		DBpw = "123456"
+	}
 	DBName := beego.AppConfig.String("MySqlDBName")
 	DBsrc := user + ":" + DBpw + "@(" + host + ":" + port + ")/" + DBName + "?charset=utf8"
 	orm.RegisterModel(new(Character), new(Goodsinfo), new(Book), new(Picture), new(EverydaySales),
