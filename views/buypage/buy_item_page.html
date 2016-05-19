@@ -5,28 +5,28 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
-		<link href="../../../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="../../../css/iconfont.css" />
+		<link href="../../static/css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../static/css/iconfont.css" />
 
 	</head>
 
 	<body>
 		<input type="" name="ItemID" id="ItemID" value="123456" hidden="true"/>
-		<div class="mui-slider">
+		<div id="slider" class="mui-slider">
 			<div class="mui-slider-group">
 				<div class="mui-slider-item">
 					<a href="#">
-						<img src="../../images/slider-0.JPG">
+						<img src="../../static/img/images/slider-0.JPG">
 					</a>
 				</div>
 				<div class="mui-slider-item">
 					<a href="#">
-						<img src="../../images/slider-1.JPG">
+						<img src="../../static/img/images/slider-1.JPG">
 					</a>
 				</div>
 				<div class="mui-slider-item">
 					<a href="#">
-						<img src="../../images/slider-2.JPG">
+						<img src="../../static/img/images/slider-2.JPG">
 					</a>
 				</div>
 			</div>
@@ -71,8 +71,8 @@
 						<div class="mui-table-cell mui-col-xs-10">
 							<h4 class="mui-ellipsis-2">☆☆☆☆☆</h4>
 							<h5>味道很好，很好吃</h5>
-							<img src="../../images/IMG_2239.png" />
-							<img src="../../images/IMG_2239.png" />
+							<img src="../../static/img/images/IMG_2239.png" />
+							<img src="../../static/img/images/IMG_2239.png" />
 						</div>
 						<div class="mui-table-cell mui-col-xs-2 mui-text-right">
 							<span class="mui-h5">华子凯</span>
@@ -84,8 +84,8 @@
 						<div class="mui-table-cell mui-col-xs-10">
 							<h4 class="mui-ellipsis-2">☆☆☆☆☆</h4>
 							<h5>味道很好，很好吃</h5>
-							<img src="../../images/IMG_2239.png" />
-							<img src="../../images/IMG_2239.png" />
+							<img src="../../static/img/images/IMG_2239.png" />
+							<img src="../../static/img/images/IMG_2239.png" />
 						</div>
 						<div class="mui-table-cell mui-col-xs-2 mui-text-right">
 							<span class="mui-h5">华子凯</span>
@@ -97,8 +97,8 @@
 						<div class="mui-table-cell mui-col-xs-10">
 							<h4 class="mui-ellipsis-2">☆☆☆☆☆</h4>
 							<h5>味道很好，很好吃</h5>
-							<img src="../../images/IMG_2239.png" />
-							<img src="../../images/IMG_2239.png" />
+							<img src="../../static/img/images/IMG_2239.png" />
+							<img src="../../static/img/images/IMG_2239.png" />
 						</div>
 						<div class="mui-table-cell mui-col-xs-2 mui-text-right">
 							<span class="mui-h5">华子凯</span>
@@ -110,8 +110,8 @@
 						<div class="mui-table-cell mui-col-xs-10">
 							<h4 class="mui-ellipsis-2">☆☆☆☆☆</h4>
 							<h5>味道很好，很好吃</h5>
-							<img src="../../images/IMG_2239.png" />
-							<img src="../../images/IMG_2239.png" />
+							<img src="../../static/img/images/IMG_2239.png" />
+							<img src="../../static/img/images/IMG_2239.png" />
 						</div>
 						<div class="mui-table-cell mui-col-xs-2 mui-text-right">
 							<span class="mui-h5">华子凯</span>
@@ -123,8 +123,8 @@
 						<div class="mui-table-cell mui-col-xs-10">
 							<h4 class="mui-ellipsis-2">☆☆☆☆☆</h4>
 							<h5>味道很好，很好吃</h5>
-							<img src="../../images/IMG_2239.png" />
-							<img src="../../images/IMG_2239.png" />
+							<img src="../../static/img/images/IMG_2239.png" />
+							<img src="../../static/img/images/IMG_2239.png" />
 						</div>
 						<div class="mui-table-cell mui-col-xs-2 mui-text-right">
 							<span class="mui-h5">华子凯</span>
@@ -140,29 +140,53 @@
 		<footer class="mui-bar mui-bar-footer">
 			<nav class="mui-bar mui-bar-tab">
 				<div class="mui-tab-item mui-col-xs-12">
-					<a class="mui-tab-item mui-col-xs-3" href="">
+					<a class="mui-tab-item mui-col-xs-3" href="/shop_car">
 						<span class="mui-icon iconfont icon-guanzhu"></span>
 						<span class="mui-tab-label">关注</span>
 					</a>
-					<a class="mui-tab-item mui-col-xs-3" href="#">
+<!-- 					<a class="mui-tab-item mui-col-xs-3" href="/shop_car">
+						<span class="mui-icon iconfont icon-shop1"><span class="mui-badge">9</span></span>
+						<span class="mui-tab-label">购物车</span>
+					</a> -->
+					<a id="shop_car" href="#" class="mui-tab-item mui-col-xs-3">
 						<span class="mui-icon iconfont icon-shop1"><span class="mui-badge">9</span></span>
 						<span class="mui-tab-label">购物车</span>
 					</a>
-					<a id="add2car" class="mui-tab-item mui-button-row mui-col-xs-6" href="#" style="background: red;">
+					<a id="add2car" class="mui-tab-item mui-button-row mui-col-xs-6" href="/shop_car" style="background: red;">
 						<h5 style="font-size:20px;color: white;">加入购物车</h5>
 					</a>
 				</div>
 
 			</nav>
 		</footer>
-		<script src="../../../js/mui.min.js"></script>
+		<script src="../../static/js/mui.min.js"></script>
 		<script type="text/javascript" charset="UTF-8">
 			mui.init();
+
+			// mui('#shop_car').on('tap','.icon-shop1',function(){
+			// 	mui.openWindow({
+			// 		id:'default',
+			// 		url:'/shop_car'
+			// 	})
+			// });//选择的只是icon这一个选择器，所以点击必须点击中间，范围小，不是很敏感
 			
+			document.getElementById('shop_car').addEventListener('tap',function(){
+				mui.openWindow({
+					id:'shop_car',
+					url:'/shop_car'
+				})
+			});//整一个超链接范围都是tap点击区，反应更迅速
 			document.getElementById('add2car').addEventListener('tap',function(){
 				var itemID = document.getElementById('ItemID').value;
-				alert(itemID);
+				alert(itemID);//用自动路由功能调用入库函数
+
 			})
+
+			var m_slider = mui("#slider");
+			m_slider.slider({
+				interval:3000
+			});
+				
 		</script>
 	</body>
 
