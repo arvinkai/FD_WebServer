@@ -1,9 +1,9 @@
 {
 	"@platforms": ["android", "iPhone", "iPad"],
-	"id": "H5207461C",/*应用的标识，创建应用时自动生成，勿手动修改*/
-	"name": "OO2Demo",/*应用名称，程序桌面图标名称*/
+	"id": "H5B68C85D",/*应用的标识，创建应用时自动生成，勿手动修改*/
+	"name": "Mydemo",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "1.0.8",/*应用版本名称*/
+		"name": "1.0.0",/*应用版本名称*/
 		"code": "83"
 	},
 	"description": "",/*应用描述信息*/
@@ -56,7 +56,9 @@
          "Invocation": {
             "description": "使用Native.js能力"
         },
-        
+        "Messaging": {
+            "description": "访问通讯能力"
+        },
         "Orientation": {
             "description": "访问方向感应器"
         },
@@ -186,57 +188,6 @@
 					"xxhdpi": ""
 				}
 			}
-		}
-	},
-	"dependencies":{
-		"pages": {
-			"static/code/tab-subpage-book.html": {
-				"href": "static/code/tab-subpage-book.html",
-				"priority": 0
-			},
-			"static/code/tab-subpage-user.html": {
-				"href": "static/code/tab-subpage-user.html",
-				"priority": 1
-			},
-			"static/code/tab-subpage-home.html": {
-				"href": "static/code/tab-subpage-home.html",
-				"priority": 2
-			},
-			"static/code/tab-subpage-shop.html": {
-				"href": "static/code/tab-subpage-shop.html",
-				"priority": 3
-			},
-			"static/code/tab-subpage-shop-car.html": {
-				"href": "static/code/tab-subpage-shop-car.html",
-				"priority": 4
-			},
-			"index.html": {
-				"href": "index.html",
-				"resources": [
-					"css/mui.min.css",
-					"fonts/mui.ttf",
-					"css/iconfont.css",
-					"fonts/iconfont.eot",
-					"fonts/iconfont.woff",
-					"fonts/iconfont.ttf",
-					"fonts/iconfont.svg",
-					"js/mui.min.js"
-				],
-				"refer": [
-					"static/code/tab-subpage-book.html",
-					"static/code/tab-subpage-user.html",
-					"static/code/tab-subpage-home.html",
-					"static/code/tab-subpage-shop.html",
-					"static/code/tab-subpage-shop-car.html"
-				],
-				"priority": 0
-			}
-		},
-		"idle": {
-			"resources": [
-				"js/mui.js",
-				"css/mui.css"
-			]
 		}
 	}
 }

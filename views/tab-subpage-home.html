@@ -29,14 +29,14 @@
 							<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
 							{{if eq $k 0}}
 								<div class="mui-slider-item mui-slider-item-duplicate">
-									<a href="$endpic.Tourl">
+									<a href="{{$endpic.Tourl}}">
 										<img src="{{$endpic.Imgsrc}}">
 									</a>
 								</div>
 							{{end}}
 							<!-- 数据库读取的每张图片数据 -->
 							<div class="mui-slider-item">
-								<a href="$v.Tourl">
+								<a href="{{$v.Tourl}}">
 									<img src="{{$v.Imgsrc}}">
 								</a>
 							</div>
@@ -44,7 +44,7 @@
 							<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
 							{{if eq $k $len}}
 								<div class="mui-slider-item mui-slider-item-duplicate">
-									<a href="$startpic.Tourl">
+									<a href="{{$startpic.Tourl}}">
 											<img src="{{$startpic.Imgsrc}}">
 									</a>
 								</div>
@@ -113,7 +113,7 @@
 						{{range .Showlists}}
 							<li class="mui-table-view-cell mui-media mui-col-xs-6">
 								<!-- <a href="http://192.168.80.105:8080/buypage"><img src="{{.Imgsrc}}" alt="" class="mui-media-object" /></a> -->
-								<a id="buypage"><img src="{{.Imgsrc}}" alt="" class="mui-media-object" /></a>
+								<a id="{{.Goodsid}}" class="buypage"><img src="{{.Imgsrc}}" alt="" class="mui-media-object" /></a>
 							</li>
 						{{end}}
 					</ul>
@@ -141,12 +141,27 @@
 
 			});
 
-			document.getElementById('buypage').addEventListener('tap',function(){
+			mui('#hotview').on('tap','.buypage',function(e){
+				
+				var a = this.getAttribute('id');
+				// alert('http://192.168.80.105:8080/buypage?'+a);
 				mui.openWindow({
-					id:'shop_car',
-					url:'http://192.168.80.105:8080/buypage',
-				});
+					id:'gobuypage',
+					url:'http://192.168.80.105:8080/buypage?'+'goodsid='+a,
+
+				})
+				
 			});
+
+			//老式写法，因为要监听所有图片的动作，所以用on方法，监听所有假的.buypage并把goodsid传入
+			// document.getElementById('buypage').addEventListener('tap',function(){
+			// 	mui.openWindow({
+			// 		id:'shop_car',
+			// 		url:'http://192.168.80.105:8080/buypage',
+			// 	});
+			// });
+
+
 			// //下拉刷新
 			// function pulldownRefresh() {
 			// 	setTimeout(function() {

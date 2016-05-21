@@ -29,7 +29,6 @@ func (this *ShopCarController) Get() {
 	//	}
 
 	ShopcarsData := models.GetShopCarsData(Uid)
-	fmt.Println(ShopcarsData[0])
 	if ShopcarsData != nil {
 		this.Data["ShopcarData"] = ShopcarsData
 		haveInfo = true

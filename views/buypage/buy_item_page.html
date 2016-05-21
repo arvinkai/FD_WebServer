@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="buyitem" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<link href="../../static/css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="../../static/css/iconfont.css" />
@@ -14,43 +14,40 @@
 		<input type="" name="ItemID" id="ItemID" value="123456" hidden="true"/>
 		<div id="slider" class="mui-slider">
 			<div class="mui-slider-group">
+			{{range .SliderPs}}
 				<div class="mui-slider-item">
-					<a href="#">
-						<img src="../../static/img/images/slider-0.JPG">
+					<a href="">
+						<img src="{{.Imgsrc}}">
 					</a>
 				</div>
-				<div class="mui-slider-item">
-					<a href="#">
-						<img src="../../static/img/images/slider-1.JPG">
-					</a>
+			{{end}}
+				<div class="mui-slider-indicator">
+					{{range $k , $v := .SliderPs}}
+						{{if eq $k 0}}
+							<div class="mui-indicator mui-active"></div>
+						{{else}}
+							<div class="mui-indicator"></div>
+						{{end}}
+					{{end}}
 				</div>
-				<div class="mui-slider-item">
-					<a href="#">
-						<img src="../../static/img/images/slider-2.JPG">
-					</a>
-				</div>
-			</div>
-			<div class="mui-slider-indicator">
-				<div class="mui-indicator mui-active"></div>
-				<div class="mui-indicator"></div>
-				<div class="mui-indicator"></div>
 			</div>
 		</div>
 
-		<div id="">
-			<h4>oo2蛋糕</h4>
-			<h5 style="line-height: 20px;">新鲜美味 看的见的健康 看不见的信任 全进口原料 健康是吃出来的 </h5>
+		<div>
+			<h4>{{.GoodsInfo.Name}}</h4>
+			<h5 style="line-height: 20px;">{{.GoodsInfo.Content}}</h5>
 		</div>
 
-		<div id="">
-			<h4 style="font-size:25px;color: red;line-height: 40px;">￥<lable>15.00</lable></h4>
+		<div >
+			<h4 style="font-size:25px;color: red;line-height: 40px;">￥<lable>{{.GoodsInfo.Price}}</lable></h4>
 
-			<div id="">
+			<div> 
 				<lable>
-					<b>购买数量：</b></lable>
+					<b>购买数量：</b>
+					</lable>
 				<div class="mui-numbox" data-numbox-step='1' data-numbox-min='1' style="margin-left: 60px;">
 					<button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
-					<input class="mui-numbox-input" type="number" />
+					<input id="count" class="mui-numbox-input" type="number" value="1" />
 					<button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
 				</div>
 			</div>
@@ -137,7 +134,7 @@
 			<br />
 		</div>
 
-		<footer class="mui-bar mui-bar-footer">
+		<footer id="bottomx" class="mui-bar mui-bar-footer">
 			<nav class="mui-bar mui-bar-tab">
 				<div class="mui-tab-item mui-col-xs-12">
 					<a class="mui-tab-item mui-col-xs-3" href="/shop_car">
@@ -145,10 +142,10 @@
 						<span class="mui-tab-label">关注</span>
 					</a>
 					<a id="shop_car" href="#" class="mui-tab-item mui-col-xs-3">
-						<span class="mui-icon iconfont icon-shop1"><span class="mui-badge">9</span></span>
+						<span class="mui-icon iconfont icon-shop1" style="height: 20px"><span class="mui-badge" >{{.CarCount}}</span></span>
 						<span class="mui-tab-label">购物车</span>
 					</a>
-					<a id="add2car" class="mui-tab-item mui-button-row mui-col-xs-6" href="/shop_car" style="background: red;">
+					<a id="add2car" class="mui-tab-item mui-button-row mui-col-xs-6" href="#" style="background: red;" >
 						<h5 style="font-size:20px;color: white;">加入购物车</h5>
 					</a>
 				</div>
@@ -157,7 +154,9 @@
 		</footer>
 		<script src="../../static/js/mui.min.js"></script>
 		<script type="text/javascript" charset="UTF-8">
-			mui.init();
+			mui.init({
+			swipeBack: true //启用右滑关闭功能
+		});
 
 			// mui('#shop_car').on('tap','.icon-shop1',function(){
 			// 	mui.openWindow({
@@ -168,24 +167,30 @@
 			
 			document.getElementById('shop_car').addEventListener('tap',function(){
 				mui.openWindow({
-					id:'gocar',
+					id:'goshopcar',
 					url:'http://192.168.80.105:8080/shop_car',
 				});
 			});//整一个超链接范围都是tap点击区，反应更迅速
 			document.getElementById('add2car').addEventListener('tap',function(){
-								mui.openWindow({
-					id:'gocar',
-					url:'http://192.168.80.105:8080/buypage/addtocar',
+				
+				var count = document.getElementById('count').value
+				var goodsid = {{.GoodsInfo.Goodsid}}
+
+				mui.openWindow({
+					id:'buyjumppage',//重写把此处放到jump页处理因为传完值后直接跳转本页的话部分功能会失效，所以采用一个跳转页来刷新
+					url:'http://192.168.80.105:8080/buyjump?'+'goodsid='+goodsid+'&'+'count='+count
 				});
-				var itemID = document.getElementById('ItemID').value;
-				alert(itemID);//用自动路由功能调用入库函数
+				// var itemID = document.getElementById('ItemID').value;
+				// alert(itemID);//用自动路由功能调用入库函数
 
-			})
-
-			var m_slider = mui("#slider");
-			m_slider.slider({
-				interval:3000
 			});
+
+
+
+			// var m_slider = mui("#slider");
+			// m_slider.slider({
+			// 	interval:3000
+			// });
 				
 		</script>
 	</body>

@@ -24,17 +24,20 @@ func GetPicturesByUse(Where string, Type string, IsShow int8) ([]*Picture, int64
 	return ptc, n, err
 }
 
-func GetPictureByGoodsid(Goodsid int64, Where string, Type string, IsShow int8) (*Picture, error) {
-	ptc := &Picture{}
+func GetPicturesByGoodsid(Goodsid int64, Where string, Type string, IsShow int8) ([]*Picture, int64, error) {
+	ptc := make([]*Picture, 0)
 	o := orm.NewOrm()
 	qs := o.QueryTable("picture")
-	err := qs.Filter("goodsid", Goodsid).Filter("type", Type).Filter("isshow", IsShow).Filter("where", Where).One(ptc)
+	n, err := qs.Filter("goodsid", Goodsid).Filter("type", Type).Filter("isshow", IsShow).Filter("where", Where).All(&ptc)
 	if err != nil {
 		fmt.Println(err)
-		return nil, err
+		return nil, 0, err
 	}
 
-	return ptc, err
+	if n == 0 {
+		return nil, n, err
+	}
+	return ptc, n, err
 }
 
 func GetGoodsInfo(goodsid int64) (*Goodsinfo, error) {
@@ -45,7 +48,7 @@ func GetGoodsInfo(goodsid int64) (*Goodsinfo, error) {
 	return goods, err
 }
 
-func OpShopcars(sc []*Shopcar, op string) error {
+func OpShopcars(sc []*Shopcar, op string) (int64, error) {
 	o := orm.NewOrm()
 	if op == "add" {
 		for _, v := range sc {
@@ -62,21 +65,27 @@ func OpShopcars(sc []*Shopcar, op string) error {
 			if dbShopcar != nil {
 				o.Delete(v)
 			} else {
-				return err
+				return 0, err
 			}
 		}
 	}
 
-	return nil
+	var count int64 = 0
+
+	if len(sc) != 0 {
+		count = GetShopcarCount(sc[0].Uid)
+	}
+
+	return count, nil
 }
 
-func OpShopcar(sc *Shopcar, op string) error {
+func OpShopcar(sc *Shopcar, op string) (int64, error) {
 	o := orm.NewOrm()
 	if op == "add" {
 		dbShopcar, _ := GetShopcarByGoodsid(sc.Goodsid)
 		if dbShopcar != nil {
 			fmt.Println(sc)
-			dbShopcar.Count = sc.Count
+			dbShopcar.Count += sc.Count
 			o.Update(dbShopcar)
 		} else {
 			o.Insert(sc)
@@ -86,11 +95,24 @@ func OpShopcar(sc *Shopcar, op string) error {
 		if dbShopcar != nil {
 			o.Delete(dbShopcar)
 		} else {
-			return err
+			return 0, err
 		}
 	}
-	return nil
+
+	count := GetShopcarCount(sc.Uid)
+	return count, nil
 }
+
+func GetShopcarCount(uid int64) int64 {
+	o := orm.NewOrm()
+	qs := o.QueryTable("shopcar")
+	count, err := qs.Filter("uid", uid).Count()
+	if err != nil {
+		return 0
+	}
+	return count
+}
+
 func GetShopcarByGoodsid(goodsid int64) (*Shopcar, error) {
 	Spcar := &Shopcar{}
 	o := orm.NewOrm()
@@ -137,14 +159,17 @@ func GetShopCarsData(uid int64) []*ShopCarData {
 			return nil
 		}
 
-		picture, err2 := GetPictureByGoodsid(v.Goodsid, "shopcar", "shopcarlist", 1)
+		pictures, count, err2 := GetPicturesByGoodsid(v.Goodsid, "shopcar", "shopcarlist", 1)
 		if err2 != nil {
 			fmt.Println(err2)
 			return nil
 		}
-
+		if count == 0 {
+			fmt.Println("[func GetShopCarsData] Pictures is nil")
+			return nil
+		}
 		CarDatas[k] = &ShopCarData{Goodsid: v.Goodsid, Name: goodsinfo.Name, Count: v.Count, Price: goodsinfo.Price,
-			Createdate: v.CreateDate, Imgsrc: picture.Imgsrc, Tourl: goodsinfo.Tourl}
+			Createdate: v.CreateDate, Imgsrc: pictures[0].Imgsrc, Tourl: goodsinfo.Tourl}
 	}
 
 	return CarDatas
