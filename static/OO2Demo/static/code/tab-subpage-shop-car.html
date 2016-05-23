@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../js/mui.min.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			.title {
+				margin: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="height: 55px;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">我的订单</h1>
+		</header>
+		
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li id="car1" class="mui-table-view-cell">
+					<div class="mui-checkbox mui-col-xs-2">
+						<input id="car1_r" name="car_r" class="class_car" type="checkbox" style="line-height: 100px;line-width: 10px;">
+					</div>
+					<div id="car1_v" class="mui-media mui-col-xs-10 mui-pull-right">
+						<a href="javascript:;">
+							<img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="../images/showlist-0.JPG" alt="展示图" />
+							<div class="mui-media-body ">
+								<h5 style="line-height:20px;color: black;font-weight:bold;">超级无敌-甜甜圈</h5>
+								<h5 style="color: red;">售价：￥<lable id="car1_pay">10</lable></h5>
+								<h6>购买数量:</h6>
+								<div class="mui-numbox" data-numbox-min='1' style="width: 110px;height: 30px;">
+									<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+									<input class="mui-input-numbox" type="number" value="1" />
+									<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+								</div>
+							</div>
+						</a>
+					</div>
+				</li>
+
+				<li id="car2" class="mui-table-view-cell">
+					<div class="mui-checkbox mui-col-xs-2">
+						<input id="car2_r" name="car_r" class="class_car" type="checkbox" style="line-height: 100px;line-width: 10px;">
+					</div>
+					<div id="car2_v" class="mui-media mui-col-xs-10 mui-pull-right">
+						<a href="javascript:;">
+							<img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="../images/showlist-0.JPG" alt="展示图" />
+							<div class="mui-media-body ">
+								<h5 style="line-height:20px;color: black;font-weight:bold;">超级无敌-甜甜圈</h5>
+								<h5 style="color: red;">售价：￥<lable id="car2_pay">5</lable></h5>
+								<h6>购买数量:</h6>
+								<div class="mui-numbox" data-numbox-min='1' style="width: 110px;height: 30px;">
+									<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+									<input class="mui-input-numbox" type="number" value="1" />
+									<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+								</div>
+							</div>
+						</a>
+					</div>
+				</li>
+
+				<li id="car3" class="mui-table-view-cell">
+					<div class="mui-checkbox mui-col-xs-2">
+						<input id="car3_r" name="car_r" class="class_car" type="checkbox" style="line-height: 100px;line-width: 10px;">
+					</div>
+					<div id="car3_v" class="mui-media mui-col-xs-10 mui-pull-right">
+						<a href="javascript:;">
+							<img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="../images/showlist-0.JPG" alt="展示图" />
+							<div class="mui-media-body ">
+								<h5 style="line-height:20px;color: black;font-weight:bold;">超级无敌-甜甜圈</h5>
+								<h5 style="color: red;">售价：￥<lable id="car3_pay">5</lable></h5>
+								<h6>购买数量:</h6>
+								<div class="mui-numbox" data-numbox-min='1' style="width: 110px;height: 30px;">
+									<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+									<input class="mui-input-numbox" type="number" value="1" />
+									<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+								</div>
+							</div>
+						</a>
+					</div>
+				</li>
+
+				<li id="car4" class="mui-table-view-cell">
+					<div class="mui-checkbox mui-col-xs-2">
+						<input id="car4_r" name="car_r" class="class_car" type="checkbox" style="line-height: 100px;line-width: 10px;">
+					</div>
+					<div id="car4_v" class="mui-media mui-col-xs-10 mui-pull-right">
+						<a href="javascript:;">
+							<img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="../images/showlist-0.JPG" alt="展示图" />
+							<div class="mui-media-body ">
+								<h5 style="line-height:20px;color: black;font-weight:bold;">超级无敌-甜甜圈</h5>
+								<h5 style="color: red;">售价：￥<lable id="car4_pay">5</lable></h5>
+								<h6>购买数量:</h6>
+								<div class="mui-numbox" data-numbox-min='1' style="width: 110px;height: 30px;">
+									<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+									<input class="mui-input-numbox" type="number" value="1" />
+									<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+								</div>
+							</div>
+						</a>
+					</div>
+				</li>
+
+				<li id="car5" class="mui-table-view-cell">
+					<div class="mui-checkbox mui-col-xs-2">
+						<input id="car5_r" name="car_r" class="class_car" type="checkbox" style="line-height: 100px;line-width: 10px;">
+					</div>
+					<div id="car5_v" class="mui-media mui-col-xs-10 mui-pull-right">
+						<a href="javascript:;">
+							<img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="../images/showlist-0.JPG" alt="展示图" />
+							<div class="mui-media-body ">
+								<h5 style="line-height:20px;color: black;font-weight:bold;">超级无敌-甜甜圈</h5>
+								<h5 style="color: red;">售价：￥<lable id="car5_pay">5</lable></h5>
+								<h6>购买数量:</h6>
+								<div class="mui-numbox" data-numbox-min='1' style="width: 110px;height: 30px;">
+									<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+									<input class="mui-input-numbox" type="number" value="1" />
+									<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+								</div>
+							</div>
+						</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!--底部占行-->
+		<br />
+		<br />
+		<!--提交购物车-->
+		<footer class="mui-bar mui-bar-footer" style="padding-top: 3px;margin-left: 0px;padding-left:0px ;">
+			<form action="" method="post">
+				<input id="checkpay" class="mui-pull-right mui-col-xs-1" type="submit" value="去结账（0）" style="background: red;padding-left: 5px;height: 40px;width: 90px;" />
+				<label class="mui-pull-right mui-col-xs-5"><h4>合计:￥<lable id="allpay">0</lable></h4><h6>总额:￥<lable id="titlepay">0</lable>  立减<lable id="discount">0</lable></h6></label>
+
+				<div id="selectall" class="mui-checkbox mui-radio mui-left mui-col-xs-3" style="line-height: 40px;">
+					<label style="font-weight:bold;margin: 0px;padding-left: 50px;line-height: 30px;"><h5>全选</h5></label>
+					<input style="padding-left: 0px;" name="checkbox" type="checkbox">
+				</div>
+			</form>
+		</footer>
+
+		<script type="text/javascript" charset="UTF-8">
+			mui.init({
+				swipeBack: false
+			});
+			//点击全选操作处理
+			mui('#selectall').on('change', 'input', function() {
+				var AllCheckboxs = document.getElementsByClassName('class_car');
+				for (var i = 0; i < AllCheckboxs.length; ++i) {
+					if (!AllCheckboxs[i].checked) {
+						AllCheckboxs[i].checked = this.checked;
+						ProcessPrice(AllCheckboxs[i]);
+					} else {
+						if (!this.checked) {
+							AllCheckboxs[i].checked = this.checked;
+							ProcessPrice(AllCheckboxs[i]);
+						}
+					}
+				}
+				if (this.checked) {
+					document.getElementById('checkpay').value = '去结账(' + AllCheckboxs.length + ')';
+				} else {
+					document.getElementById('checkpay').value = '去结账(' + 0 + ')';
+				}
+			});
+			//单个点击操作处理
+			mui('.mui-table-view-cell').on('change', 'input', function() {
+				ProcessPrice(this);
+				//结账按钮计数
+				var AllCheckboxs = document.getElementsByClassName('class_car');
+				var checkbox_Count = 0;
+				for (var i = 0; i < AllCheckboxs.length; ++i) {
+					if (AllCheckboxs[i].checked) {
+						++checkbox_Count;
+					}
+				}
+				if (document.getElementById('selectall').checked) {
+					--checkbox_Count;
+				}
+				document.getElementById('checkpay').value = '去结账(' + checkbox_Count + ')';
+			});
+			//计算总价格
+			function ProcessPrice(e) {
+				var parent_li = e.parentElement.parentElement;
+				var str = parent_li.id + '_pay'
+				var price = document.getElementById(str).outerText;
+				var allpay = document.getElementById('allpay');
+				var titlepay = document.getElementById("titlepay");
+				var discount = document.getElementById('discount');
+				if (e.checked) {
+					allpay.innerText = Number(price) + Number(allpay.outerText);
+					titlepay.innerText = Number(allpay.outerText) - Number(discount.outerText);
+					//					alert(allpay.innerText);
+				} else {
+					allpay.innerText = Number(allpay.outerText) - Number(price);
+					titlepay.innerText = Number(allpay.outerText) + Number(discount.outerText);
+					//					alert(allpay.innerText);
+				}
+			};
+		</script>
+	</body>
+
+</html>

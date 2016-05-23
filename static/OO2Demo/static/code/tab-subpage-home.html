@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>首页</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/app.css" />
+	</head>
+
+	<body>
+		<!--下拉刷新容器-->
+		<div id="homepage" class="mui-content mui-scroll-wrapper">
+
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<!--首页滚动栏-->
+				<div id="slider" class="mui-slider">
+					<div class="mui-slider-group mui-slider-loop">
+						<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="#">
+								<img src="../images/slider-2.JPG">
+							</a>
+						</div>
+						<!-- 第一张 -->
+						<div class="mui-slider-item">
+							<a href="#">
+								<img src="../images/slider-0.JPG">
+							</a>
+						</div>
+						<!-- 第二张 -->
+						<div class="mui-slider-item">
+							<a href="#">
+								<img src="../images/slider-1.JPG">
+							</a>
+						</div>
+						<!-- 第三张 -->
+						<div class="mui-slider-item">
+							<a href="#">
+								<img src="../images/slider-2.JPG">
+							</a>
+						</div>
+						<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="#">
+								<img src="../images/slider-0.JPG">
+							</a>
+						</div>
+					</div>
+					<div class="mui-slider-indicator">
+						<div class="mui-indicator mui-active"></div>
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
+					</div>
+				</div>
+
+				<!--选项grid-->
+				<div class="mui-content">
+					<ul id="opview" class="mui-table-view mui-grid-view mui-grid-9">
+						<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+							<a href="#">
+								<span class="mui-icon iconfont icon-newgoods"></span>
+								<h6>新品</h6>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+							<a href="#">
+								<span class="mui-icon iconfont icon-cocalendar"></span>
+								<h6>每日特惠</h6>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+							<a href="#">
+								<span class="mui-icon iconfont icon-qiandao"></span>
+								<h6>签到</h6>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+							<a href="#">
+								<span class="mui-icon iconfont icon-zhekouquan"></span>
+								<h6>领券</h6>
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<!--产品推荐-->
+				<div class="title">
+					<h4>精品推荐</h4>
+				</div>
+				<ul id="bestview" class="mui-table-view">
+					<li class="mui-table-view-cell" style="padding: 5px;">
+						<a href=""><img src="../images/carousel0.jpg" alt="" /></a>
+					</li>
+					<li class="mui-table-view-cell" style="padding: 5px;">
+						<a href=""><img src="../images/carousel0.jpg" alt="" /></a>
+					</li>
+					<li class="mui-table-view-cell" style="padding: 5px;">
+						<a href=""><img src="../images/carousel0.jpg" alt="" /></a>
+					</li>
+				</ul>
+
+				<!--展示-->
+				<div class="title">
+					<h4>热卖商品</h4>
+				</div>
+				<div class="mui-content">
+					<ul id="hotview" class="mui-table-view mui-grid-view">
+						<li class="mui-table-view-cell mui-media mui-col-xs-6">
+							<a href="buypage/buy_item_page.html"><img src="../images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-6">
+							<a href=""><img src="../images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-6">
+							<a href=""><img src="../images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-6">
+							<a href=""><img src="../images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-6">
+							<a href=""><img src="../images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-6">
+							<a href=""><img src="../images/showlist-0.JPG" alt="" class="mui-media-object" /></a>
+						</li>
+					</ul>
+				</div>
+				<ul class="mui-table-view mui-table-view-chevron">
+
+				</ul>
+			</div>
+		</div>
+
+		<script src="../../js/mui.min.js"></script>
+		<script>
+			mui.init({
+				swipeBack: false, //启用右滑关闭功能
+				pullRefresh: {
+					container: '#homepage',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			//下拉刷新
+			function pulldownRefresh() {
+				setTimeout(function() {
+					//										var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					var table = document.body.querySelector('#hotview');
+					//					var cells = document.body.querySelectorAll('.mui-col-xs-6');
+					for (var i = cells.length, len = i + 4; i < len; i++) {
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell mui-media mui-col-xs-6';
+						li.innerHTML = '<a href=""><img src="../images/showlist-0.JPG" alt="" class="mui-media-object" /></a>';
+						//下拉刷新插到最前面
+						table.insertBefore(li, table.firstChild);
+					}
+					mui('#homepage').pullRefresh().endPulldownToRefresh(); //refresh completed
+				}, 1000);
+			}
+			var count = 0;
+			//上拉加载
+			function pullupRefresh() {
+				setTimeout(function() {
+					mui('#homepage').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					var table = document.body.querySelector('#hotview');
+					for (var i = cells.length, len = i + 2; i < len; i++) {
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell mui-media mui-col-xs-6';
+						li.innerHTML = '<a href=""><img src="../images/showlist-0.JPG" alt="" class="mui-media-object" /></a>';
+						table.appendChild(li);
+					}
+				}, 1000);
+			}
+			//图片轮播自动播放时间
+			var slider = mui("#slider");
+			slider.slider({
+				interval: 3000
+			});
+		</script>
+	</body>
+
+</html>
