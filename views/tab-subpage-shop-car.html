@@ -16,12 +16,12 @@
 	</head>
 
 	<body>
-		{{if .IsnotHomepage}}
+<!-- 		{{if .IsnotHomepage}}
 				<header class="mui-bar mui-bar-nav" style="height: 55px;">
 					<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-					<h1 class="mui-title">我的订单</h1>
+					<h1 class="mui-title">购物车</h1>
 				</header>
-		{{end}}
+		{{end}} -->
 		
 		<div class="mui-content">
 			{{if .haveCookie}}
@@ -79,7 +79,7 @@
 		<script src="../static/js/mui.min.js"></script>
 		<script type="text/javascript" charset="UTF-8">
 			mui.init({
-				swipeBack: false
+				swipeBack: true,
 			});
 			//点击全选操作处理
 			mui('#selectall').on('change', 'input', function() {

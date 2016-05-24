@@ -11,11 +11,13 @@
 	</head>
 
 	<body>
-	<header id="header" class="mui-bar mui-bar-nav">
-		<a class="mui-active-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-		<h1 class="mui-title">购物</h1>
-	</header>
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a class="mui-active-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">购物</h1>
+		</header>
 		<input type="" name="ItemID" id="ItemID" value="123456" hidden="true"/>
+		<br>
+		<br>
 		<div id="slider" class="mui-slider">
 			<div class="mui-slider-group">
 			{{range .SliderPs}}
@@ -160,11 +162,6 @@
 		<script type="text/javascript" charset="UTF-8">
 			mui.init({
 			swipeBack: true //启用右滑关闭功能
-			beforeback:function(){
-				var homepage =  plus.webview.getWebviewById('homepage');
-				mui.fire(homepage,'reflushdata');
-				return true;
-			}
 		});
 
 			// mui('#shop_car').on('tap','.icon-shop1',function(){
@@ -177,7 +174,7 @@
 			document.getElementById('shop_car').addEventListener('tap',function(){
 				mui.openWindow({
 					id:'goshopcar',
-					url:'http://192.168.80.105:8080/shop_car?where=1',
+					url:'http://192.168.80.105:8080/shop_car',
 				});
 			});//整一个超链接范围都是tap点击区，反应更迅速
 			document.getElementById('add2car').addEventListener('tap',function(){
@@ -187,7 +184,7 @@
 
 				mui.openWindow({
 					id:'buyjumppage',//重写把此处放到jump页处理因为传完值后直接跳转本页的话部分功能会失效，所以采用一个跳转页来刷新
-					url:'http://192.168.80.105:8080/buyjump?'+'goodsid='+goodsid+'&'+'count='+count
+					url:'http://192.168.80.105:8080/buyjump?'+'goodsid='+goodsid+'&'+'count='+count,
 				});
 				// var itemID = document.getElementById('ItemID').value;
 				// alert(itemID);//用自动路由功能调用入库函数

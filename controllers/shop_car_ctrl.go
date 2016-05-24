@@ -37,7 +37,7 @@ func (this *ShopCarController) Get() {
 	}
 
 	WherePage := this.Input().Get("where")
-	if WherePage != "1" {
+	if WherePage != "home" {
 		this.Data["IsnotHomepage"] = true
 	} else {
 		this.Data["IsnotHomepage"] = false

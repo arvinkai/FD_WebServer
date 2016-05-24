@@ -9,5 +9,5 @@ type UserSettingController struct {
 }
 
 func (this *UserSettingController) Get() {
-	this.TplName = "tab-subpage-shop.html"
+	this.TplName = "tab-subpage-user.html"
 }
