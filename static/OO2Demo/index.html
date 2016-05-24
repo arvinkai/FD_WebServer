@@ -53,6 +53,7 @@
 			var subpages = ['http://192.168.80.105:8080/home', 'http://192.168.80.105:8080/shop', 'http://192.168.80.105:8080/shop_car',
 				'http://192.168.80.105:8080/book', 'static/code/tab-subpage-user.html'
 			];
+			var subpagesid = ['homepage','shoppage','shopcarpage','bookpage','userpage'];
 			var subpage_style = {
 				top: '45px',
 				bottom: '51px'
@@ -63,7 +64,7 @@
 				var self = plus.webview.currentWebview();
 				for (var i = 0; i < subpages.length; i++) {
 					var temp = {};
-					var sub = plus.webview.create(subpages[i], subpages[i], subpage_style);
+					var sub = plus.webview.create(subpages[i], subpagesid[i], subpage_style);
 					plus.webview.create
 					if (i > 0) {
 						sub.hide();
@@ -83,7 +84,7 @@
 				if (targetTab == activeTab) {
 					return;
 				}
-				
+
 				title.innerHTML = this.querySelector('.mui-tab-label').innerHTML;
 				//显示目标选项卡
 				//若为ios平台或非首次显示，则直接显示
@@ -98,16 +99,9 @@
 				plus.webview.hide(activeTab);
 				activeTab = targetTab;
 			});
-			document.addEventListener('gohome', function() {
-				var defaultTab = document.getElementById("defaultTab");
-				//虚拟首页点击
-				mui.trigger(defaultTab, 'tap');
-				//切换选项卡高亮
-				var current = document.querySelector(".mui-bar-tab>.mui-tab-item.mui-active");
-				if (defaultTab !== current) {
-					current.classList.remove('mui-active');
-					defaultTab.classList.add('mui-active');
-				}
+			window.addEventListener('reflushdata',function(){
+				plus.webview.getWebviewById('shopcarpage').reload(true);
+				plus.webview.getWebviewById('bookpage').reload(true);
 			});
 		</script>
 	</body>

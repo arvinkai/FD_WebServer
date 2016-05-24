@@ -160,6 +160,11 @@
 		<script type="text/javascript" charset="UTF-8">
 			mui.init({
 			swipeBack: true //启用右滑关闭功能
+			beforeback:function(){
+				var homepage =  plus.webview.getWebviewById('homepage');
+				mui.fire(homepage,'reflushdata');
+				return true;
+			}
 		});
 
 			// mui('#shop_car').on('tap','.icon-shop1',function(){
@@ -172,7 +177,7 @@
 			document.getElementById('shop_car').addEventListener('tap',function(){
 				mui.openWindow({
 					id:'goshopcar',
-					url:'http://192.168.80.105:8080/shop_car',
+					url:'http://192.168.80.105:8080/shop_car?where=1',
 				});
 			});//整一个超链接范围都是tap点击区，反应更迅速
 			document.getElementById('add2car').addEventListener('tap',function(){

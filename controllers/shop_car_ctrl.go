@@ -35,6 +35,14 @@ func (this *ShopCarController) Get() {
 	} else {
 		this.Data["ShopcarData"] = "nil"
 	}
+
+	WherePage := this.Input().Get("where")
+	if WherePage != "1" {
+		this.Data["IsnotHomepage"] = true
+	} else {
+		this.Data["IsnotHomepage"] = false
+	}
+
 	this.Data["haveCookie"] = haveCookie
 	this.Data["haveInfo"] = haveInfo
 	this.Data["ShopcarData"] = ShopcarsData
