@@ -15,6 +15,7 @@ type ShopGoodsinfo struct {
 	Goodsid int64
 	Price   int32
 	Name    string
+	Content string
 	Imgsrc  string
 	Tourl   string
 }
