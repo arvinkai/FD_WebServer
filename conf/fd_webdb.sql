@@ -52,6 +52,21 @@ CREATE TABLE `book` (
 
 /*Data for the table `book` */
 
+/*Table structure for table `category` */
+
+DROP TABLE IF EXISTS `category`;
+
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `categoryid` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+/*Data for the table `category` */
+
+insert  into `category`(`id`,`categoryid`,`name`) values (1,1,'糕点'),(2,2,'饼干'),(3,3,'披萨'),(4,4,'面包'),(5,5,'蛋糕'),(6,6,'饮料');
+
 /*Table structure for table `character` */
 
 DROP TABLE IF EXISTS `character`;
@@ -191,7 +206,6 @@ CREATE TABLE `goodsinfo` (
   `content` varchar(200) DEFAULT NULL,
   `discount_endtime` varchar(255) DEFAULT NULL,
   `categoryid` int(11) DEFAULT NULL,
-  `categorytype` int(11) DEFAULT NULL,
   `category_name` varchar(255) NOT NULL DEFAULT '',
   `couponid` bigint(20) DEFAULT NULL,
   `tourl` varchar(255) DEFAULT NULL,
@@ -200,7 +214,7 @@ CREATE TABLE `goodsinfo` (
 
 /*Data for the table `goodsinfo` */
 
-insert  into `goodsinfo`(`goodsid`,`name`,`price`,`discount`,`barcode`,`updatetime`,`createtime`,`editer`,`ishot`,`ishave`,`count`,`content`,`discount_endtime`,`categoryid`,`categorytype`,`category_name`,`couponid`,`tourl`) values (1,'超级无敌-甜甜圈1',5,0,0,'1463580479','1463580479','',0,1,100,'新鲜美味 看的见的健康 看不见的信任 全进口原料 健康是吃出来的 ',NULL,NULL,NULL,'',NULL,NULL),(2,'超级无敌-甜甜圈2',10,0,0,'1463580479','1463580479','',0,1,50,'超级好吃的超级无敌甜甜圈',NULL,NULL,NULL,'',NULL,NULL),(3,'超级无敌-甜甜圈2',20,0,0,'1463580479','1463580479','',0,1,10,'超级好吃的超级无敌甜甜圈',NULL,NULL,NULL,'',NULL,NULL);
+insert  into `goodsinfo`(`goodsid`,`name`,`price`,`discount`,`barcode`,`updatetime`,`createtime`,`editer`,`ishot`,`ishave`,`count`,`content`,`discount_endtime`,`categoryid`,`category_name`,`couponid`,`tourl`) values (1,'超级无敌-甜甜圈1',5,0,0,'1463580479','1463580479','',0,1,100,'新鲜美味 看的见的健康 看不见的信任 全进口原料 健康是吃出来的 ',NULL,1,'糕点',NULL,NULL),(2,'超级无敌-甜甜圈2',10,0,0,'1463580479','1463580479','',0,1,50,'超级好吃的超级无敌甜甜圈',NULL,2,'饼干',NULL,NULL),(3,'超级无敌-甜甜圈3',20,0,0,'1463580479','1463580479','',0,1,10,'超级好吃的超级无敌甜甜圈',NULL,3,'披萨',NULL,NULL);
 
 /*Table structure for table `online` */
 
@@ -233,11 +247,11 @@ CREATE TABLE `picture` (
   `tourl` varchar(255) DEFAULT NULL,
   `where` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`imgid`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 /*Data for the table `picture` */
 
-insert  into `picture`(`imgid`,`goodsid`,`imgsrc`,`type`,`isshow`,`updatetime`,`createtime`,`tourl`,`where`) values (1,1,'../static/img/images/slider-0.JPG','slider',1,'1462889103','1462889103',NULL,'homehead'),(2,2,'../static/img/images/slider-1.JPG','slider',1,'1462889113','1462889113',NULL,'homehead'),(3,3,'../static/img/images/slider-2.JPG','slider',1,'1462889123','1462889123',NULL,'homehead'),(4,4,'../static/img/images/slider-1.JPG','slider',0,'1462889133','1462889133',NULL,'homehead'),(5,5,'../static/img/images/carousel0.jpg','carousel',1,'1462889133','1462889133',NULL,'homecarousel'),(6,1,'../static/img/images/showlist-0.JPG','showlist',1,'1462889133','1462889133','/buypage','homeshowlist'),(7,2,'../static/img/images/showlist-0.JPG','showlist',1,'1462889133','1462889133','buypage/buy_item_page.html','homeshowlist'),(8,3,'../static/img/images/showlist-0.JPG','showlist',1,'1462889133','1462889133','buypage/buy_item_page.html','homeshowlist'),(9,9,'../static/img/images/showlist-0.JPG','showlist',1,'1462889133','1462889133','buypage/buy_item_page.html','homeshowlist'),(10,1,'../static/img/images/showlist-0.JPG','shopcarlist',1,'1462889133','1462889133',NULL,'shopcar'),(11,2,'../static/img/images/showlist-0.JPG','shopcarlist',1,'1462889133','1462889133',NULL,'shopcar'),(12,3,'../static/img/images/showlist-0.JPG','shopcarlist',1,'1462889133','1462889133',NULL,'shopcar'),(13,1,'../static/img/images/slider-1.JPG','slider',1,'1462889133','1462889133',NULL,'buypage'),(14,1,'../static/img/images/slider-0.JPG','slider',1,'1462889133','1462889133',NULL,'buypage');
+insert  into `picture`(`imgid`,`goodsid`,`imgsrc`,`type`,`isshow`,`updatetime`,`createtime`,`tourl`,`where`) values (1,1,'../static/img/images/slider-0.JPG','slider',1,'1462889103','1462889103',NULL,'homehead'),(2,2,'../static/img/images/slider-1.JPG','slider',1,'1462889113','1462889113',NULL,'homehead'),(3,3,'../static/img/images/slider-2.JPG','slider',1,'1462889123','1462889123',NULL,'homehead'),(4,4,'../static/img/images/slider-1.JPG','slider',0,'1462889133','1462889133',NULL,'homehead'),(5,5,'../static/img/images/carousel0.jpg','carousel',1,'1462889133','1462889133',NULL,'homecarousel'),(6,1,'../static/img/images/showlist-0.JPG','showlist',1,'1462889133','1462889133','/buypage','homeshowlist'),(7,2,'../static/img/images/showlist-0.JPG','showlist',1,'1462889133','1462889133','/buypage','homeshowlist'),(8,3,'../static/img/images/showlist-0.JPG','showlist',1,'1462889133','1462889133','/buypage','homeshowlist'),(9,9,'../static/img/images/showlist-0.JPG','showlist',1,'1462889133','1462889133','/buypage','homeshowlist'),(10,1,'../static/img/images/showlist-0.JPG','shopcarlist',1,'1462889133','1462889133',NULL,'shopcar'),(11,2,'../static/img/images/showlist-0.JPG','shopcarlist',1,'1462889133','1462889133',NULL,'shopcar'),(12,3,'../static/img/images/showlist-0.JPG','shopcarlist',1,'1462889133','1462889133',NULL,'shopcar'),(13,1,'../static/img/images/slider-1.JPG','slider',1,'1462889133','1462889133',NULL,'buypage'),(14,1,'../static/img/images/slider-0.JPG','slider',1,'1462889133','1462889133',NULL,'buypage'),(15,1,'../static/img/images/showlist-0.JPG','goodsshow',1,'1462889133','1462889133','/buypage','shoppage'),(16,2,'../static/img/images/showlist-0.JPG','goodsshow',1,'1462889133','1462889133','/buypage','shoppage'),(17,3,'../static/img/images/showlist-0.JPG','goodsshow',1,'1462889133','1462889133','/buypage','shoppage');
 
 /*Table structure for table `poster` */
 
@@ -299,7 +313,7 @@ CREATE TABLE `shopcar` (
 
 /*Data for the table `shopcar` */
 
-insert  into `shopcar`(`id`,`uid`,`goodsid`,`count`,`create_date`) values (10,1,1,59,'1463821686'),(11,1,2,1,'1463821705');
+insert  into `shopcar`(`id`,`uid`,`goodsid`,`count`,`create_date`) values (10,1,1,74,'1463821686'),(11,1,2,1,'1463821705');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
