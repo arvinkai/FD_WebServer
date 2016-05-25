@@ -31,7 +31,6 @@ type Goodsinfo struct {
 	Content         string `orm:"null;size(200)"`
 	DiscountEndtime string `orm:"null"`
 	Categoryid      int32  `orm:"null"`
-	Categorytype    int32  `orm:"null"`
 	CategoryName    string `orm:null;size(20)`
 	Couponid        int64  `orm:"null"`
 	Tourl           string `orm:"null"`
@@ -164,4 +163,10 @@ type Shopcar struct {
 	Goodsid    int64
 	Count      int32
 	CreateDate string
+}
+
+type Category struct {
+	Id         int32 `orm:"pk;auto"`
+	Categoryid int32
+	Name       string
 }

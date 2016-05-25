@@ -34,12 +34,33 @@
 		<div class="mui-content mui-row mui-fullscreen">
 			<div class="mui-col-xs-3">
 				<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
+				{{range .Category}}
+					<a id="{{.Categoryid}}" class="mui-control-item" href="{{.Name}}">{{.Name}}</a>
+				{{end}}
+
 				</div>
 			</div>
 			<div id="segmentedControlContents" class="mui-col-xs-9" style="border-left: 1px solid #c8c7cc;">
-				<div id="item1" class="mui-control-content mui-active"></div>
-				<div id="item2" class="mui-control-content"></div>
-				<div id="item3" class="mui-control-content"></div>
+			{{range .Category}}
+				<div id="{{.Name}}" class="mui-control-content">
+					<ul class="mui-table-view">
+					{{range .Goodsinfo}}
+						<li class="mui-table-view-cell">
+							<div class="mui-media">
+								<a href="javascript:;">
+									<img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="{{.Imgsrc}}" alt="展示图" />
+									<div class="mui-media-body ">
+										<h5 style="line-height:18px;color:black;font-weight:bold;">{{.Name}}</h5>
+										<h6 style="line-height:15px">{{.Content}}</h6>
+										<h5 style="color: red;">售价：￥{{.Price}}</h5>
+									</div>
+								</a>
+							</div>
+						</li>
+					{{end}}
+					</ul>
+				</div>
+			{{end}}
 			</div>
 		</div>
 
@@ -50,24 +71,24 @@
 			});
 			var controls = document.getElementById("segmentedControls");
 			var contents = document.getElementById("segmentedControlContents");
-			var html = [];
-			var i = 0,
-				j = 0,
-				m = 6, //左侧选项卡数量
-				n = 21; //
-			for (; i < m; ++i) {
-				html.push('<a class="mui-control-item" href="#content' + i + '">品种' + i + '</a>');
-			}
-			controls.innerHTML = html.join('');
-			html = [];
-			for (i = 0; i < m; ++i) {
-				html.push('<div id="content' + i + '" class="mui-control-content"><ul class="mui-table-view">');
-				for (j = 0; j < n; ++j) {
-					html.push('<li class="mui-table-view-cell"><div class="mui-media"><a href="javascript:;"><img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="../static/img/images/showlist-0.JPG" alt="展示图" /><div class="mui-media-body "><h5 style="line-height:18px;color:black;font-weight:bold;">超级'+i+'-甜甜圈'+j+'</h5><h6 style="line-height:15px">说明物品的说明，超级无敌-甜甜圈的说明</h6><h5 style="color: red;">售价：￥5</h5></div></a></div></li>')
-				}
-				html.push('</ul></div>');
-			}
-			contents.innerHTML = html.join('');
+			// var html = [];
+			// var i = 0,
+			// 	j = 0,
+			// 	m = 6, //左侧选项卡数量
+			// 	n = 21; //
+			// for (; i < m; ++i) {
+			// 	html.push('<a class="mui-control-item" href="#content' + i + '">品种' + i + '</a>');
+			// }
+			// controls.innerHTML = html.join('');
+			// html = [];
+			// for (i = 0; i < m; ++i) {
+			// 	html.push('<div id="content' + i + '" class="mui-control-content"><ul class="mui-table-view">');
+			// 	for (j = 0; j < n; ++j) {
+			// 		html.push('<li class="mui-table-view-cell"><div class="mui-media"><a href="javascript:;"><img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="../static/img/images/showlist-0.JPG" alt="展示图" /><div class="mui-media-body "><h5 style="line-height:18px;color:black;font-weight:bold;">超级'+i+'-甜甜圈'+j+'</h5><h6 style="line-height:15px">说明物品的说明，超级无敌-甜甜圈的说明</h6><h5 style="color: red;">售价：￥5</h5></div></a></div></li>')
+			// 	}
+			// 	html.push('</ul></div>');
+			// }
+			// contents.innerHTML = html.join('');
 			//默认选中第一个
 			controls.querySelector('.mui-control-item').classList.add('mui-active');
 			contents.querySelector('.mui-control-content').classList.add('mui-active');

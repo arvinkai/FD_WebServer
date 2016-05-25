@@ -174,3 +174,40 @@ func GetShopCarsData(uid int64) []*ShopCarData {
 
 	return CarDatas
 }
+
+func GetGoodsinfoByCategory() (map[string][]*ShopGoodsinfo, error) {
+	o := orm.NewOrm()
+	qs := o.QueryTable("Category")
+	categorys := make([]*Category, 0)
+	n, err := qs.All(&categorys)
+	if err != nil {
+		return nil, err
+	}
+	if n == 0 {
+		return nil, err
+	}
+	map_Shopinfo := make(map[string][]*ShopGoodsinfo, n)
+	for _, v := range categorys {
+		goodsinfos := make([]*Goodsinfo, 0)
+		qs = o.QueryTable("goodsinfo")
+		count, _ := qs.Filter("category_name", v.Name).All(&goodsinfos)
+		if count == 0 {
+			continue
+		}
+		shopgoodsinfo := make([]*ShopGoodsinfo, count)
+
+		for k, gds := range goodsinfos {
+			pic, picCount, _ := GetPicturesByGoodsid(gds.Goodsid, "shoppage", "goodsshow", 1)
+			tmpshopinfo := &ShopGoodsinfo{}
+			if picCount != 0 {
+				tmpshopinfo = &ShopGoodsinfo{Goodsid: gds.Goodsid, Price: gds.Price, Name: gds.Name, Imgsrc: pic[0].Imgsrc, Tourl: pic[0].Tourl}
+			} else {
+				tmpshopinfo = &ShopGoodsinfo{Goodsid: gds.Goodsid, Price: gds.Price, Name: gds.Name, Imgsrc: "#", Tourl: "#"}
+			}
+			shopgoodsinfo[k] = tmpshopinfo
+		}
+		map_Shopinfo[v.Name] = shopgoodsinfo
+	}
+
+	return map_Shopinfo, err
+}

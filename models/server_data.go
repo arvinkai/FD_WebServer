@@ -10,3 +10,11 @@ type ShopCarData struct {
 	Imgsrc     string
 	Tourl      string
 }
+
+type ShopGoodsinfo struct {
+	Goodsid int64
+	Price   int32
+	Name    string
+	Imgsrc  string
+	Tourl   string
+}
