@@ -48,9 +48,11 @@ CREATE TABLE `book` (
   `createtime` varchar(255) NOT NULL DEFAULT '',
   `endtime` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`bkid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `book` */
+
+insert  into `book`(`bkid`,`uid`,`goodsid`,`name`,`count`,`addr`,`statues`,`price`,`postage`,`createtime`,`endtime`) values (1,1,1,'超级无敌-甜甜圈1',1,'美丽小兔窝1',0,5,0,'2016-05-26 23:27:08',NULL),(2,1,2,'超级无敌-甜甜圈2',1,'美丽小兔窝2',1,10,0,'2016-05-26 23:37:08',NULL),(3,1,3,'超级无敌-甜甜圈3',1,'美丽小兔窝3',2,15,0,'2016-05-26 23:47:08','2016-05-26 23:55:08');
 
 /*Table structure for table `category` */
 

@@ -61,73 +61,39 @@
 		
 		<div class="mui-content">
 			<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
-				<li class="mui-table-view-cell mui-media">
-					<div class="mui-table-cell" style="padding-bottom: 5px;">
-						<span class="mui-icon mui-icon-contact"><lable><b style="font-size: 20px;">商品名字</b></lable></span>
-					</div>
-					<div class=" mui-pull-left mui-col-xs-3">
-						<img style="width: auto;height: 70px;margin: 0px;" src="../static/img/images/IMG_2239.png">
-					</div>
+				{{range .Booklist}}
+					<li class="mui-table-view-cell mui-media">
+						<div class="mui-table-cell" style="padding-bottom: 5px;">
+							<span class="mui-icon mui-icon-contact"><lable><b style="font-size: 20px;">{{.Name}}</b></lable></span>
+						</div>
+						<div class=" mui-pull-left mui-col-xs-3">
+							<img style="width: auto;height: 70px;margin: 0px;" src="../static/img/images/IMG_2239.png">
+						</div>
 
-					<div class="mui-media-body mui-col-xs-8 mui-pull-right">
-						<p>
-							<h4 style="font-size: 15px;">下单时间：</h4></p>
-						2016-04-20 12:00:00
-						<p class='mui-ellipsis'>总价：￥
-							<lable>15</lable>
-						</p>
-					</div>
-					<div class="mui-table-cell mui-pull-right">
-						<button style="color: red;">付款</button>
-					</div>
-				</li>
-				<li class="mui-table-view-divider"></li>
-				<li class="mui-table-view-cell mui-media">
-					<div class="mui-table-cell" style="padding-bottom: 5px;">
-						<span class="mui-icon mui-icon-contact"><lable><b style="font-size: 20px;">商品名字</b></lable></span>
-					</div>
-					
-					<div class=" mui-pull-left mui-col-xs-3">
-						<img style="width: auto;height: 70px;margin: 0px;" src="../static/img/images/IMG_2239.png">
-					</div>
-
-					<div class="mui-media-body mui-col-xs-8 mui-pull-right">
-						<p>
-							<h4 style="font-size: 15px;">下单时间：</h4></p>
-						2016-04-20 12:00:00
-						<p class='mui-ellipsis'>总价：￥
-							<lable>15</lable>
-						</p>
-					</div>
-					<div class="mui-table-cell mui-pull-right">
-						<button style="color:orange;">评价</button>
-					</div>
-				</li>
-				<li class="mui-table-view-divider"></li>
-				<li class="mui-table-view-cell mui-media">
-					<div class="mui-table-cell" style="padding-bottom: 5px;">
-						<span class="mui-icon mui-icon-contact mui-pull-left"><lable><b style="font-size: 20px;">商品名字</b></lable> </span>
-					</div>
-					<div class="mui-table-cell mui-pull-right">
-						<b class="mui-pull-right" style="color: green;">已完成</b>
-					</div>
-					
-					<div class=" mui-pull-left mui-col-xs-3">
-						<img style="width: auto;height: 70px;margin: 0px;" src="../static/img/images/IMG_2239.png">
-					</div>
-
-					<div class="mui-media-body mui-col-xs-8 mui-pull-right">
-						<p>
-							<h4 style="font-size: 15px;">下单时间：</h4></p>
-						2016-04-20 12:00:00
-						<p class='mui-ellipsis'>总价：￥
-							<lable>15</lable>
-						</p>
-					</div>
-					<div class="mui-table-cell mui-pull-right">
-						<button hidden="true">付款</button>
-					</div>
-				</li>
+						<div class="mui-media-body mui-col-xs-8 mui-pull-right">
+							<p>
+								<h4 style="font-size: 15px;">下单时间：</h4></p>
+							{{.Createtime}}
+							<p class='mui-ellipsis'>总价：￥
+								<lable>{{.Price}}</lable>
+							</p>
+						</div>
+						{{if eq .Statues 0}}
+						<div class="mui-table-cell mui-pull-right">
+							<button style="color: red;">付款</button>
+						</div>
+						{{else if eq .Statues 1}}
+						<div class="mui-table-cell mui-pull-right">
+							<button style="color:orange;">评价</button>
+						</div>
+						{{else if eq .Statues 2}}
+						<div class="mui-table-cell mui-pull-right">
+							<b class="mui-pull-right" style="color: green;">已完成</b>
+						</div>
+						{{end}}
+					</li>
+					<li class="mui-table-view-divider"></li>
+				{{end}}
 			</ul>
 		</div>
 	</body>

@@ -226,3 +226,16 @@ func GetGoodsinfoByCategory() (map[int32][]*ShopGoodsinfo, error) {
 
 	return map_Shopinfo, err
 }
+
+func GetBooklist(uid int64) ([]*Book, int64, error) {
+	o := orm.NewOrm()
+	qs := o.QueryTable("book")
+	booklist := make([]*Book, 0)
+
+	n, err := qs.Filter("uid", uid).OrderBy("statues").Limit(20).All(&booklist)
+	if err != nil || n == 0 {
+		return nil, n, err
+	}
+
+	return booklist, n, err
+}
