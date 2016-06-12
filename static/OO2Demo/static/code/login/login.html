@@ -135,14 +135,14 @@
 					var settings = app.getSettings();
 					var state = app.getState();
 					var mainPage = $.preload({
-						"id": 'main',
-						"url": 'main.html'
+						"id": 'userpage',
+						"url": '../tab-subpage-user.html'
 					});
 					var toMain = function() {
 						$.fire(mainPage, 'show', null);
 						setTimeout(function() {
 							$.openWindow({
-								id: 'main',
+								id: 'userpage',
 								show: {
 									aniShow: 'pop-in'
 								},
