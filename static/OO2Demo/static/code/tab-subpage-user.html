@@ -169,13 +169,6 @@
 				height: 40px;
 			}
 			
-			.update {
-				font-style: normal;
-				color: #999999;
-				margin-right: -25px;
-				font-size: 15px
-			}
-			
 			.mui-fullscreen {
 				position: fixed;
 				z-index: 20;
@@ -265,13 +258,10 @@
 							<li class="mui-table-view-cell">
 								<a id="feedback-btn" href="#feedback" class="mui-navigate-right">问题反馈</a>
 							</li>
-						</ul>
-						<!--<ul class="mui-table-view mui-table-view-chevron">
-							<li class="mui-table-view-cell">
-								<a href="#lock" class="mui-navigate-right">设置锁屏图案</a>
+							<li id="check_update" class="mui-table-view-cell mui-plus-visible">
+								<a id="update" class="mui-navigate-right">检查更新</a>
 							</li>
-						</ul>-->
-
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -319,11 +309,11 @@
 								<a href="#notifications" class="mui-navigate-right">新消息通知</a>
 							</li>
 							<li class="mui-table-view-cell">
-								<a href="#about" class="mui-navigate-right">关于MUI <i class="mui-pull-right update">V2.8.0</i></a>
+								<a class="mui-navigate-right">关于MUI <i class="mui-pull-right update">V2.8.0</i></a>
 							</li>
 						</ul>
 						<ul class="mui-table-view" style="margin-top: 10px;">
-							<li class="mui-table-view-cell" style="text-align: center;">
+							<li id="logout" class="mui-table-view-cell" style="text-align: center;">
 								<a>退出登录</a>
 							</li>
 						</ul>
@@ -412,41 +402,6 @@
 							</li>
 							<li class="mui-table-view-cell">
 								<a class="mui-navigate-right">关闭</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div id="about" class="mui-page">
-			<div class="mui-navbar-inner mui-bar mui-bar-nav">
-				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
-					<span class="mui-icon mui-icon-left-nav"></span>设置
-				</button>
-				<h1 class="mui-center mui-title">关于MUI</h1>
-			</div>
-			<div class="mui-page-content">
-				<div class="mui-scroll-wrapper">
-					<div class="mui-scroll">
-						<ul class="mui-table-view">
-							<li class="mui-table-view-cell mui-plus-visible">
-								<a id="rate" class="mui-navigate-right">评分鼓励</a>
-							</li>
-							<li class="mui-table-view-cell mui-plus-visible">
-								<a id="welcome" class="mui-navigate-right">欢迎页</a>
-							</li>
-							<li class="mui-table-view-cell mui-plus-visible">
-								<a id="share" class="mui-navigate-right">分享推荐</a>
-							</li>
-							<li class="mui-table-view-cell">
-								<a id="tel" class="mui-navigate-right">客服电话</a>
-							</li>
-							<li class="mui-table-view-cell">
-								<a id="feedback-btn" href="#feedback" class="mui-navigate-right">问题反馈</a>
-							</li>
-							<li id="check_update" class="mui-table-view-cell mui-plus-visible">
-								<a id="update" class="mui-navigate-right">检查更新</a>
 							</li>
 						</ul>
 					</div>
@@ -765,20 +720,6 @@
 		document.getElementById("head-img1").addEventListener('tap', function(e) {
 			e.stopPropagation();
 		});
-		document.getElementById("welcome").addEventListener('tap', function(e) {
-			//显示启动导航
-			mui.openWindow({
-				id: 'guide',
-				url: 'guide.html',
-				show: {
-					aniShow: 'fade-in',
-					duration: 300
-				},
-				waiting: {
-					autoShow: false
-				}
-			});
-		});
 
 		function initImgPreview() {
 			var imgs = document.querySelectorAll("img.mui-action-preview");
@@ -822,6 +763,21 @@
 		if (mui.os.stream) {
 			document.getElementById("check_update").display = "none";
 		}
+
+		function AuthLogout() {
+			plus.oauth.getServices(function(services) {
+				for (var i in services) {
+					var service = services[i];
+					service.logout(function() {
+						outLine("退出\"" + service.description + "\"成功");
+					}, function(e) {
+						outLine("退出\"" + service.description + "\"失败" + e.message);
+					});
+				}
+			}, function(e) {
+				outLine("获取登录认证失败：" + e.message);
+			});
+		};
 	</script>
 
 </html>
