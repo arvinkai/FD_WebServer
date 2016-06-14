@@ -45,11 +45,11 @@
 			<form class="mui-input-group">
 				<div class="mui-input-row">
 					<label>账号</label>
-					<input id='account' type="text" class="mui-input-clear mui-input" placeholder="请输入账号">
+					<input id='account' name="account" type="text" class="mui-input-clear mui-input" placeholder="请输入账号">
 				</div>
 				<div class="mui-input-row">
 					<label>密码</label>
-					<input id='password' type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
+					<input id='password' name="password" type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
 				</div>
 				<div class="mui-input-row">
 					<label>确认</label>
@@ -57,7 +57,11 @@
 				</div>
 				<div class="mui-input-row">
 					<label>邮箱</label>
-					<input id='email' type="email" class="mui-input-clear mui-input" placeholder="请输入邮箱">
+					<input id='email' name="email" type="email" class="mui-input-clear mui-input" placeholder="请输入邮箱">
+				</div>
+				<div class="mui-input-row">
+					<label>电话</label>
+					<input type="tel" name="telNum" id="telNum" class="mui-input-clear mui-input" placeholder="请输入电话号码" />
 				</div>
 			</form>
 			<div class="mui-content-padded">
@@ -69,7 +73,7 @@
 		</div>
 		<script src="../../static/js/mui.min.js"></script>
 		<script src="../../static/js/app.js"></script>
-		<script>
+<script>
 			(function($, doc) {
 				$.init();
 				$.plusReady(function() {
@@ -79,11 +83,17 @@
 					var passwordBox = doc.getElementById('password');
 					var passwordConfirmBox = doc.getElementById('password_confirm');
 					var emailBox = doc.getElementById('email');
+					var telNum = doc.getElementById('telNum');
+					accountBox.blur(function(){
+						plus.alert("丢失焦点。。。");
+					});
+					
 					regButton.addEventListener('tap', function(event) {
 						var regInfo = {
 							account: accountBox.value,
 							password: passwordBox.value,
-							email: emailBox.value
+							email: emailBox.value,
+							tel: telNum.value
 						};
 						var passwordConfirm = passwordConfirmBox.value;
 						if (passwordConfirm != regInfo.password) {
@@ -95,10 +105,10 @@
 								plus.nativeUI.toast(err);
 								return;
 							}
-							plus.nativeUI.toast('注册成功');
+							//plus.nativeUI.toast('注册成功');
 							$.openWindow({
-								url: 'login.html',
-								id: 'login',
+								url: 'http://192.168.80.105:8080/regist?account='+regInfo.account+'&password='+regInfo.password +'&email='+regInfo.email+'&telNum='+regInfo.tel,
+								id: 'regist',
 								show: {
 									aniShow: 'pop-in'
 								}

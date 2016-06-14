@@ -83,11 +83,17 @@
 					var passwordBox = doc.getElementById('password');
 					var passwordConfirmBox = doc.getElementById('password_confirm');
 					var emailBox = doc.getElementById('email');
+					var telNum = doc.getElementById('telNum');
+					accountBox.blur(function(){
+						plus.alert("丢失焦点。。。");
+					});
+					
 					regButton.addEventListener('tap', function(event) {
 						var regInfo = {
 							account: accountBox.value,
 							password: passwordBox.value,
-							email: emailBox.value
+							email: emailBox.value,
+							tel: telNum.value
 						};
 						var passwordConfirm = passwordConfirmBox.value;
 						if (passwordConfirm != regInfo.password) {
@@ -99,14 +105,20 @@
 								plus.nativeUI.toast(err);
 								return;
 							}
-							plus.nativeUI.toast('注册成功');
-							$.openWindow({
-								url: 'login.html',
-								id: 'login',
-								show: {
-									aniShow: 'pop-in'
-								}
-							});
+							//plus.nativeUI.toast('注册成功');
+							$.post('/regist',{
+								account:regInfo.account,
+								password:regInfo.password,
+								email:regInfo.email,
+								telNum:regInfo.tel
+							})
+//							$.openWindow({
+//								url: '/regist?account='+regInfo.account+'&password='+regInfo.password +'&email='+regInfo.email+'&telNum='+regInfo.tel,
+//								id: 'regist',
+//								show: {
+//									aniShow: 'pop-in'
+//								}
+//							});
 						});
 					});
 				});

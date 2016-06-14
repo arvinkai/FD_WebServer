@@ -17,4 +17,6 @@ func init() {
 	beego.Router("/buypage", &controllers.BuyPageController{})
 	beego.AutoRouter(&controllers.BuyPageController{})
 	beego.Router("/buyjump", &controllers.BuyJumpController{})
+	beego.Router("/login", &controllers.LoginController{})
+	beego.AutoRouter(&controllers.LoginController{})
 }

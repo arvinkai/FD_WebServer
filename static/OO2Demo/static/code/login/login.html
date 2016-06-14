@@ -205,11 +205,13 @@
 							plus.nativeUI.toast("获取登录认证失败：" + e.message);
 						});
 					}
+					
 					// close splash
 					setTimeout(function() {
 						//关闭 splash
 						plus.navigator.closeSplashscreen();
 					}, 600);
+					
 					//检查 "登录状态/锁屏状态" 结束
 					var loginButton = doc.getElementById('login');
 					var accountBox = doc.getElementById('account');
@@ -222,6 +224,7 @@
 							account: accountBox.value,
 							password: passwordBox.value
 						};//普通登录
+						$.post()
 						app.login(loginInfo, function(err) {
 							if (err) {
 								plus.nativeUI.toast(err);
