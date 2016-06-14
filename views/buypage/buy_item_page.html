@@ -11,10 +11,18 @@
 	</head>
 
 	<body>
-		<header id="header" class="mui-bar mui-bar-nav">
+<!-- 		<header id="header" class="mui-bar mui-bar-nav">
 			<a class="mui-active-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">购物</h1>
-		</header>
+		</header> -->
+		<div class="mui-navbar-inner mui-bar mui-bar-nav">
+			<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>
+			</button>
+			<h1 class="mui-center mui-title">购物</h1>
+		</div>
+
+
 		<input type="" name="ItemID" id="ItemID" value="123456" hidden="true"/>
 		<br>
 		<br>
@@ -181,7 +189,6 @@
 				
 				var count = document.getElementById('count').value
 				var goodsid = {{.GoodsInfo.Goodsid}}
-
 				mui.openWindow({
 					id:'buyjumppage',//重写把此处放到jump页处理因为传完值后直接跳转本页的话部分功能会失效，所以采用一个跳转页来刷新
 					url:'http://192.168.80.105:8080/buyjump?'+'goodsid='+goodsid+'&'+'count='+count,

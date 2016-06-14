@@ -1,10 +1,14 @@
 // forgetpw_ctrl.go
-package main
+package controllers
 
 import (
-	"fmt"
+	"github.com/astaxie/beego"
 )
 
-func main() {
-	fmt.Println("Hello World!")
+type ForgetController struct {
+	beego.Controller
+}
+
+func (this *ForgetController) Get() {
+
 }
