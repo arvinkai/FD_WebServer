@@ -36,7 +36,7 @@
 								<h6>购买数量:</h6>
 								<div class="mui-numbox" data-numbox-min='1' style="width: 110px;height: 30px;">
 									<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
-									<input class="mui-input-numbox" type="number" value="1" />
+									<input id="car1_count" class="mui-input-numbox" type="number" value="1" />
 									<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
 								</div>
 							</div>
@@ -57,7 +57,7 @@
 								<h6>购买数量:</h6>
 								<div class="mui-numbox" data-numbox-min='1' style="width: 110px;height: 30px;">
 									<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
-									<input class="mui-input-numbox" type="number" value="1" />
+									<input id="car2_count"  class="mui-input-numbox" type="number" value="1" />
 									<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
 								</div>
 							</div>
@@ -169,8 +169,39 @@
 					document.getElementById('checkpay').value = '去结账(' + 0 + ')';
 				}
 			});
+			
+			mui('.mui-numbox').on('tap','.mui-btn-numbox-minus',function(){
+				var parent = this.parentElement.parentElement.parentElement;
+				var parent_li = parent.parentElement.parentElement;
+				var str = parent_li.id + '_pay';
+				var price = document.getElementById(str).outerText;
+				var strinputID = parent_li.id + '_r';
+				var checkinput = document.getElementById(strinputID).checked;
+				var allpay = document.getElementById('allpay');
+				var titlepay = document.getElementById("titlepay");
+				var discount = document.getElementById('discount');
+				if (checkinput) {
+					allpay.innerText = Number(allpay.outerText) - Number(price);
+					titlepay.innerText = Number(allpay.outerText) + Number(discount.outerText);
+				}
+			});
+			mui('.mui-numbox').on('tap','.mui-btn-numbox-plus',function(){
+				var parent = this.parentElement.parentElement.parentElement;
+				var parent_li = parent.parentElement.parentElement;
+				var str = parent_li.id + '_pay';
+				var price = document.getElementById(str).outerText;
+				var strinputID = parent_li.id + '_r';
+				var checkinput = document.getElementById(strinputID).checked;
+				var allpay = document.getElementById('allpay');
+				var titlepay = document.getElementById("titlepay");
+				var discount = document.getElementById('discount');
+				if (checkinput) {
+					allpay.innerText = Number(price) + Number(allpay.outerText);
+					titlepay.innerText = Number(allpay.outerText) - Number(discount.outerText);				
+				}
+			});
 			//单个点击操作处理
-			mui('.mui-table-view-cell').on('change', 'input', function() {
+			mui('.mui-table-view-cell').on('change', '.class_car', function() {
 				ProcessPrice(this);
 				//结账按钮计数
 				var AllCheckboxs = document.getElementsByClassName('class_car');
@@ -193,13 +224,35 @@
 				var allpay = document.getElementById('allpay');
 				var titlepay = document.getElementById("titlepay");
 				var discount = document.getElementById('discount');
+				var strCountID = parent_li.id+'_count';
+				var carcount = document.getElementById(strCountID).value;
 				if (e.checked) {
+					allpay.innerText = (Number(price) * Number(carcount)) + Number(allpay.outerText);
+					titlepay.innerText = Number(allpay.outerText) - Number(discount.outerText);
+					//					alert(allpay.innerText);
+				} else {
+					allpay.innerText = Number(allpay.outerText) - (Number(price) * Number(carcount));
+					titlepay.innerText = Number(allpay.outerText) + Number(discount.outerText);
+					//					alert(allpay.innerText);
+				}
+			};
+			
+			function ProcessPriceButten(e) {
+				var parent_li = e.parentElement.parentElement;
+				var str = parent_li.id + '_pay';
+				var price = document.getElementById(str).outerText;
+				var strinputID = parent_li.id + '_r';
+				var checkinput = document.getElementById(strinputID).checked;
+				var allpay = document.getElementById('allpay');
+				var titlepay = document.getElementById("titlepay");
+				var discount = document.getElementById('discount');
+				if (checkinput) {
 					allpay.innerText = Number(price) + Number(allpay.outerText);
 					titlepay.innerText = Number(allpay.outerText) - Number(discount.outerText);
 					//					alert(allpay.innerText);
 				} else {
-					allpay.innerText = Number(allpay.outerText) - Number(price);
-					titlepay.innerText = Number(allpay.outerText) + Number(discount.outerText);
+//					allpay.innerText = Number(allpay.outerText) - (Number(price) * Number(carcount));
+//					titlepay.innerText = Number(allpay.outerText) + Number(discount.outerText);
 					//					alert(allpay.innerText);
 				}
 			};

@@ -45,7 +45,7 @@
 											<h6>购买数量:</h6>
 											<div class="mui-numbox" data-numbox-min='1' style="width: 120px;height: 30px;">
 												<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
-												<input class="mui-input-numbox" type="number" value="{{.Count}}" />
+												<input id="{{.Goodsid}}_count" class="mui-input-numbox" type="number" value="{{.Count}}" />
 												<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
 											</div>
 										</div>
@@ -124,17 +124,20 @@
 			//计算总价格
 			function ProcessPrice(e) {
 				var parent_li = e.parentElement.parentElement;
-				var str = parent_li.id + '_pay'
-				var price = document.getElementById(str).outerText;
+				var strpay = parent_li.id + '_pay'
+				var price = document.getElementById(strpay).outerText;
+
 				var allpay = document.getElementById('allpay');
 				var titlepay = document.getElementById("titlepay");
 				var discount = document.getElementById('discount');
+				var strcount = parent_li.id + '_count';
+				var goodscount = document.getElementById(strcount).value;
 				if (e.checked) {
-					allpay.innerText = Number(price) + Number(allpay.outerText);
+					allpay.innerText = (Number(price) * Number(goodscount)) + Number(allpay.outerText);
 					titlepay.innerText = Number(allpay.outerText) - Number(discount.outerText);
 					//					alert(allpay.innerText);
 				} else {
-					allpay.innerText = Number(allpay.outerText) - Number(price);
+					allpay.innerText = Number(allpay.outerText) - (Number(price) * Number(goodscount));
 					titlepay.innerText = Number(allpay.outerText) + Number(discount.outerText);
 					//					alert(allpay.innerText);
 				}
