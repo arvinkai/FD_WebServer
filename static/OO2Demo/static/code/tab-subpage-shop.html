@@ -34,7 +34,7 @@
 		<div class="mui-navbar-inner mui-bar mui-bar-nav">
 			<h1 class="mui-center mui-title">店铺</h1>
 		</div>
-		<div class="mui-content mui-row mui-fullscreen">
+		<div class="mui-content mui-row mui-fullscreen" style="margin-top: 5px;">
 			<div class="mui-col-xs-3">
 				<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
 				</div>
@@ -66,7 +66,8 @@
 			for (i = 0; i < m; ++i) {
 				html.push('<div id="content' + i + '" class="mui-control-content"><ul class="mui-table-view">');
 				for (j = 0; j < n; ++j) {
-					html.push('<li class="mui-table-view-cell"><div class="mui-media"><a href="javascript:;"><img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="../images/showlist-0.JPG" alt="展示图" /><div class="mui-media-body "><h5 style="line-height:18px;color:black;font-weight:bold;">超级'+i+'-甜甜圈'+j+'</h5><h6 style="line-height:15px">说明物品的说明，超级无敌-甜甜圈的说明</h6><h5 style="color: red;">售价：￥5</h5></div></a></div></li>')
+					html.push('<li class="mui-table-view-cell"><div class="mui-media"><a href="javascript:;"><img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="../images/showlist-0.JPG" alt="展示图" /><div class="mui-media-body "><h5 style="line-height:18px;color:black;font-weight:bold;"><span class="mui-ellipsis">超级'+i+'-甜甜圈'+j+'</span></h5><h6 style="line-height:15px"><span class="mui-ellipsis-2">说明物品的说明，超级无敌-甜甜圈的说明</span></h6><h5 style="color: red;">售价：￥5</h5></div></a></div></li>')
+
 				}
 				html.push('</ul></div>');
 			}

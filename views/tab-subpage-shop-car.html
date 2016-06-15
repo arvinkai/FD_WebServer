@@ -16,19 +16,21 @@
 	</head>
 
 	<body>
-<!-- 		{{if .IsnotHomepage}}
+		{{if .IsnotHomepage}}
 				<header class="mui-bar mui-bar-nav" style="height: 55px;">
-					<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+					<!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
 					<h1 class="mui-title">购物车</h1>
 				</header>
-		{{end}} -->
+		{{else}}
+
+		{{end}}
 <!-- 		<div class="mui-navbar-inner mui-bar mui-bar-nav">
 			<h1 class="mui-center mui-title">购物车</h1>
 		</div> -->
 		<div class="mui-content">
 			{{if .haveCookie}}
 				{{if .haveInfo}}
-					<ul class="mui-table-view">
+					<ul class="mui-table-view" style="margin-top: 10px">
 						{{range .ShopcarData}}
 							<li id="{{.Goodsid}}" class="mui-table-view-cell">
 								<div class="mui-checkbox mui-col-xs-2">

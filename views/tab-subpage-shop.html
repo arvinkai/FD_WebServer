@@ -34,9 +34,13 @@
 <!-- 	<div class="mui-navbar-inner mui-bar mui-bar-nav">
 		<h1 class="mui-center mui-title">店铺</h1>
 	</div> -->
+	<header class="mui-bar mui-bar-nav" style="height: 45px;">
+		<!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
+		<h1 class="mui-title">店铺</h1>
+	</header>
 	{{$Cates := .Categorys}}
 	{{$Gds := .Goodsinfos}}
-		<div class="mui-content mui-row mui-fullscreen">
+		<div class="mui-content mui-row mui-fullscreen" >
 			<div class="mui-col-xs-3">
 				<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
 				{{range $k,$v := $Cates}}
@@ -50,16 +54,15 @@
 			{{range $k1,$v1 := $Gds}}
 				<div id="content{{$k1}}" class="mui-control-content">
 					<ul class="mui-table-view">
-					<h1>{{$k1}}</h1>
 						{{range $v1}}
 						<li class="mui-table-view-cell">
 							<div class="mui-media">
 								<a href="javascript:;">
 									<img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="{{.Imgsrc}}" alt="展示图" />
 									<div class="mui-media-body ">
-										<h5 style="line-height:18px;color:black;font-weight:bold;">{{.Name}}</h5>
-										<h6 style="line-height:15px">{{.Content}}</h6>
-										<h5 style="color: red;">售价：￥{{.Price}}</h5>
+										<h5 style="line-height:18px;color:black;font-weight:bold;"><span class="mui-ellipsis-2">{{.Name}}</span></h5>
+										<h6 style="line-height:15px"><span class="mui-ellipsis-2">{{.Content}}</span></h6>
+										<h5 style="color: red;"><span class="mui-ellipsis-2">售价：￥{{.Price}}</span></h5>
 									</div>
 								</a>
 							</div>
