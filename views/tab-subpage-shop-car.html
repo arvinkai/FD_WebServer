@@ -105,6 +105,38 @@
 					document.getElementById('checkpay').value = '去结账(' + 0 + ')';
 				}
 			});
+			
+			mui('.mui-numbox').on('tap','.mui-btn-numbox-minus',function(){
+				var parent = this.parentElement.parentElement.parentElement;
+				var parent_li = parent.parentElement.parentElement;
+				var str = parent_li.id + '_pay';
+				var price = document.getElementById(str).outerText;
+				var strinputID = parent_li.id + '_r';
+				var checkinput = document.getElementById(strinputID).checked;
+				var allpay = document.getElementById('allpay');
+				var titlepay = document.getElementById("titlepay");
+				var discount = document.getElementById('discount');
+				if (checkinput) {
+					allpay.innerText = Number(allpay.outerText) - Number(price);
+					titlepay.innerText = Number(allpay.outerText) + Number(discount.outerText);
+				}
+			});
+			mui('.mui-numbox').on('tap','.mui-btn-numbox-plus',function(){
+				var parent = this.parentElement.parentElement.parentElement;
+				var parent_li = parent.parentElement.parentElement;
+				var str = parent_li.id + '_pay';
+				var price = document.getElementById(str).outerText;
+				var strinputID = parent_li.id + '_r';
+				var checkinput = document.getElementById(strinputID).checked;
+				var allpay = document.getElementById('allpay');
+				var titlepay = document.getElementById("titlepay");
+				var discount = document.getElementById('discount');
+				if (checkinput) {
+					allpay.innerText = Number(price) + Number(allpay.outerText);
+					titlepay.innerText = Number(allpay.outerText) - Number(discount.outerText);				
+				}
+			});
+
 			//单个点击操作处理
 			mui('.mui-table-view-cell').on('change', 'input', function() {
 				ProcessPrice(this);

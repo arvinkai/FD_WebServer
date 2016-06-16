@@ -236,26 +236,6 @@
 					//					alert(allpay.innerText);
 				}
 			};
-			
-			function ProcessPriceButten(e) {
-				var parent_li = e.parentElement.parentElement;
-				var str = parent_li.id + '_pay';
-				var price = document.getElementById(str).outerText;
-				var strinputID = parent_li.id + '_r';
-				var checkinput = document.getElementById(strinputID).checked;
-				var allpay = document.getElementById('allpay');
-				var titlepay = document.getElementById("titlepay");
-				var discount = document.getElementById('discount');
-				if (checkinput) {
-					allpay.innerText = Number(price) + Number(allpay.outerText);
-					titlepay.innerText = Number(allpay.outerText) - Number(discount.outerText);
-					//					alert(allpay.innerText);
-				} else {
-//					allpay.innerText = Number(allpay.outerText) - (Number(price) * Number(carcount));
-//					titlepay.innerText = Number(allpay.outerText) + Number(discount.outerText);
-					//					alert(allpay.innerText);
-				}
-			};
 		</script>
 	</body>
 
