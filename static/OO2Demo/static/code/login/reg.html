@@ -75,8 +75,12 @@
 		<script src="../../../js/mui.min.js"></script>
 		<script src="../../../js/app.js"></script>
 		<script>
+			$("#account").blur(function(){
+				alert("丢失焦点。。。");
+			});
 			(function($, doc) {
 				$.init();
+
 				$.plusReady(function() {
 					var settings = app.getSettings();
 					var regButton = doc.getElementById('reg');
@@ -85,11 +89,7 @@
 					var passwordConfirmBox = doc.getElementById('password_confirm');
 					var emailBox = doc.getElementById('email');
 					var telNum = doc.getElementById('telNum');
-					accountBox.blur(function(){
-						plus.alert("丢失焦点。。。");
-						
-					});
-					$.get("")
+
 					regButton.addEventListener('tap', function(event) {
 						var regInfo = {
 							account: accountBox.value,
