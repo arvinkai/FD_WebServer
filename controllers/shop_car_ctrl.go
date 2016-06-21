@@ -3,6 +3,7 @@ package controllers
 import (
 	"FD_WebServer/models"
 	"fmt"
+	"strconv"
 
 	"github.com/astaxie/beego"
 )
@@ -46,5 +47,25 @@ func (this *ShopCarController) Get() {
 	this.Data["haveCookie"] = haveCookie
 	this.Data["haveInfo"] = haveInfo
 	this.Data["ShopcarData"] = ShopcarsData
+	this.TplName = "tab-subpage-shop-car.html"
+}
+
+func (this *ShopCarController) Remove() {
+	options := this.Input().Get("op")
+	strGoodsid := this.Input().Get("goodsid")
+	goodsid, _ := strconv.ParseInt(strGoodsid, 10, 64)
+	fmt.Println(options)
+	fmt.Println(goodsid)
+	switch options {
+	case "del":
+		spcar := &models.Shopcar{Uid: 1, Goodsid: goodsid}
+		fmt.Println(spcar)
+		_, err := models.OpShopcar(spcar, "del")
+		if err != nil {
+			fmt.Println(err)
+		}
+	default:
+		fmt.Println("Default")
+	}
 	this.TplName = "tab-subpage-shop-car.html"
 }

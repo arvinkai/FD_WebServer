@@ -17,56 +17,49 @@
 
 	<body>
 		{{if .IsnotHomepage}}
-				<header class="mui-bar mui-bar-nav" style="height: 55px;">
-					<!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
-					<h1 class="mui-title">购物车</h1>
-				</header>
-		{{else}}
-
-		{{end}}
-<!-- 		<div class="mui-navbar-inner mui-bar mui-bar-nav">
+		<header class="mui-bar mui-bar-nav" style="height: 55px;">
+			<!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
+			<h1 class="mui-title">购物车</h1>
+		</header>
+		{{else}} {{end}}
+		<!-- 		<div class="mui-navbar-inner mui-bar mui-bar-nav">
 			<h1 class="mui-center mui-title">购物车</h1>
 		</div> -->
 		<div class="mui-content">
-			{{if .haveCookie}}
-				{{if .haveInfo}}
-					<ul id="carlist" class="mui-table-view" style="margin-top: 10px">
-						{{range .ShopcarData}}
-							<li id="{{.Goodsid}}" class="mui-table-view-cell">
-								<div class="mui-slider-right mui-disabled">
-									<a class="mui-btn mui-btn-red">删除</a>
-								</div>
-								<div class="mui-slider-handle">
-									<div class="mui-checkbox mui-col-xs-2">
-										<input id="{{.Goodsid}}_r" name="{{.Goodsid}}_r" class="class_car" type="checkbox" style="line-height: 100px;line-width: 10px;">
-									</div>
-									<div id="car1_v" class="mui-media mui-col-xs-10 mui-pull-right">
-										<a href="javascript:;">
-											<img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="{{.Imgsrc}}" alt="展示图" />
-											<div class="mui-media-body ">
-												<h5 style="line-height:20px;color: black;font-weight:bold;">{{.Name}}</h5>
-												<h5 style="color: red;">售价：￥<lable id="{{.Goodsid}}_pay">{{.Price}}</lable></h5>
-												<h6>购买数量:</h6>
-												<div class="mui-numbox" data-numbox-min='1' style="width: 120px;height: 30px;">
-													<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
-													<input id="{{.Goodsid}}_count" class="mui-input-numbox" type="number" value="{{.Count}}" />
-													<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
-												</div>
-											</div>
-										</a>
+			{{if .haveCookie}} {{if .haveInfo}}
+			<ul id="carlist" class="mui-table-view" style="margin-top: 10px">
+				{{range .ShopcarData}}
+				<li id="{{.Goodsid}}" class="mui-table-view-cell">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-red">删除</a>
+					</div>
+					<div class="mui-slider-handle">
+						<div class="mui-checkbox mui-col-xs-2">
+							<input id="{{.Goodsid}}_r" name="{{.Goodsid}}_r" class="class_car" type="checkbox" style="line-height: 100px;line-width: 10px;">
+						</div>
+						<div id="car1_v" class="mui-media mui-col-xs-10 mui-pull-right">
+							<a href="javascript:;">
+								<img class="mui-pull-left" style="max-width:100px;height:100px;margin-right: 5px;" src="{{.Imgsrc}}" alt="展示图" />
+								<div class="mui-media-body ">
+									<h5 style="line-height:20px;color: black;font-weight:bold;">{{.Name}}</h5>
+									<h5 style="color: red;">售价：￥<lable id="{{.Goodsid}}_pay">{{.Price}}</lable></h5>
+									<h6>购买数量:</h6>
+									<div class="mui-numbox" data-numbox-min='1' style="width: 120px;height: 30px;">
+										<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+										<input id="{{.Goodsid}}_count" class="mui-input-numbox" type="number" value="{{.Count}}" />
+										<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
 									</div>
 								</div>
-							</li>
-						{{end}}
-					</ul>
-				{{else}}
-							<h4>没有购物记录！</h4>
+							</a>
+						</div>
+					</div>
+				</li>
 				{{end}}
+			</ul>
 			{{else}}
-				<!-- 跳转login页面 -->
-				<h4> 没登录跳转login页面!</h4>
-			{{end}}
-			
+			<h4>没有购物记录！</h4> {{end}} {{else}}
+			<!-- 跳转login页面 -->
+			<h4> 没登录跳转login页面!</h4> {{end}}
 		</div>
 
 		<!--底部占行-->
@@ -93,7 +86,7 @@
 			//点击全选操作处理
 			mui('#selectall').on('change', 'input', function() {
 				var AllCheckboxs = document.getElementsByClassName('class_car');
-				for (var i=0; i<AllCheckboxs.length; ++i) {
+				for (var i = 0; i < AllCheckboxs.length; ++i) {
 					if (AllCheckboxs[i].checked != this.checked) {
 						AllCheckboxs[i].checked = this.checked;
 						ProcessPrice(AllCheckboxs[i]);
@@ -105,8 +98,8 @@
 					document.getElementById('checkpay').value = '去结账(' + 0 + ')';
 				}
 			});
-			
-			mui('.mui-numbox').on('tap','.mui-btn-numbox-minus',function(){
+
+			mui('.mui-numbox').on('tap', '.mui-btn-numbox-minus', function() {
 				var parent = this.parentElement.parentElement.parentElement;
 				var parent_li = parent.parentElement.parentElement.parentElement;
 				var str = parent_li.id + '_pay';
@@ -121,7 +114,7 @@
 					titlepay.innerText = Number(allpay.outerText) + Number(discount.outerText);
 				}
 			});
-			mui('.mui-numbox').on('tap','.mui-btn-numbox-plus',function(){
+			mui('.mui-numbox').on('tap', '.mui-btn-numbox-plus', function() {
 				var parent = this.parentElement.parentElement.parentElement;
 				var parent_li = parent.parentElement.parentElement.parentElement;
 				var str = parent_li.id + '_pay';
@@ -133,7 +126,7 @@
 				var discount = document.getElementById('discount');
 				if (checkinput) {
 					allpay.innerText = Number(price) + Number(allpay.outerText);
-					titlepay.innerText = Number(allpay.outerText) - Number(discount.outerText);				
+					titlepay.innerText = Number(allpay.outerText) - Number(discount.outerText);
 				}
 			});
 
@@ -175,20 +168,27 @@
 				}
 			};
 
-			var btnArray = ['确定','取消'];
-			mui('#carlist').on('tap','.mui-btn-red',function(){
-				var ListNode = document.getElementById('carlist');
-				var RemoveNode = this.parentNode.parentNode;
-				mui.confirm('确认删除记录？','提示',btnArray,function(e){
+			var btnArray = ['确定', '取消'];
+			mui('#carlist').on('tap', '.mui-btn-red', function() {
+				var listNode = document.getElementById('carlist');
+				var removeNode = this.parentNode.parentNode;
+				mui.confirm('确认删除记录？', '提示', btnArray, function(e) {
 					if (e.index == 0) {
-						ListNode.removeChild(RemoveNode);
+						mui.get('http://192.168.80.105:8080/shopcar/remove', {
+							op: 'del',
+							goodsid: removeNode.id
+						}, function(data) {
+							alert(data);
+						}, 'json');
+						listNode.removeChild(removeNode);
 					} else {
-						setTimeout(function(){
-							mui.swipeoutClose(RemoveNode);
+						setTimeout(function() {
+							mui.swipeoutClose(removeNode);
 						});
 					}
 				});
 			});
 		</script>
 	</body>
+
 </html>

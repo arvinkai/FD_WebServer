@@ -32,7 +32,7 @@ body {
 				<span class="mui-icon iconfont icon-shop"></span>
 				<span class="mui-tab-label">店铺</span>
 			</a>
-			<a id="shopcarpage" class="mui-tab-item" href="http://192.168.80.105:8080/shop_car">
+			<a id="shopcarpage" class="mui-tab-item" href="http://192.168.80.105:8080/shopcar">
 				<span class="mui-icon iconfont icon-shop1"></span>
 				<span class="mui-tab-label">购物车</span>
 			</a>
@@ -48,7 +48,7 @@ body {
 
 		<script src="js/mui.min.js"></script>
 		<script type="text/javascript" charset="UTF-8">mui.init();
-var subpages = ['http://192.168.80.105:8080/home', 'http://192.168.80.105:8080/shop', 'http://192.168.80.105:8080/shop_car',
+var subpages = ['http://192.168.80.105:8080/home', 'http://192.168.80.105:8080/shop', 'http://192.168.80.105:8080/shopcar',
 	'http://192.168.80.105:8080/book', 'http://192.168.80.105:8080/setting'
 ];
 //			var subpagesid = ['homepage','shoppage','shopcarpage','bookpage','settingpage'];
@@ -88,7 +88,7 @@ mui('.mui-bar-tab').on('tap', 'a', function(e) {
 	//若为ios平台或非首次显示，则直接显示
 	if (mui.os.ios || aniShow[targetTab]) {
 		plus.webview.show(targetTab);
-		if (targetTab == "http://192.168.80.105:8080/shop_car") {
+		if (targetTab == "http://192.168.80.105:8080/shopcar") {
 			plus.webview.getWebviewById(targetTab).reload(true);
 		}
 		if (targetTab == "http://192.168.80.105:8080/book") {

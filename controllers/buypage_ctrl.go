@@ -19,6 +19,11 @@ func (this *BuyPageController) Get() {
 	this.TplName = "buypage/buy_item_page.html"
 }
 
+func (this *BuyPageController) Test() {
+	fmt.Println("test")
+	this.TplName = "buypage/buy_item_page.html"
+}
+
 //func (this *BuyPageController) Addtocar() {
 //	//	var uid int64 = 0
 //	//	ck_uid, err := this.Ctx.Request.Cookie("uid")
