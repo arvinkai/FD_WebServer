@@ -15,7 +15,7 @@
 
 	<body>
 		<div class="mui-content">
-			<ul class="mui-table-view" style="margin: 0px">
+			<ul id="carlist" class="mui-table-view" style="margin: 0px">
 				<li id="car1" class="mui-table-view-cell">
 					<div class="mui-checkbox mui-col-xs-2">
 						<input id="car1_r" name="car_r" class="class_car" type="checkbox" style="line-height: 100px;line-width: 10px;">
@@ -34,9 +34,6 @@
 										<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
 									</div>
 									
-									<div class="mui-table-cell mui-pull-right" ">
-										<a style="color: red;"><span class="mui-icon mui-icon-trash"></span></a>
-									</div>
 									
 								</div>
 							</div>
@@ -64,21 +61,51 @@
 										<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
 										<input id="car1_count" class="mui-input-numbox" type="number" value="1" />
 										<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
-									</div>
-									
-									<div class="mui-table-cell mui-pull-right" ">
-										<a style="color: red;"><span class="mui-icon mui-icon-trash"></span></a>
-									</div>
-									
+									</div>									
 								</div>
 							</div>
 						</a>
 					</div>
 					</div>
 				</li>
-						
 			</ul>
 		</div>
 	</body>
+<script type="text/javascript">
 
+		var btnArray = ['确认', '取消'];
+	mui.init();
+//	(function($) {
+//						$('#carlist').on('tap','.mui-btn-red', function(event){
+//			var myUl = document.getElementById('carlist');
+//			var myLi = this.parentNode.parentNode;
+//			mui.confirm('确认删除该记录？','Hello MUI',btnArray,function(e){
+//				if (e.index == 0) {
+//					myUl.removeChild(myLi);
+//				} else{
+//					setTimeout(function(){
+//						$.swipeoutClose(myLi);
+//					},0);
+//				}
+//			});
+//		});
+//	})(mui);
+	
+
+	
+		mui('#carlist').on('tap','.mui-btn-red', function(){
+			var myUl = document.getElementById('carlist');
+			var myLi = this.parentNode.parentNode;
+			mui.confirm('确认删除该记录？','',btnArray,function(e){
+				if (e.index == 0) {
+					myUl.removeChild(myLi);
+				} else{
+					setTimeout(function(){
+						mui.swipeoutClose(myLi);
+					},0);
+					
+				}
+			});
+		});
+</script>
 </html>
