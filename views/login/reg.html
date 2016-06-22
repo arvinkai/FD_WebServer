@@ -68,11 +68,7 @@
 				<button id='reg' class="mui-btn mui-btn-block mui-btn-primary">注册</button>
 			</div>
 			<div class="mui-content-padded">
-			{{if .CanUse}}
-							<p>用户名可用</p>
-			{{else}}
-							<p>用户名已存在</p>
-			{{end}}
+				<p id="reminder"></p>
 			</div>
 		</div>
 		<script src="../../static/js/jquery.min.js"></script>
@@ -81,13 +77,16 @@
 <script>
 
 			$("#account").blur(function(){
-				alert(document.getElementById('account').value);
 				mui.post('http://{{.ServerHost}}:{{.ServerPort}}/regist/checkuname',{
-					uName : document.getElementById('account').value
+					uName :  document.getElementById('account').value
 				}, function(data) {
-					alert(data.UserName);
+					// alert(data.UserName);
+					if (data.CanUse) {
+						document.getElementById('reminder').innerText = '该账号可用';
+					}else{
+						document.getElementById('reminder').innerText = '该账号已存在';
+					}
 				},'json');
-				// location.reload('http://{{.ServerHost}}:{{.ServerPort}}/regist?uName='+document.getElementById('account').value);
 			});
 				$.plusReady(function() {
 					var settings = app.getSettings();
