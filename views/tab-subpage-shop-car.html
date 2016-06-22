@@ -174,7 +174,7 @@
 				var removeNode = this.parentNode.parentNode;
 				mui.confirm('确认删除记录？', '提示', btnArray, function(e) {
 					if (e.index == 0) {
-						mui.get('http://192.168.80.105:8080/shopcar/remove', {
+						mui.get('http://{{.ServerHost}}:{{.ServerPort}}/shopcar/remove', {
 							op: 'del',
 							goodsid: removeNode.id
 						}, function(data) {

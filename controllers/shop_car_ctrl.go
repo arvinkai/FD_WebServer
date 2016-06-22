@@ -47,6 +47,8 @@ func (this *ShopCarController) Get() {
 	this.Data["haveCookie"] = haveCookie
 	this.Data["haveInfo"] = haveInfo
 	this.Data["ShopcarData"] = ShopcarsData
+	this.Data["ServerHost"] = beego.AppConfig.String("ServerHost")
+	this.Data["ServerPort"] = beego.AppConfig.String("ServerPort")
 	this.TplName = "tab-subpage-shop-car.html"
 }
 

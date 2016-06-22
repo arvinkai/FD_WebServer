@@ -45,7 +45,7 @@
 			<form class="mui-input-group">
 				<div class="mui-input-row">
 					<label>账号</label>
-					<input id='account' name="account" type="text" class="mui-input-clear mui-input" placeholder="请输入账号">
+					<input id='account' name="account" type="text" class="mui-input-clear mui-input" placeholder="请输入账号" value="{{.UserName}}">
 				</div>
 				<div class="mui-input-row">
 					<label>密码</label>
@@ -68,14 +68,27 @@
 				<button id='reg' class="mui-btn mui-btn-block mui-btn-primary">注册</button>
 			</div>
 			<div class="mui-content-padded">
-				<p>注册真实可用，注册成功后的用户可用于登录，但是示例程序并未和服务端交互，用户相关数据仅存储于本地。</p>
+			{{if .CanUse}}
+							<p>用户名可用</p>
+			{{else}}
+							<p>用户名已存在</p>
+			{{end}}
 			</div>
 		</div>
+		<script src="../../static/js/jquery.min.js"></script>
 		<script src="../../static/js/mui.min.js"></script>
 		<script src="../../static/js/app.js"></script>
 <script>
-			(function($, doc) {
-				$.init();
+
+			$("#account").blur(function(){
+				alert(document.getElementById('account').value);
+				mui.post('http://{{.ServerHost}}:{{.ServerPort}}/regist/checkuname',{
+					uName : document.getElementById('account').value
+				}, function(data) {
+					alert(data.UserName);
+				},'json');
+				// location.reload('http://{{.ServerHost}}:{{.ServerPort}}/regist?uName='+document.getElementById('account').value);
+			});
 				$.plusReady(function() {
 					var settings = app.getSettings();
 					var regButton = doc.getElementById('reg');
@@ -84,9 +97,6 @@
 					var passwordConfirmBox = doc.getElementById('password_confirm');
 					var emailBox = doc.getElementById('email');
 					var telNum = doc.getElementById('telNum');
-					accountBox.blur(function(){
-						plus.alert("丢失焦点。。。");
-					});
 					
 					regButton.addEventListener('tap', function(event) {
 						var regInfo = {
@@ -106,14 +116,23 @@
 								return;
 							}
 							//plus.nativeUI.toast('注册成功');
-							$.openWindow({
-								url: 'http://192.168.80.105:8080/regist?account='+regInfo.account+'&password='+regInfo.password +'&email='+regInfo.email+'&telNum='+regInfo.tel,
-								id: 'regist',
-								show: {
-									aniShow: 'pop-in'
-								}
-							});
-						});
+							// $.openWindow({
+							// 	url: 'http://192.168.80.105:8080/regist?account='+regInfo.account+'&password='+regInfo.password +'&email='+regInfo.email+'&telNum='+regInfo.tel,
+							// 	id: 'regist',
+							// 	show: {
+							// 		aniShow: 'pop-in'
+							// 	}
+							// });
+
+						// 	mui.get("http://{{.ServerHost}}:{{.ServerHost}}/regist/reg",{
+						// 		account:regInfo.account,
+						// 		password:regInfo.password,
+						// 		email:regInfo.email,
+						// 		telNum:regInfo.tel
+						// 	}, function(data) {
+						// 	alert(data);
+						// },'json')
+						// });
 					});
 				});
 			}(mui, document));

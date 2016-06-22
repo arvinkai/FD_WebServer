@@ -33,6 +33,8 @@ func (this *HomePageController) Get() {
 		fmt.Println(showlistCount, err2)
 	}
 	this.Data["Showlists"] = showlists
+	this.Data["ServerHost"] = beego.AppConfig.String("ServerHost")
+	this.Data["ServerPort"] = beego.AppConfig.String("ServerPort")
 
 	this.TplName = "tab-subpage-home.html"
 }

@@ -16,6 +16,9 @@ type BuyPageController struct {
 func (this *BuyPageController) Get() {
 	cl_Goodsid, _ := strconv.ParseInt(this.Input().Get("goodsid"), 10, 64)
 	this.GetPageData(cl_Goodsid)
+	this.Data["ServerHost"] = beego.AppConfig.String("ServerHost")
+	this.Data["ServerPort"] = beego.AppConfig.String("ServerPort")
+
 	this.TplName = "buypage/buy_item_page.html"
 }
 

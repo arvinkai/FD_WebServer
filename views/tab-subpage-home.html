@@ -46,7 +46,7 @@
 									<img src="{{$v.Imgsrc}}">
 								</a>
 							</div>
-							
+
 							<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
 							{{if eq $k $len}}
 								<div class="mui-slider-item mui-slider-item-duplicate">
@@ -139,14 +139,14 @@
 			});
 
 			mui('#hotview').on('tap','.buypage',function(e){
-				
+
 				var a = this.getAttribute('id');
 				// alert('http://192.168.80.105:8080/buypage?'+a);
 				mui.openWindow({
 					id:'gobuypage',
-					url:'http://192.168.80.105:8080/buypage?'+'goodsid='+a,
+					url:'http://{{.ServerHost}}:{{.ServerPort}}/buypage?'+'goodsid='+a,
 				})
-				
+
 			});
 
 			//老式写法，因为要监听所有图片的动作，所以用on方法，监听所有假的.buypage并把goodsid传入

@@ -239,3 +239,17 @@ func GetBooklist(uid int64) ([]*Book, int64, error) {
 
 	return booklist, n, err
 }
+
+func CheckUserName(name string) (bool, error) {
+	o := orm.NewOrm()
+	qs := o.QueryTable("character")
+	count, err := qs.Filter("uname", name).Count()
+	if err != nil {
+		return false, err
+	}
+
+	if count != 0 {
+		return false, err
+	}
+	return true, nil
+}

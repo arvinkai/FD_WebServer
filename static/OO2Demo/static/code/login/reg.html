@@ -68,16 +68,30 @@
 				<button id='reg' class="mui-btn mui-btn-block mui-btn-primary">注册</button>
 			</div>
 			<div class="mui-content-padded">
-				<p>注册真实可用，注册成功后的用户可用于登录，但是示例程序并未和服务端交互，用户相关数据仅存储于本地。</p>
+				<p id="reminder"></p>
 			</div>
 		</div>
 		<script src="../../../js/jquery.min.js"></script>
 		<script src="../../../js/mui.min.js"></script>
 		<script src="../../../js/app.js"></script>
 		<script>
+//			$("#account").blur(function(){
+//				alert(document.getElementById('account').value)
+//				mui.get('/regist/CheckUserName',{
+//					UserName : document.getElementById('account').value
+//				}, function(data) {
+//					alert(data);
+//				},'json');
+//			});
 			$("#account").blur(function(){
-				alert("丢失焦点。。。");
+				alert(document.getElementById('account').value)
+				// mui.get('http://{{.ServerHost}}:{{.ServerHost}}/regist/checkusername',{
+				// 	UserName : document.getElementById('account').value
+				// }, function(data) {
+				// 	alert(data);
+				// },json);
 			});
+
 			(function($, doc) {
 				$.init();
 
@@ -89,6 +103,7 @@
 					var passwordConfirmBox = doc.getElementById('password_confirm');
 					var emailBox = doc.getElementById('email');
 					var telNum = doc.getElementById('telNum');
+
 
 					regButton.addEventListener('tap', function(event) {
 						var regInfo = {
