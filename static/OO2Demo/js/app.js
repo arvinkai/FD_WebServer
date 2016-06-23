@@ -45,11 +45,17 @@
 		regInfo = regInfo || {};
 		regInfo.account = regInfo.account || '';
 		regInfo.password = regInfo.password || '';
-		if (regInfo.account.length < 5) {
-			return callback('用户名最短需要 5 个字符');
+		
+		var check = /[a-zA-Z0-9_]{6,20}/;
+		
+		if (regInfo.account.length < 6 || check.test(regInfo.account)) {
+			return callback('用户名需要 6 个以上的数字或字母');
 		}
-		if (regInfo.password.length < 6) {
-			return callback('密码最短需要 6 个字符');
+		if (regInfo.password.length < 8 || check.test(regInfo.password)) {
+			return callback('密码最短需要 8 个以上的数字或字母');
+		}
+		if (regInfo.nickname.length < 1) {
+			return callback('昵称不能为空');
 		}
 		if (!checkEmail(regInfo.email)) {
 			return callback('邮箱地址不合法');

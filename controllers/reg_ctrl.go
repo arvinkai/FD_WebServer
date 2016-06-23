@@ -21,7 +21,7 @@ func (this *RegistController) Get() {
 
 func (this *RegistController) Checkuname() {
 	uname := this.Input().Get("uName")
-	fmt.Println(uname)
+	fmt.Println("uname:", uname)
 	rel, err := models.CheckUserName(uname)
 	var canUse bool = true
 	if err != nil {
@@ -34,16 +34,10 @@ func (this *RegistController) Checkuname() {
 			canUse = true
 		}
 	}
-	this.Data["json"] = map[string]interface{}{"UserName": uname, "CanUse": canUse, "ServerHost": 123}
-	this.Data["ServerHost"] = beego.AppConfig.String("ServerHost")
-	this.Data["ServerPort"] = beego.AppConfig.String("ServerPort")
+	this.Data["json"] = map[string]interface{}{"UserName": uname, "CanUse": canUse}
 	this.ServeJSON()
-	//	this.Data["UserName"] = uname
-	//	this.Data["CanUse"] = canUse
-	//	this.Data["ServerHost"] = beego.AppConfig.String("ServerHost")
-	//	this.Data["ServerPort"] = beego.AppConfig.String("ServerPort")
-	fmt.Println(canUse)
-	//	this.Redirect("/home", 302)
+}
 
-	//	this.TplName = "login/reg.html"
+func (this *RegistController) RegInfo() {
+
 }

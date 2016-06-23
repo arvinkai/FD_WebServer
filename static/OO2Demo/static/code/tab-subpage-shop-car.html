@@ -99,25 +99,25 @@
 			//点击全选操作处理
 			mui('#selectall').on('change', 'input', function() {
 				var AllCheckboxs = document.getElementsByClassName('class_car');
-				for (var i=0; i<AllCheckboxs.length; ++i) {
+				for (var i = 0; i < AllCheckboxs.length; ++i) {
 					if (AllCheckboxs[i].checked != this.checked) {
 						AllCheckboxs[i].checked = this.checked;
 						ProcessPrice(AllCheckboxs[i]);
 					}
 				}
 
-//				for (var i = 0; i < AllCheckboxs.length; ++i) {
-//					if (!AllCheckboxs[i].checked) {
-//						AllCheckboxs[i].checked = this.checked;
-//						ProcessPrice(AllCheckboxs[i]);
-//					} else {
-//						if (!this.checked) {
-//							alert('test');
-//							AllCheckboxs[i].checked = this.checked;
-//							ProcessPrice(AllCheckboxs[i]);
-//						}
-//					}
-//				}
+				//				for (var i = 0; i < AllCheckboxs.length; ++i) {
+				//					if (!AllCheckboxs[i].checked) {
+				//						AllCheckboxs[i].checked = this.checked;
+				//						ProcessPrice(AllCheckboxs[i]);
+				//					} else {
+				//						if (!this.checked) {
+				//							alert('test');
+				//							AllCheckboxs[i].checked = this.checked;
+				//							ProcessPrice(AllCheckboxs[i]);
+				//						}
+				//					}
+				//				}
 				if (this.checked) {
 					document.getElementById('checkpay').value = '去结账(' + AllCheckboxs.length + ')';
 				} else {
@@ -184,13 +184,32 @@
 				if (e.checked) {
 					allpay.innerText = (Number(price) * Number(carcount)) + Number(allpay.outerText);
 					titlepay.innerText = Number(allpay.outerText) - Number(discount.outerText);
-					//					alert(allpay.innerText);
 				} else {
 					allpay.innerText = Number(allpay.outerText) - (Number(price) * Number(carcount));
 					titlepay.innerText = Number(allpay.outerText) + Number(discount.outerText);
-					//					alert(allpay.innerText);
 				}
 			};
+
+			var btnArray = ['确定', '取消'];
+			mui('#carlist').on('tap', '.mui-btn-red', function() {
+				var listNode = document.getElementById('carlist');
+				var removeNode = this.parentNode.parentNode;
+				mui.confirm('确认删除记录？', '提示', btnArray, function(e) {
+					if (e.index == 0) {
+						mui.get('http://{{.ServerHost}}:{{.ServerPort}}/shopcar/remove', {
+							op: 'del',
+							goodsid: removeNode.id
+						}, function(data) {
+							alert(data);
+						}, 'json');
+						listNode.removeChild(removeNode);
+					} else {
+						setTimeout(function() {
+							mui.swipeoutClose(removeNode);
+						});
+					}
+				});
+			});
 		</script>
 	</body>
 
