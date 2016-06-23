@@ -49,6 +49,10 @@
 		<div class="mui-content">
 			<form class="mui-input-group">
 				<div class="mui-input-row">
+					<label>昵称:</label>
+					<input id='nick' name="nickname" type="text" class="mui-input-clear mui-input" placeholder="请输入昵称">
+				</div>
+				<div class="mui-input-row">
 					<label>账号:</label>
 					<input id='account' name="account" type="text" class="mui-input-clear mui-input" placeholder="6位以上数字或字母">
 				</div>
@@ -59,10 +63,6 @@
 				<div class="mui-input-row">
 					<label>确认:</label>
 					<input id='password_confirm' type="password" class="mui-input-clear mui-input" placeholder="请确认密码">
-				</div>
-				<div class="mui-input-row">
-					<label>昵称:</label>
-					<input id='nick' name="nickname" type="text" class="mui-input-clear mui-input" placeholder="请输入昵称">
 				</div>
 				<div class="mui-input-row">
 					<label>邮箱:</label>
@@ -100,21 +100,21 @@
 
 			});
 
-document.getElementById('test').addEventListener('tap',function(){
-//	var check = /\w{4,16}/;
-var accountBox = document.getElementById('nick');
-//var check = /[a-zA-Z0-9_]{4,16}/;
-//	var str = '1a_4';
-//	alert(check.test(accountBox.value));
-						var regInfo = {
-							account: accountBox.value,
-						};
-alert(regInfo.account.length);	
-if (accountBox.length <2) {
-alert(123);	
-}
+			document.getElementById('test').addEventListener('tap', function() {
+				//	var check = /\w{4,16}/;
+				var accountBox = document.getElementById('nick');
+				//var check = /[a-zA-Z0-9_]{4,16}/;
+				//	var str = '1a_4';
+				//	alert(check.test(accountBox.value));
+				var regInfo = {
+					account: accountBox.value,
+				};
+				alert(regInfo.account.length);
+				if (accountBox.length < 2) {
+					alert(123);
+				}
 
-});
+			});
 			(function($, doc) {
 				$.init();
 

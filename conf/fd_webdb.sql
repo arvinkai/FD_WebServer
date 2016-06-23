@@ -76,6 +76,7 @@ DROP TABLE IF EXISTS `character`;
 CREATE TABLE `character` (
   `uid` bigint(20) NOT NULL AUTO_INCREMENT,
   `uname` varchar(20) NOT NULL DEFAULT '',
+  `nickname` varchar(20) NOT NULL DEFAULT 'default',
   `pw` varchar(255) NOT NULL DEFAULT '',
   `icon` varchar(255) DEFAULT NULL,
   `phone` varchar(255) NOT NULL DEFAULT '',
@@ -86,12 +87,13 @@ CREATE TABLE `character` (
   `local` varchar(255) DEFAULT NULL,
   `create_time` varchar(255) NOT NULL DEFAULT '',
   `lastlogin_time` varchar(255) DEFAULT NULL,
+  `token` tinytext,
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `character` */
 
-insert  into `character`(`uid`,`uname`,`pw`,`icon`,`phone`,`point`,`money`,`email`,`id_card`,`local`,`create_time`,`lastlogin_time`) values (1,'arvin','123',NULL,'18217435475',0,0,'ywy_sky@foxmail.com','111111111111111111','shanghai','1463580479','1463580479');
+insert  into `character`(`uid`,`uname`,`nickname`,`pw`,`icon`,`phone`,`point`,`money`,`email`,`id_card`,`local`,`create_time`,`lastlogin_time`,`token`) values (1,'arvin','default','123',NULL,'18217435475',0,0,'ywy_sky@foxmail.com','111111111111111111','shanghai','1463580479','1463580479',NULL);
 
 /*Table structure for table `collect` */
 
@@ -311,11 +313,11 @@ CREATE TABLE `shopcar` (
   `count` int(11) NOT NULL DEFAULT '0',
   `create_date` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 /*Data for the table `shopcar` */
 
-insert  into `shopcar`(`id`,`uid`,`goodsid`,`count`,`create_date`) values (10,1,1,74,'1463821686'),(11,1,2,1,'1463821705');
+insert  into `shopcar`(`id`,`uid`,`goodsid`,`count`,`create_date`) values (17,1,1,1,'1466531269');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

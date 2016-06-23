@@ -22,22 +22,24 @@ func (this *RegistController) Get() {
 func (this *RegistController) Checkuname() {
 	uname := this.Input().Get("uName")
 	fmt.Println("uname:", uname)
-	rel, err := models.CheckUserName(uname)
-	var canUse bool = true
-	if err != nil {
-		canUse = false
-	} else {
+	rel, _ := models.CheckUserName(uname)
 
-		if !rel {
-			canUse = false
-		} else {
-			canUse = true
-		}
-	}
-	this.Data["json"] = map[string]interface{}{"UserName": uname, "CanUse": canUse}
+	this.Data["json"] = map[string]interface{}{"UserName": uname, "CanUse": rel}
 	this.ServeJSON()
 }
 
 func (this *RegistController) RegInfo() {
+	uname := this.Input().Get("uname")
+	pw := this.Input().Get("pw")
+	nickname := this.Input().Get("nickname")
+	email := this.Input().Get("email")
+	telNum := this.Input().Get("telNum")
 
+	uid, rel, err := models.CreateUser(uname, pw, nickname, email, telNum)
+	success := true
+	if err != nil || uid == -1 || !rel {
+		success = false
+	}
+	this.Data["json"] = map[string]interface{}{"result": success}
+	this.ServeJSON()
 }

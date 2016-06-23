@@ -4,6 +4,7 @@ package models
 type Character struct {
 	Uid           int64  `orm:"pk;auto"`
 	Uname         string `orm:"size(20)"`
+	Nickname      string `orm:"size(20)"`
 	Pw            string
 	Icon          string `orm:"null"`
 	Phone         string `orm:null;size(11)`

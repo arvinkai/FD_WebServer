@@ -43,12 +43,13 @@
 	owner.reg = function(regInfo, callback) {
 		callback = callback || $.noop;
 		regInfo = regInfo || {};
-		regInfo.account = regInfo.account || '';
+		regInfo.uname = regInfo.uname || '';
 		regInfo.password = regInfo.password || '';
 		
 		var check = /[a-zA-Z0-9_]{6,20}/;
 		
-		if (regInfo.account.length < 6 || check.test(regInfo.account)) {
+		if (regInfo.uname.length < 6 || check.test(regInfo.uname)) {
+			alert(regInfo.uname.length);
 			return callback('用户名需要 6 个以上的数字或字母');
 		}
 		if (regInfo.password.length < 8 || check.test(regInfo.password)) {

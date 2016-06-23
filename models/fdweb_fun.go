@@ -84,7 +84,7 @@ func OpShopcar(sc *Shopcar, op string) (int64, error) {
 	if op == "add" {
 		dbShopcar, _ := GetShopcarByGoodsid(sc.Goodsid)
 		if dbShopcar != nil {
-			fmt.Println(sc)
+			//			fmt.Println(sc)
 			dbShopcar.Count += sc.Count
 			o.Update(dbShopcar)
 		} else {
@@ -240,10 +240,10 @@ func GetBooklist(uid int64) ([]*Book, int64, error) {
 	return booklist, n, err
 }
 
-func CheckUserName(name string) (bool, error) {
+func CheckUserName(uname string) (bool, error) {
 	o := orm.NewOrm()
 	qs := o.QueryTable("character")
-	count, err := qs.Filter("uname", name).Count()
+	count, err := qs.Filter("uname", uname).Count()
 	if err != nil {
 		return false, err
 	}
@@ -252,4 +252,24 @@ func CheckUserName(name string) (bool, error) {
 		return false, err
 	}
 	return true, nil
+}
+
+func CreateUser(uname string, pw string, nickname string, email string, tel string) (int64, bool, error) {
+	newUser := &Character{Uname: uname, Nickname: nickname, Pw: pw, Email: email, Phone: tel}
+	o := orm.NewOrm()
+	qs := o.QueryTable("character")
+	count, err := qs.Filter("uName", uname).Count()
+	if err != nil {
+		return -1, false, err
+	}
+
+	if count != 0 {
+		return -1, false, err
+	}
+
+	uid, err1 := o.Insert(newUser)
+	if err1 != nil {
+		return -1, false, err1
+	}
+	return uid, true, err1
 }
