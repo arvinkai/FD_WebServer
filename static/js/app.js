@@ -10,9 +10,9 @@
 	owner.login = function(loginInfo, callback) {
 		callback = callback || $.noop;
 		loginInfo = loginInfo || {};
-		loginInfo.account = loginInfo.account || '';
+		loginInfo.uname = loginInfo.uname || '';
 		loginInfo.password = loginInfo.password || '';
-		if (loginInfo.account.length < 5) {
+		if (loginInfo.uname.length < 5) {
 			return callback('账号最短为 5 个字符');
 		}
 		if (loginInfo.password.length < 6) {
@@ -20,10 +20,10 @@
 		}
 		var users = JSON.parse(localStorage.getItem('$users') || '[]');
 		var authed = users.some(function(user) {
-			return loginInfo.account == user.account && loginInfo.password == user.password;
+			return loginInfo.uname == user.uname && loginInfo.password == user.password;
 		});
 		if (authed) {
-			return owner.createState(loginInfo.account, callback);
+			return owner.createState(loginInfo.uname, callback);
 		} else {
 			return callback('用户名或密码错误');
 		}
@@ -46,7 +46,7 @@
 		regInfo.uname = regInfo.uname || '';
 		regInfo.password = regInfo.password || '';
 		
-		var check = /[a-zA-Z0-9_]{6,20}/;
+		var check = /[a-zA-Z0-9_]/;
 		
 		if (regInfo.uname.length < 6 || check.test(regInfo.uname)) {
 			alert(regInfo.uname.length);
