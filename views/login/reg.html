@@ -81,8 +81,8 @@
 <script>
 
 			$("#account").blur(function(){
-				alert(document.getElementById('account').value);
-				mui.post('http://{{.ServerHost}}:{{.ServerPort}}/regist/checkuname',{
+				// alert(document.getElementById('account').value);
+				mui.get('http://{{.ServerHost}}:{{.ServerPort}}/regist/checkuname',{
 					uName : document.getElementById('account').value
 				}, function(data) {
 					alert(data.UserName);
