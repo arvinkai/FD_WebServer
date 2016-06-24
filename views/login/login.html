@@ -96,7 +96,7 @@
 			<form id='login-form' class="mui-input-group">
 				<div class="mui-input-row">
 					<label>账号</label>
-					<input id='account' type="text" class="mui-input-clear mui-input" placeholder="请输入账号">
+					<input id='uname' type="text" class="mui-input-clear mui-input" placeholder="请输入账号">
 				</div>
 				<div class="mui-input-row">
 					<label>密码</label>
@@ -134,16 +134,12 @@
 					plus.screen.lockOrientation("portrait-primary");
 					var settings = app.getSettings();
 					var state = app.getState();
-//					var mainPage = $.preload({
-//						"id": 'userpage',
-//						"url": '../tab-subpage-user.html'
-//					});
 					var toUser = function() {
 						$.fire(mainPage, 'show', null);
 						setTimeout(function() {
 							$.openWindow({
 								id: 'userpage',
-								url: '../tab-subpage-user.html',
+								url: 'http://{{.ServerHost}}:{{.ServerPort}}/setting',
 								show: {
 									aniShow: 'pop-in'
 								},
@@ -214,14 +210,14 @@
 					
 					//检查 "登录状态/锁屏状态" 结束
 					var loginButton = doc.getElementById('login');
-					var accountBox = doc.getElementById('account');
+					var unameBox = doc.getElementById('uname');
 					var passwordBox = doc.getElementById('password');
 					var autoLoginButton = doc.getElementById("autoLogin");
 					var regButton = doc.getElementById('reg');
 					var forgetButton = doc.getElementById('forgetPassword');
 					loginButton.addEventListener('tap', function(event) {
 						var loginInfo = {
-							account: accountBox.value,
+							uname: unameBox.value,
 							password: passwordBox.value
 						};//普通登录
 						app.login(loginInfo, function(err) {

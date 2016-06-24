@@ -4,7 +4,7 @@ package models
 type Character struct {
 	Uid           int64  `orm:"pk;auto"`
 	Uname         string `orm:"size(20)"`
-	Nickname      string `orm:"size(20)"`
+	Nickname      string `orm:"size(20);default(default)"`
 	Pw            string
 	Icon          string `orm:"null"`
 	Phone         string `orm:null;size(11)`
@@ -15,6 +15,7 @@ type Character struct {
 	Local         string `orm:"null"`
 	CreateTime    string
 	LastloginTime string `orm:"null"`
+	token         string `orm:"size(100)"`
 }
 
 type Goodsinfo struct {

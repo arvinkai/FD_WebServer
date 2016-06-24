@@ -48,11 +48,11 @@
 		
 		var check = /[a-zA-Z0-9_]/;
 		
-		if (regInfo.uname.length < 6 || check.test(regInfo.uname)) {
-			alert(regInfo.uname.length);
+		if (regInfo.uname.length < 6 || !check.test(regInfo.uname)) {
+			alert(check.test(regInfo.uname));
 			return callback('用户名需要 6 个以上的数字或字母');
 		}
-		if (regInfo.password.length < 8 || check.test(regInfo.password)) {
+		if (regInfo.password.length < 8 || !check.test(regInfo.password)) {
 			return callback('密码最短需要 8 个以上的数字或字母');
 		}
 		if (regInfo.nickname.length < 1) {
