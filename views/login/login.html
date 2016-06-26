@@ -126,6 +126,31 @@
 		<script src="../../static/js/mui.enterfocus.js"></script>
 		<script src="../../static/js/app.js"></script>
 		<script>
+		var loginButton = document.getElementById('login');
+		var unameBox = document.getElementById('uname');
+		var passwordBox = document.getElementById('password');
+
+		loginButton.addEventListener('tap', function(event) {
+			alert(123);
+			var loginInfo = {
+				uname: unameBox.value,
+				password: passwordBox.value
+			};//普通登录
+
+			mui.post("http://{{.ServerHost}}:{{.ServerHost}}/login/userlogin",{
+				uname:loginInfo.uname,
+				password:=loginInfo.password
+			},function(data){
+
+			},'json');
+			// app.login(loginInfo, function(err) {
+			// 	if (err) {
+			// 		plus.nativeUI.toast(err);
+			// 		return;
+			// 	}
+			// 	toUser();
+			// });
+		});
 			(function($, doc) {
 				$.init({
 					statusBarBackground: '#f7f7f7'
@@ -215,19 +240,27 @@
 					var autoLoginButton = doc.getElementById("autoLogin");
 					var regButton = doc.getElementById('reg');
 					var forgetButton = doc.getElementById('forgetPassword');
-					loginButton.addEventListener('tap', function(event) {
-						var loginInfo = {
-							uname: unameBox.value,
-							password: passwordBox.value
-						};//普通登录
-						app.login(loginInfo, function(err) {
-							if (err) {
-								plus.nativeUI.toast(err);
-								return;
-							}
-							toUser();
-						});
-					});
+					// loginButton.addEventListener('tap', function(event) {
+					// 	alert(123);
+					// 	var loginInfo = {
+					// 		uname: unameBox.value,
+					// 		password: passwordBox.value
+					// 	};//普通登录
+
+					// 	mui.post("http://{{.ServerHost}}:{{.ServerHost}}/login/userlogin",{
+					// 		uname:loginInfo.uname,
+					// 		password:=loginInfo.password
+					// 	},function(data){
+
+					// 	},'json');
+					// 	// app.login(loginInfo, function(err) {
+					// 	// 	if (err) {
+					// 	// 		plus.nativeUI.toast(err);
+					// 	// 		return;
+					// 	// 	}
+					// 	// 	toUser();
+					// 	// });
+					// });
 					$.enterfocus('#login-form input', function() {
 						$.trigger(loginButton, 'tap');
 					});

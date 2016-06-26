@@ -258,7 +258,7 @@ func CreateUser(uname string, pw string, nickname string, email string, tel stri
 	newUser := &Character{Uname: uname, Nickname: nickname, Pw: pw, Email: email, Phone: tel}
 	o := orm.NewOrm()
 	qs := o.QueryTable("character")
-	count, err := qs.Filter("uName", uname).Count()
+	count, err := qs.Filter("uname", uname).Count()
 	if err != nil {
 		return -1, false, err
 	}
@@ -272,4 +272,25 @@ func CreateUser(uname string, pw string, nickname string, email string, tel stri
 		return -1, false, err1
 	}
 	return uid, true, err1
+}
+
+func UserLogin(uname string, pw string) *Character {
+	o := orm.NewOrm()
+	qs := o.QueryTable("character")
+	count, err := qs.Filter("uname", uname).Count()
+
+	if err != nil {
+		return nil
+	}
+	if count == 0 {
+		return nil
+	}
+
+	user := &Character{}
+	err1 := qs.Filter("uname", uname).One(user)
+	if err1 != nil {
+		return nil
+	}
+
+	return user
 }
