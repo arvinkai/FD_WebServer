@@ -54,7 +54,7 @@
 				</div>
 				<div class="mui-input-row">
 					<label>账号:</label>
-					<input id='account' name="account" type="text" class="mui-input-clear mui-input" placeholder="6位以上数字或字母">
+					<input id='account' name="account" type="text" class="mui-input-clear mui-input" placeholder="电话号码或邮箱">
 				</div>
 				<div class="mui-input-row">
 					<label>密码:</label>
@@ -64,14 +64,14 @@
 					<label>确认:</label>
 					<input id='password_confirm' type="password" class="mui-input-clear mui-input" placeholder="请确认密码">
 				</div>
-				<div class="mui-input-row">
+				<!--<div class="mui-input-row">
 					<label>邮箱:</label>
 					<input id='email' name="email" type="email" class="mui-input-clear mui-input" placeholder="请输入邮箱">
 				</div>
 				<div class="mui-input-row">
 					<label>电话:</label>
 					<input type="tel" name="telNum" id="telNum" class="mui-input-clear mui-input" placeholder="请输入电话号码" />
-				</div>
+				</div>-->
 			</form>
 			<div class="mui-content-padded">
 				<button id='reg' class="mui-btn mui-btn-block mui-btn-primary">注册</button>
@@ -102,15 +102,18 @@
 
 			document.getElementById('test').addEventListener('tap', function() {
 				//	var check = /\w{4,16}/;
-				var accountBox = document.getElementById('nick');
-				//var check = /[a-zA-Z0-9_]{4,16}/;
-				//	var str = '1a_4';
-				//	alert(check.test(accountBox.value));
+				var nickBox = document.getElementById('nick');
+				var accountBox = document.getElementById('account');
 				var regInfo = {
 					account: accountBox.value,
 				};
+				var check = /^[0-9]*$/;
+				if (regInfo.account.length != 11 || !check.test(regInfo.account)) {
+					alert(check.test(regInfo.account));
+				}
+
 				alert(regInfo.account.length);
-				if (accountBox.length < 2) {
+				if (nickBox.length < 2) {
 					alert(123);
 				}
 

@@ -131,7 +131,7 @@
 					statusBarBackground: '#f7f7f7'
 				});
 				$.plusReady(function() {
-					plus.screen.lockOrientation("portrait-primary");
+					plus.screen.lockOrientation("portrait-primary");//设置屏幕为竖屏，切屏也不会改变
 					var settings = app.getSettings();
 					var state = app.getState();
 //					var mainPage = $.preload({
@@ -143,7 +143,7 @@
 						setTimeout(function() {
 							$.openWindow({
 								id: 'userpage',
-								url: '../tab-subpage-user.html',
+								url: '/setting ',
 								show: {
 									aniShow: 'pop-in'
 								},
@@ -224,7 +224,7 @@
 							account: accountBox.value,
 							password: passwordBox.value
 						};//普通登录
-						$.post()
+				
 						app.login(loginInfo, function(err) {
 							if (err) {
 								plus.nativeUI.toast(err);
