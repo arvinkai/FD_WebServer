@@ -29,14 +29,6 @@
 		}
 	};
 
-	owner.createState = function(name, callback) {
-		var state = owner.getState();
-		state.uname = name;
-		state.token = "token123456789";
-		owner.setState(state);
-		return callback();
-	};
-
 	/**
 	 * 新用户注册
 	 **/
@@ -53,25 +45,27 @@
 				return callback('请输入有效的电话或邮箱')
 			}	
 		}
-//		if (regInfo.uname.length < 6 || !check.test(regInfo.uname)) {
-//			alert(check.test(regInfo.uname));
-//			return callback('请输入电话号码或邮箱');
-//		}
+
 		if (regInfo.password.length < 8 || !check.test(regInfo.password)) {
 			return callback('密码最短需要 8 个以上的数字或字母');
 		}
 		if (regInfo.nickname.length < 1) {
 			return callback('昵称不能为空');
 		}
-//		if (!checkEmail(regInfo.email)) {
-//			return callback('邮箱地址不合法');
-//		}
-//		if (regInfo.tel.length > 11) {
-//			return callback('电话号码少于11位')
-//		}
+
 		var users = JSON.parse(localStorage.getItem('$users') || '[]');
 		users.push(regInfo);
 		localStorage.setItem('$users', JSON.stringify(users));
+		return callback();
+	};
+	/**
+	 * 创建当前状态
+	 **/
+	owner.createState = function(authRegInfo, callback) {
+		var state = owner.getState();
+		state.uname = authRegInfo.nick;
+		state.token = authRegInfo.token;
+		owner.setState(state);
 		return callback();
 	};
 
@@ -89,9 +83,6 @@
 	owner.setState = function(state) {
 		state = state || {};
 		localStorage.setItem('$state', JSON.stringify(state));
-		//var settings = owner.getSettings();
-		//settings.gestures = '';
-		//owner.setSettings(settings);
 	};
 
 	var checkEmail = function(email) {

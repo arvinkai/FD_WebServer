@@ -2,8 +2,8 @@
 package models
 
 type Character struct {
-	Uid           int64  `orm:"pk;auto"`
-	Uname         string `orm:"size(20)"`
+	Uid           int64 `orm:"pk;auto"`
+	Uname         string
 	Nickname      string `orm:"size(20);default(default)"`
 	Pw            string
 	Icon          string `orm:"null"`
@@ -15,7 +15,7 @@ type Character struct {
 	Local         string `orm:"null"`
 	CreateTime    string
 	LastloginTime string `orm:"null"`
-	token         string `orm:"size(100)"`
+	token         string
 }
 
 type Goodsinfo struct {

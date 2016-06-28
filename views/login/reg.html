@@ -44,29 +44,20 @@
 		<div class="mui-content">
 			<form class="mui-input-group">
 				<div class="mui-input-row">
-					<label>昵称</label>
-					<input id='nick' name="nick" type="text" class="mui-input-clear mui-input" placeholder="请输入昵称">
+					<label>昵称:</label>
+					<input id='nick' name="nickname" type="text" class="mui-input-clear mui-input" placeholder="请输入昵称">
 				</div>
 				<div class="mui-input-row">
-					<label>账号</label>
-					<input id='uname' name="uname" type="text" class="mui-input-clear mui-input" placeholder="请输入账号">
+					<label>账号:</label>
+					<input id='account' name="account" type="text" class="mui-input-clear mui-input" placeholder="电话号码或邮箱">
 				</div>
 				<div class="mui-input-row">
-					<label>密码</label>
-					<input id='password' name="password" type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
+					<label>密码:</label>
+					<input id='password' name="password" type="password" class="mui-input-clear mui-input" placeholder="8位以上数字或字母">
 				</div>
 				<div class="mui-input-row">
-					<label>确认</label>
+					<label>确认:</label>
 					<input id='password_confirm' type="password" class="mui-input-clear mui-input" placeholder="请确认密码">
-				</div>
-
-				<div class="mui-input-row">
-					<label>邮箱</label>
-					<input id='email' name="email" type="email" class="mui-input-clear mui-input" placeholder="请输入邮箱">
-				</div>
-				<div class="mui-input-row">
-					<label>电话</label>
-					<input type="tel" name="telNum" id="telNum" class="mui-input-clear mui-input" placeholder="请输入电话号码" />
 				</div>
 			</form>
 			<div class="mui-content-padded">
@@ -101,22 +92,27 @@
 					var passwordBox = document.getElementById('password');
 					var passwordConfirmBox = document.getElementById('password_confirm');
 					var nickBox = document.getElementById('nick');
-					var emailBox = document.getElementById('email');
-					var telNum = document.getElementById('telNum');
 				
 					regButton.addEventListener('tap', function(event) {
-							alert(nickBox.value);
 						var regInfo = {
 							uname: uNameBox.value,
 							password: passwordBox.value,
 							nickname : nickBox.value,
-							email: emailBox.value,
-							tel: telNum.value
+							email: '',
+							tel: ''
 						};
+
 						var passwordConfirm = passwordConfirmBox.value;
 						if (passwordConfirm != regInfo.password) {
 							mui.toast('密码两次输入不一致');
 							return;
+						}
+
+						var unameType = /^[0-9*$]/;
+						if (uNameBox.value.length == 11 && check.test(uNameBox.value)) {
+							regInfo.tel = uNameBox.value;
+						}else{
+							regInfo.email = uNameBox.value;
 						}
 
 						app.reg(regInfo, function(err) {						
@@ -136,7 +132,7 @@
 									mui.toast('注册成功！');
 									mui.openWindow({
 										url: 'http://{{.ServerHost}}:{{.ServerPort}}/login',
-										id: 'login',
+										id: 'loginpage',
 										show: {
 											aniShow: 'pop-in'
 										},
@@ -155,68 +151,6 @@
 							}, 'json');
 					});
 				});
-
-			// 	$.plusReady(function() {
-			// 		var settings = app.getSettings();
-			// 		var regButton = doc.getElementById('reg');
-			// 		var uNameBox = doc.getElementById('uname');
-			// 		var passwordBox = doc.getElementById('password');
-			// 		var passwordConfirmBox = doc.getElementById('password_confirm');
-			// 		var nick = doc.getElementById('nick');
-			// 		var emailBox = doc.getElementById('email');
-			// 		var telNum = doc.getElementById('telNum');
-					
-			// 		regButton.addEventListener('tap', function(event) {
-			// 			alert('test');
-			// 			var regInfo = {
-			// 				uname: uNameBox.value,
-			// 				password: passwordBox.value,
-			// 				nickname : nick.value,
-			// 				email: emailBox.value,
-			// 				tel: telNum.value
-			// 			};
-			// 			var passwordConfirm = passwordConfirmBox.value;
-			// 			if (passwordConfirm != regInfo.password) {
-			// 				plus.nativeUI.toast('密码两次输入不一致');
-			// 				return;
-			// 			}
-			// 			app.reg(regInfo, function(err) {
-			// 				if (err) {
-			// 					plus.nativeUI.toast(err);
-			// 					return;
-			// 				}
-
-			// 				mui.post('http://{{.ServerHost}}:{{.ServerPort}}/regist/reginfo', {
-			// 					uname: regInfo.uname,
-			// 					pw: regInfo.password,
-			// 					nickname: regInfo.nick,
-			// 					email: regInfo.email,
-			// 					telNum: regInfo.tel
-			// 				}, function(data) {
-			// 					if (data.result) {
-			// 						mui.toast('注册成功！');
-			// 						mui.openWindow({
-			// 							url: 'http://{{.ServerHost}}:{{.ServerPort}}/login',
-			// 							id: 'login',
-			// 							show: {
-			// 								aniShow: 'pop-in'
-			// 							},
-			// 							styles: {
-			// 								popGesture: 'hide'
-			// 							},
-			// 							waiting: {
-			// 								autoShow: false
-			// 							}
-			// 						});
-			// 					} else {
-			// 						mui.toast('注册失败！');
-			// 						passwordBox.value = '';
-			// 						passwordConfirmBox.validity = '';
-			// 					}
-			// 				}, 'json');
-			// 		});
-			// 	});
-			// }(mui, document));
 		</script>
 	</body>
 

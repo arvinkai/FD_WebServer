@@ -126,31 +126,30 @@
 		<script src="../../static/js/mui.enterfocus.js"></script>
 		<script src="../../static/js/app.js"></script>
 		<script>
-		var loginButton = document.getElementById('login');
-		var unameBox = document.getElementById('uname');
-		var passwordBox = document.getElementById('password');
+		// var loginButton = document.getElementById('login');
+		// var unameBox = document.getElementById('uname');
+		// var passwordBox = document.getElementById('password');
 
-		loginButton.addEventListener('tap', function(event) {
-			alert(123);
-			var loginInfo = {
-				uname: unameBox.value,
-				password: passwordBox.value
-			};//普通登录
+		// loginButton.addEventListener('tap', function(event) {
+		// 	var loginInfo = {
+		// 		uname: unameBox.value,
+		// 		password: passwordBox.value
+		// 	};//普通登录
 
-			mui.post("http://{{.ServerHost}}:{{.ServerHost}}/login/userlogin",{
-				uname:loginInfo.uname,
-				password:=loginInfo.password
-			},function(data){
+		// 	mui.post("http://{{.ServerHost}}:{{.ServerHost}}/login/userlogin",{
+		// 		uname:loginInfo.uname,
+		// 		password:=loginInfo.password
+		// 	},function(data){
 
-			},'json');
-			// app.login(loginInfo, function(err) {
-			// 	if (err) {
-			// 		plus.nativeUI.toast(err);
-			// 		return;
-			// 	}
-			// 	toUser();
-			// });
-		});
+		// 	},'json');
+		// 	// app.login(loginInfo, function(err) {
+		// 	// 	if (err) {
+		// 	// 		plus.nativeUI.toast(err);
+		// 	// 		return;
+		// 	// 	}
+		// 	// 	toUser();
+		// 	// });
+		// });
 			(function($, doc) {
 				$.init({
 					statusBarBackground: '#f7f7f7'
@@ -193,7 +192,7 @@
 									//如果微信未安装，则为不启用状态
 									btn.setAttribute('class', 'oauth-btn' + (!isInstalled && service.id === 'weixin' ? (' disabled') : ''));
 									btn.authId = service.id;
-									btn.style.backgroundImage = 'url("images/' + service.id + '.png")'
+									btn.style.backgroundImage = 'url("../../static/img/images/' + service.id + '.png")'
 									oauthArea.appendChild(btn);
 								}
 							}
@@ -210,7 +209,18 @@
 									auth.getUserInfo(function() {
 										plus.nativeUI.toast("获取用户信息成功");
 										var name = auth.userInfo.nickname || auth.userInfo.name;
-										app.createState(name, function() {
+										alert( "获取用户authResult："+JSON.stringify(auth.authResult) );
+										alert( "获取用户Token："+JSON.stringify(auth.authResult.access_token) );
+										alert( "获取用户openid："+JSON.stringify(auth.authResult.openid) );
+										alert( "获取用户信息成功："+JSON.stringify(auth.userInfo) );
+										var authRegInfo = {
+												nick:nickname,
+												token:auth.authResult.token,
+												openid:auth.authResult.openid,
+										}	
+										//发送到服务器没有注册则首次注册注册过直接登录$.post('http://{{.ServerHost}}:{{.ServerPort}}/regist/check',{
+//										},function(){},'json');
+										app.createState(authRegInfo, function() {
 											toUser();
 										});
 									}, function(e) {
@@ -274,8 +284,8 @@
 					}, false);
 					regButton.addEventListener('tap', function(event) {
 						$.openWindow({
-							url: 'reg.html',
-							id: 'reg',
+							url: 'http://{{.ServerHost}}:{{.ServerPort}}/regist',
+							id: 'registpage',
 							preload: true,
 							show: {
 								aniShow: 'pop-in'
