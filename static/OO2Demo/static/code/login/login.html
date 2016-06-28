@@ -134,12 +134,9 @@
 					plus.screen.lockOrientation("portrait-primary");//设置屏幕为竖屏，切屏也不会改变
 					var settings = app.getSettings();
 					var state = app.getState();
-//					var mainPage = $.preload({
-//						"id": 'userpage',
-//						"url": '../tab-subpage-user.html'
-//					});
+
 					var toUser = function() {
-						$.fire(mainPage, 'show', null);
+						$.fire(userpage, 'show', null);
 						setTimeout(function() {
 							$.openWindow({
 								id: 'userpage',
@@ -188,9 +185,19 @@
 									plus.nativeUI.toast("登录认证成功");
 									auth.getUserInfo(function() {
 										plus.nativeUI.toast("获取用户信息成功");
-										var name = auth.userInfo.nickname || auth.userInfo.name;
-										alert(JSON.stringify(auth.userInfo));
-										app.createState(name, function() {
+										var nickname = auth.userInfo.nickname || auth.userInfo.name;
+//										var token = auth.authResult.token;
+//										var openid = auth.authResult.openId;
+										alert(JSON.stringify(auth.authResult.token));
+										alert(JSON.stringify(auth.authResult.openId));
+										var authRegInfo = {
+												nick:nickname,
+												token:auth.authResult.token,
+												openid:auth.authResult.openid,
+										}	
+										//发送到服务器没有注册则首次注册注册过直接登录$.post('http://{{.ServerHost}}:{{.ServerPort}}/regist/check',{
+//										},function(){},'json');
+										app.createState(authRegInfo, function() {
 											toUser();
 										});
 									}, function(e) {
