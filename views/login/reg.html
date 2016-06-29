@@ -87,70 +87,70 @@
 			});
 
 			var settings = app.getSettings();
-					var regButton = document.getElementById('reg');
-					var uNameBox = document.getElementById('uname');
-					var passwordBox = document.getElementById('password');
-					var passwordConfirmBox = document.getElementById('password_confirm');
-					var nickBox = document.getElementById('nick');
-				
-					regButton.addEventListener('tap', function(event) {
-						var regInfo = {
-							uname: uNameBox.value,
-							password: passwordBox.value,
-							nickname : nickBox.value,
-							email: '',
-							tel: ''
-						};
+			var regButton = document.getElementById('reg');
+			var uNameBox = document.getElementById('uname');
+			var passwordBox = document.getElementById('password');
+			var passwordConfirmBox = document.getElementById('password_confirm');
+			var nickBox = document.getElementById('nick');
+		
+			regButton.addEventListener('tap', function(event) {
+				var regInfo = {
+					uname: uNameBox.value,
+					password: passwordBox.value,
+					nickname : nickBox.value,
+					email: '',
+					tel: ''
+				};
 
-						var passwordConfirm = passwordConfirmBox.value;
-						if (passwordConfirm != regInfo.password) {
-							mui.toast('密码两次输入不一致');
-							return;
-						}
+				var passwordConfirm = passwordConfirmBox.value;
+				if (passwordConfirm != regInfo.password) {
+					mui.toast('密码两次输入不一致');
+					return;
+				}
 
-						var unameType = /^[0-9*$]/;
-						if (uNameBox.value.length == 11 && check.test(uNameBox.value)) {
-							regInfo.tel = uNameBox.value;
-						}else{
-							regInfo.email = uNameBox.value;
-						}
+				var unameType = /^[0-9*$]/;
+				if (uNameBox.value.length == 11 && check.test(uNameBox.value)) {
+					regInfo.tel = uNameBox.value;
+				}else{
+					regInfo.email = uNameBox.value;
+				}
 
-						app.reg(regInfo, function(err) {						
-							if (err) {
-								mui.toast(err);
-								return;
-							}
+				app.reg(regInfo, function(err) {						
+					if (err) {
+						mui.toast(err);
+						return;
+					}
 
-							mui.post('http://{{.ServerHost}}:{{.ServerPort}}/regist/reginfo', {
-								uname: regInfo.uname,
-								pw: regInfo.password,
-								nickname: regInfo.nickname,
-								email: regInfo.email,
-								telNum: regInfo.tel
-							}, function(data) {
-								if (data.result) {
-									mui.toast('注册成功！');
-									mui.openWindow({
-										url: 'http://{{.ServerHost}}:{{.ServerPort}}/login',
-										id: 'loginpage',
-										show: {
-											aniShow: 'pop-in'
-										},
-										styles: {
-											popGesture: 'hide'
-										},
-										waiting: {
-											autoShow: false
-										}
-									});
-								} else {
-									mui.toast('注册失败！');
-									passwordBox.value = '';
-									passwordConfirmBox.validity = '';
+					mui.post('http://{{.ServerHost}}:{{.ServerPort}}/regist/reginfo', {
+						uname: regInfo.uname,
+						pw: regInfo.password,
+						nickname: regInfo.nickname,
+						email: regInfo.email,
+						telNum: regInfo.tel
+					}, function(data) {
+						if (data.result) {
+							mui.toast('注册成功！');
+							mui.openWindow({
+								url: 'http://{{.ServerHost}}:{{.ServerPort}}/login',
+								id: 'loginpage',
+								show: {
+									aniShow: 'pop-in'
+								},
+								styles: {
+									popGesture: 'hide'
+								},
+								waiting: {
+									autoShow: false
 								}
-							}, 'json');
-					});
+							});
+						} else {
+							mui.toast('注册失败！');
+							passwordBox.value = '';
+							passwordConfirmBox.validity = '';
+						}
+					}, 'json');
 				});
+			});
 		</script>
 	</body>
 

@@ -65,6 +65,7 @@
 		var state = owner.getState();
 		state.uname = authRegInfo.nick;
 		state.token = authRegInfo.token;
+		state.openid = authRegInfo.openid;
 		owner.setState(state);
 		return callback();
 	};

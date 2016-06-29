@@ -16,6 +16,7 @@ func (this *RegistController) Get() {
 	this.Data["ServerHost"] = beego.AppConfig.String("ServerHost")
 	this.Data["ServerPort"] = beego.AppConfig.String("ServerPort")
 	this.Data["CanUse"] = false
+
 	this.TplName = "login/reg.html"
 }
 

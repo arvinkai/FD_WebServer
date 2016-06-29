@@ -13,10 +13,13 @@ type LoginController struct {
 }
 
 func (this *LoginController) Get() {
+	this.Data["ServerHost"] = beego.AppConfig.String("ServerHost")
+	this.Data["ServerPort"] = beego.AppConfig.String("ServerPort")
 	this.TplName = "login/login.html"
 }
 
 func (this *LoginController) Userlogin() {
+	fmt.Println("123")
 	uname := this.Input().Get("uname")
 	fmt.Println(uname)
 	pw := this.Input().Get("password")
