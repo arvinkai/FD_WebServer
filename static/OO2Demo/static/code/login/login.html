@@ -232,7 +232,9 @@
 							account: accountBox.value,
 							password: passwordBox.value
 						};//普通登录
-				
+						alert(123);
+				$.toast("test mui toast!!");
+				return;
 						app.login(loginInfo, function(err) {
 							if (err) {
 								plus.nativeUI.toast(err);

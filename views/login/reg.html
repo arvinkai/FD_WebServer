@@ -49,7 +49,7 @@
 				</div>
 				<div class="mui-input-row">
 					<label>账号:</label>
-					<input id='account' name="account" type="text" class="mui-input-clear mui-input" placeholder="电话号码或邮箱">
+					<input id='uname' name="uname" type="text" class="mui-input-clear mui-input" placeholder="电话号码或邮箱">
 				</div>
 				<div class="mui-input-row">
 					<label>密码:</label>
@@ -72,8 +72,14 @@
 		<script src="../../static/js/app.js"></script>
 <script>
 
+			var settings = app.getSettings();
+			var regButton = document.getElementById('reg');
+			var uNameBox = document.getElementById('uname');
+			var passwordBox = document.getElementById('password');
+			var passwordConfirmBox = document.getElementById('password_confirm');
+			var nickBox = document.getElementById('nick');
+
 			$("#uname").blur(function(){
-				var uNameBox = document.getElementById('uname');
 				mui.post('http://{{.ServerHost}}:{{.ServerPort}}/regist/checkuname',{
 					uName :  uNameBox.value
 				}, function(data) {
@@ -86,18 +92,11 @@
 				},'json');
 			});
 
-			var settings = app.getSettings();
-			var regButton = document.getElementById('reg');
-			var uNameBox = document.getElementById('uname');
-			var passwordBox = document.getElementById('password');
-			var passwordConfirmBox = document.getElementById('password_confirm');
-			var nickBox = document.getElementById('nick');
-		
 			regButton.addEventListener('tap', function(event) {
 				var regInfo = {
 					uname: uNameBox.value,
 					password: passwordBox.value,
-					nickname : nickBox.value,
+					nickname : nickBox.value || '',
 					email: '',
 					tel: ''
 				};
@@ -109,7 +108,7 @@
 				}
 
 				var unameType = /^[0-9*$]/;
-				if (uNameBox.value.length == 11 && check.test(uNameBox.value)) {
+				if (uNameBox.value.length == 11 && unameType.test(uNameBox.value)) {
 					regInfo.tel = uNameBox.value;
 				}else{
 					regInfo.email = uNameBox.value;

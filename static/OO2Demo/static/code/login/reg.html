@@ -128,16 +128,14 @@
 					var passwordBox = doc.getElementById('password');
 					var passwordConfirmBox = doc.getElementById('password_confirm');
 					var nickname = doc.getElementById('nick');
-					var emailBox = doc.getElementById('email');
-					var telNum = doc.getElementById('telNum');
+
 
 					regButton.addEventListener('tap', function(event) {
 						var regInfo = {
 							account: accountBox.value,
 							password: passwordBox.value,
 							nickname: nickname.value,
-							email: emailBox.value,
-							tel: telNum.value
+
 						};
 						var passwordConfirm = passwordConfirmBox.value;
 						if (passwordConfirm != regInfo.password) {

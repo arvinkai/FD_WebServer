@@ -7,26 +7,26 @@
 	/**
 	 * 用户登录
 	 **/
-	owner.login = function(loginInfo, callback) {
+	owner.login = function(character, callback) {
 		callback = callback || $.noop;
-		loginInfo = loginInfo || {};
-		loginInfo.uname = loginInfo.uname || '';
-		loginInfo.password = loginInfo.password || '';
-		if (loginInfo.uname.length < 5) {
-			return callback('账号最短为 5 个字符');
-		}
-		if (loginInfo.password.length < 6) {
-			return callback('密码最短为 6 个字符');
-		}
-		var users = JSON.parse(localStorage.getItem('$users') || '[]');
-		var authed = users.some(function(user) {
-			return loginInfo.uname == user.uname && loginInfo.password == user.password;
-		});
-		if (authed) {
-			return owner.createState(loginInfo.uname, callback);
-		} else {
-			return callback('用户名或密码错误');
-		}
+		//var users = JSON.parse(localStorage.getItem('$users') || '[]');
+		//users.push(character);
+		localStorage.setItem('$users',JSON.stringify(character));
+		
+		return owner.createState(character,callback);
+	};
+	
+	owner.logout = function(character, callback) {
+		callback = callback || $.noop;
+		owner.setUser(null);	
+	};
+
+	owner.createState = function(authRegInfo, callback) {
+		var state = owner.getState();
+		state.uname = authRegInfo.nick;
+		state.token = authRegInfo.token;
+		owner.setState(state);
+		return callback();
 	};
 
 	/**
@@ -38,7 +38,8 @@
 		regInfo.uname = regInfo.uname || '';
 		regInfo.password = regInfo.password || '';
 		
-		var check = /[0-9]/;
+		var checkUname = /[0-9]/;
+		var checkPw = /[a-zA-Z0-9]/
 		
 		if (!checkEmail(regInfo.uname)) {
 			if (regInfo.uname.length != 11 || !check.test(regInfo.uname)) {
@@ -46,30 +47,30 @@
 			}	
 		}
 
-		if (regInfo.password.length < 8 || !check.test(regInfo.password)) {
+		if (regInfo.password.length < 8 || !checkPw.test(regInfo.password)) {
 			return callback('密码最短需要 8 个以上的数字或字母');
 		}
 		if (regInfo.nickname.length < 1) {
 			return callback('昵称不能为空');
 		}
 
-		var users = JSON.parse(localStorage.getItem('$users') || '[]');
-		users.push(regInfo);
-		localStorage.setItem('$users', JSON.stringify(users));
 		return callback();
 	};
+	
 	/**
-	 * 创建当前状态
+	 * 获取当前用户信息
 	 **/
-	owner.createState = function(authRegInfo, callback) {
-		var state = owner.getState();
-		state.uname = authRegInfo.nick;
-		state.token = authRegInfo.token;
-		state.openid = authRegInfo.openid;
-		owner.setState(state);
-		return callback();
+	owner.getUser = function(){
+		var userInfoText = localStorage.getItem('$users') || "{}";
+		return JSON.parse(userInfoText);
 	};
-
+		/**
+	 * 设置当前用户信息
+	 **/
+	owner.setUser = function(user) {
+		userinfo = user || {};
+		localStorage.setItem('$users', JSON.stringify(userinfo));
+	};
 	/**
 	 * 获取当前状态
 	 **/

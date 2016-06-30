@@ -126,40 +126,26 @@
 		<script src="../../static/js/mui.enterfocus.js"></script>
 		<script src="../../static/js/app.js"></script>
 		<script>
-		var loginButton = document.getElementById('login');
-		var unameBox = document.getElementById('uname');
-		var passwordBox = document.getElementById('password');
-
-		loginButton.addEventListener('tap', function(event) {
-			alert(123);
-			var loginInfo = {
-				uname: unameBox.value,
-				password: passwordBox.value
-			};//普通登录
-
-			mui.post('http://{{.ServerHost}}:{{.ServerPort}}/login/userlogin',{
-				uname:loginInfo.uname,
-				password:loginInfo.password
-			},function(data){
-
-			},'json');			
-		});
-
 		(function($, doc) {
 			$.init({
 				statusBarBackground: '#f7f7f7'
 			});
 
 			$.plusReady(function() {
+				// app.setUser(null);
 				plus.screen.lockOrientation("portrait-primary");
 				var settings = app.getSettings();
 				var state = app.getState();
+				var userweb = $.preload({
+					"id": 'userpage',
+					"url":'http://{{.ServerHost}}:{{.ServerPort}}/setting',
+				});
 				var toUser = function() {
-					$.fire(userpage, 'show', null);
+					$.fire(userweb, 'show', null);
 					setTimeout(function() {
 						$.openWindow({
 							id: 'userpage',
-							url: 'http://{{.ServerHost}}:{{.ServerPort}}/setting',
+							//url: 'http://{{.ServerHost}}:{{.ServerPort}}/setting',
 							show: {
 								aniShow: 'pop-in'
 							},
@@ -262,27 +248,44 @@
 				var autoLoginButton = doc.getElementById("autoLogin");
 				var regButton = doc.getElementById('reg');
 				var forgetButton = doc.getElementById('forgetPassword');
-				// loginButton.addEventListener('tap', function(event) {
-				// 	alert(123);
-				// 	var loginInfo = {
-				// 		uname: unameBox.value,
-				// 		password: passwordBox.value
-				// 	};//普通登录
 
-				// 	mui.post("http://{{.ServerHost}}:{{.ServerHost}}/login/userlogin",{
-				// 		uname:loginInfo.uname,
-				// 		password:=loginInfo.password
-				// 	},function(data){
+				loginButton.addEventListener('tap', function(event) {
+					var loginInfo = {
+						uname: unameBox.value,
+						password: passwordBox.value
+					};//普通登录
 
-				// 	},'json');
-				// 	// app.login(loginInfo, function(err) {
-				// 	// 	if (err) {
-				// 	// 		plus.nativeUI.toast(err);
-				// 	// 		return;
-				// 	// 	}
-				// 	// 	toUser();
-				// 	// });
-				// });
+					mui.post('http://{{.ServerHost}}:{{.ServerPort}}/login/userlogin',{
+						uname:loginInfo.uname,
+						password:loginInfo.password
+					},function(data){
+						if (data.rel != 0) {
+							if (data.rel == 1) {
+								$.toast("账号错误...");
+							} else if (data.rel == 2) {
+								$.toast("密码错误...");
+							}
+						} else {
+							var character = {
+								uname:data.uname,
+								nick:data.nick,
+								qqnum:data.qq,
+								phone:data.phone,
+								email:data.email,
+								token:data.token
+							}
+
+							app.login(character, function(err) {
+								if (err) {
+									plus.nativeUI.toast(err);
+									return;
+								}
+								toUser();
+							});
+						}
+					},'json');			
+				});
+
 				$.enterfocus('#login-form input', function() {
 					$.trigger(loginButton, 'tap');
 				});
@@ -297,7 +300,7 @@
 				regButton.addEventListener('tap', function(event) {
 					$.openWindow({
 						url: 'http://{{.ServerHost}}:{{.ServerPort}}/regist',
-						id: 'registpagetest',
+						id: 'registpage',
 						preload: true,
 						show: {
 							aniShow: 'pop-in'

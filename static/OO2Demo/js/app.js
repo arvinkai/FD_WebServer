@@ -13,20 +13,20 @@
 		loginInfo.uname = loginInfo.uname || '';
 		loginInfo.password = loginInfo.password || '';
 		if (loginInfo.uname.length < 5) {
-			return callback('账号最短为 5 个字符');
+			return callback('账号为有效的电话或邮箱');
 		}
 		if (loginInfo.password.length < 6) {
-			return callback('密码最短为 6 个字符');
+			return callback('密码最短需要 8 个以上的数字或字母');
 		}
-		var users = JSON.parse(localStorage.getItem('$users') || '[]');
-		var authed = users.some(function(user) {
-			return loginInfo.uname == user.uname && loginInfo.password == user.password;
-		});
-		if (authed) {
-			return owner.createState(loginInfo.uname, callback);
-		} else {
-			return callback('用户名或密码错误');
-		}
+//		var users = JSON.parse(localStorage.getItem('$users') || '[]');
+//		var authed = users.some(function(user) {
+//			return loginInfo.uname == user.uname && loginInfo.password == user.password;
+//		});
+//		if (authed) {
+//			return owner.createState(loginInfo.uname, callback);
+//		} else {
+//			return callback('用户名或密码错误');
+//		}
 	};
 
 	owner.createState = function(authRegInfo, callback) {

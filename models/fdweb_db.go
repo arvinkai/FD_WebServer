@@ -10,12 +10,13 @@ type Character struct {
 	Phone         string `orm:null;size(11)`
 	Point         int32  `orm:"default(0)"`
 	Money         int32  `orm:"default(0)"`
+	Qqnum         int64  `orm:"default(0)"`
 	Email         string `orm:"null"`
 	IdCard        string `orm:null;size(18)`
 	Local         string `orm:"null"`
 	CreateTime    string
 	LastloginTime string `orm:"null"`
-	token         string
+	Token         string
 }
 
 type Goodsinfo struct {

@@ -19,20 +19,23 @@ func (this *LoginController) Get() {
 }
 
 func (this *LoginController) Userlogin() {
-	fmt.Println("123")
 	uname := this.Input().Get("uname")
 	fmt.Println(uname)
 	pw := this.Input().Get("password")
 	fmt.Println(pw)
 	userInfo := models.UserLogin(uname, pw)
 	fmt.Println(&userInfo)
+	result := 0
 	if userInfo == nil {
-
+		result = 1
 	}
 
 	if pw != userInfo.Pw {
-
+		result = 2
 	}
 
-	this.TplName = "tab-subpage-user.html"
+	this.Data["json"] = map[string]interface{}{"rel": result, "uname": userInfo.Uname, "nick": userInfo.Nickname,
+		"qq": userInfo.Qqnum, "phone": userInfo.Phone, "email": userInfo.Email, "token": userInfo.Token}
+	this.ServeJSON()
+	fmt.Println(this.Data["json"])
 }
