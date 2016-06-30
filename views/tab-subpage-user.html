@@ -220,7 +220,7 @@
 									<img class="mui-media-object mui-pull-left head-img" id="head-img" src="../static/img/images/logo.png">
 									<div id="fnick" class="mui-media-body">
 										Hello MUI
-										<p id="funame" class='mui-ellipsis'>账号:hellomui</p>
+										<p class='mui-ellipsis'>账号: hellomui</p>
 									</div>
 								</a>
 							</li>
@@ -303,7 +303,7 @@
 								<a>姓名<span id="nick" class="mui-pull-right">Hbuilder</span></a>
 							</li>
 							<li class="mui-table-view-cell">
-								<a>HBuilder账号<span id="uname" class="mui-pull-right">hbuilder@dcloud.io</span></a>
+								<a>欧欧兔账号<span id="uname" class="mui-pull-right">hbuilder@dcloud.io</span></a>
 							</li>
 						</ul>
 						<ul class="mui-table-view">
@@ -801,23 +801,20 @@
 		(function($,doc){
 
 			window.addEventListener('show',function(){
-				alert(123);
 				var character = app.getUser();
 				var fNickshow = document.getElementById('fnick');
-				var fUnameshow = document.getElementById('funame');
 				var Nickshow = document.getElementById('nick');
 				var Unameshow = document.getElementById('uname');
 				var Qqnumshow = document.getElementById('qqnum');
 				var Phoneshow = document.getElementById('phone');
 				var Emailshow = document.getElementById('email');
-				alert(JSON.stringify(character));
-				fNickshow.innerText = character.nick; 
-				fUnameshow.innerText = '账号:test';// + character.uname; 
-				Nickshow.innerText = character.nick;
-				Unameshow.innerText = character.uname;
-				Qqnumshow.innerText = character.qqnum;
-				Phoneshow.innerText = character.phone;
-				Emailshow.innerText = character.email;
+
+				fNickshow.innerHTML = character.nick+'<p class="mui-ellipsis">账号:'+ character.uname + '</p>';
+				Nickshow.innerHTML = character.nick;
+				Unameshow.innerHTML = character.uname;
+				Qqnumshow.innerHTML = character.qqnum;
+				Phoneshow.innerHTML = character.phone;
+				Emailshow.innerHTML = character.email;
 			},false);
 		}(mui,document));
 	</script>

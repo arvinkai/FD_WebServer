@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"FD_WebServer/models"
-	"fmt"
 
 	"github.com/astaxie/beego"
 )
@@ -18,7 +17,6 @@ func (this *ShopController) Get() {
 	}
 	Goodsinfos, _ := models.GetGoodsinfoByCategory()
 
-	fmt.Println(Goodsinfos)
 	this.Data["Categorys"] = Categorys
 	this.Data["Goodsinfos"] = Goodsinfos
 	this.TplName = "tab-subpage-shop.html"

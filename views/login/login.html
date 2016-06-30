@@ -189,20 +189,25 @@
 							auth.login(function() {
 								waiting.close();
 								plus.nativeUI.toast("登录认证成功");
+
 								auth.getUserInfo(function() {
 									plus.nativeUI.toast("获取用户信息成功");
+
 									var name = auth.userInfo.nickname || auth.userInfo.name;
 									var authRegInfo = {
-											nick:nickname,
-											token:auth.authResult.token,
+											nick:name,
+											token:auth.authResult.access_token,
 											openid:auth.authResult.openid,
 										}	
+										
 										//发送到服务器没有注册则首次注册注册过直接登录$.post('http://{{.ServerHost}}:{{.ServerPort}}/regist/check',{
 //										},function(){},'json');
+// alert(JSON.stringify(auth.authResult));
 
-										$.post('http://{{.ServerHost}}:{{.ServerPort}}/regist/check',{
+										$.post('http://{{.ServerHost}}:{{.ServerPort}}/regist/checkuname',{
 											uName:authRegInfo.openid
 										},function(data){
+											
 											if (data.CanUse) {
 												mui.post('http://{{.ServerHost}}:{{.ServerPort}}/regist/reginfo', {
 													uname: authRegInfo.openid,
@@ -217,7 +222,22 @@
 												}, 'json');
 											}
 											app.createState(authRegInfo, function() {
+												var character = {
+													uname:authRegInfo.nick,
+													nick:authRegInfo.nick,
+													qqnum:'',
+													phone:'',
+													email:'',
+													token:authRegInfo.token
+												}
+
+												app.login(character, function(err) {
+													if (err) {
+														plus.nativeUI.toast(err);
+														return;
+													}
 													toUser();
+												});
 											});
 										},'json');
 

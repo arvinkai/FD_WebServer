@@ -42,7 +42,7 @@
 		var checkPw = /[a-zA-Z0-9]/
 		
 		if (!checkEmail(regInfo.uname)) {
-			if (regInfo.uname.length != 11 || !check.test(regInfo.uname)) {
+			if (regInfo.uname.length != 11 || !checkUname.test(regInfo.uname)) {
 				return callback('请输入有效的电话或邮箱')
 			}	
 		}

@@ -3,7 +3,6 @@ package controllers
 
 import (
 	"FD_WebServer/models"
-	"fmt"
 
 	"github.com/astaxie/beego"
 )
@@ -22,7 +21,6 @@ func (this *RegistController) Get() {
 
 func (this *RegistController) Checkuname() {
 	uname := this.Input().Get("uName")
-	fmt.Println("uname:", uname)
 	rel, _ := models.CheckUserName(uname)
 
 	this.Data["json"] = map[string]interface{}{"UserName": uname, "CanUse": rel}

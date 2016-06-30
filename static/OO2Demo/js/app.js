@@ -7,26 +7,18 @@
 	/**
 	 * 用户登录
 	 **/
-	owner.login = function(loginInfo, callback) {
+	owner.login = function(character, callback) {
 		callback = callback || $.noop;
-		loginInfo = loginInfo || {};
-		loginInfo.uname = loginInfo.uname || '';
-		loginInfo.password = loginInfo.password || '';
-		if (loginInfo.uname.length < 5) {
-			return callback('账号为有效的电话或邮箱');
-		}
-		if (loginInfo.password.length < 6) {
-			return callback('密码最短需要 8 个以上的数字或字母');
-		}
-//		var users = JSON.parse(localStorage.getItem('$users') || '[]');
-//		var authed = users.some(function(user) {
-//			return loginInfo.uname == user.uname && loginInfo.password == user.password;
-//		});
-//		if (authed) {
-//			return owner.createState(loginInfo.uname, callback);
-//		} else {
-//			return callback('用户名或密码错误');
-//		}
+		//var users = JSON.parse(localStorage.getItem('$users') || '[]');
+		//users.push(character);
+		localStorage.setItem('$users',JSON.stringify(character));
+		
+		return owner.createState(character,callback);
+	};
+	
+	owner.logout = function(character, callback) {
+		callback = callback || $.noop;
+		owner.setUser(null);	
 	};
 
 	owner.createState = function(authRegInfo, callback) {
@@ -46,27 +38,39 @@
 		regInfo.uname = regInfo.uname || '';
 		regInfo.password = regInfo.password || '';
 		
-		var check = /[0-9]/;
+		var checkUname = /[0-9]/;
+		var checkPw = /[a-zA-Z0-9]/
 		
 		if (!checkEmail(regInfo.uname)) {
-			if (regInfo.uname.length != 11 || !check.test(regInfo.uname)) {
+			if (regInfo.uname.length != 11 || !checkUname.test(regInfo.uname)) {
 				return callback('请输入有效的电话或邮箱')
 			}	
 		}
 
-		if (regInfo.password.length < 8 || !check.test(regInfo.password)) {
+		if (regInfo.password.length < 8 || !checkPw.test(regInfo.password)) {
 			return callback('密码最短需要 8 个以上的数字或字母');
 		}
 		if (regInfo.nickname.length < 1) {
 			return callback('昵称不能为空');
 		}
 
-		var users = JSON.parse(localStorage.getItem('$users') || '[]');
-		users.push(regInfo);
-		localStorage.setItem('$users', JSON.stringify(users));
 		return callback();
 	};
-
+	
+	/**
+	 * 获取当前用户信息
+	 **/
+	owner.getUser = function(){
+		var userInfoText = localStorage.getItem('$users') || "{}";
+		return JSON.parse(userInfoText);
+	};
+		/**
+	 * 设置当前用户信息
+	 **/
+	owner.setUser = function(user) {
+		userinfo = user || {};
+		localStorage.setItem('$users', JSON.stringify(userinfo));
+	};
 	/**
 	 * 获取当前状态
 	 **/
@@ -81,9 +85,6 @@
 	owner.setState = function(state) {
 		state = state || {};
 		localStorage.setItem('$state', JSON.stringify(state));
-		//var settings = owner.getSettings();
-		//settings.gestures = '';
-		//owner.setSettings(settings);
 	};
 
 	var checkEmail = function(email) {
