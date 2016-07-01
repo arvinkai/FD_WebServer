@@ -799,7 +799,6 @@
 		};
 
 		(function($,doc){
-
 			window.addEventListener('show',function(){
 				var character = app.getUser();
 				var fNickshow = document.getElementById('fnick');
@@ -815,8 +814,55 @@
 				Qqnumshow.innerHTML = character.qqnum;
 				Phoneshow.innerHTML = character.phone;
 				Emailshow.innerHTML = character.email;
+
+				alert('addonline');
+								$.post('http://{{.ServerHost}}:{{.ServerPort}}/setting/addonline',{
+									uname:character.uname,
+									token:character.token
+								},function(data){
+
+								},'json');
 			},false);
+
+
+			var auths = {};
+			plus.oauth.getServices(function(services) {
+				for (var i in services) {
+					var service = services[i];
+					auths[service.id] = service;
+					}
+			}, function(e) {
+				plus.nativeUI.toast("获取登录认证失败：" + e.message);
+			});
 		}(mui,document));
+
+		var logoutBtn = document.getElementById('logout');
+		logoutBtn.addEventListener('tap',function(){
+			mui.post('http://{{.ServerHost}}:{{.ServerPort}}/setting/addonline',{
+				uname:character.uname,
+				token:character.token
+			},function(data){
+
+			},'json');
+			for (var i in auths){
+				auths[i].logout(function(){
+						outLine("注销\""+auth.description+"\"成功");
+						var character = app.getUser();
+									alert('delonline');
+						$.post('http://{{.ServerHost}}:{{.ServerPort}}/login/delonline',{
+							uname:character.uname,
+							token:character.token
+						},function(data){
+							plus.webview.getWebviewById('http://{{.ServerHost}}:{{.ServerPort}}/login').reload(true);
+						},'json');
+						app.logout();
+					},function(e){
+						outLine("注销\""+auth.description+"\"失败："+e.message);
+				});
+			}
+
+		});
+
 	</script>
 
 </html>

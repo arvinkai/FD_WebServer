@@ -33,8 +33,9 @@ func (this *RegistController) RegInfo() {
 	nickname := this.Input().Get("nickname")
 	email := this.Input().Get("email")
 	telNum := this.Input().Get("telNum")
+	platform := this.Input().Get("platform")
 
-	uid, rel, err := models.CreateUser(uname, pw, nickname, email, telNum)
+	uid, rel, err := models.CreateUser(uname, pw, nickname, email, telNum, platform)
 	success := true
 	if err != nil || uid == -1 || !rel {
 		success = false

@@ -11,12 +11,14 @@ type Character struct {
 	Point         int32  `orm:"default(0)"`
 	Money         int32  `orm:"default(0)"`
 	Qqnum         int64  `orm:"default(0)"`
+	Type          int8
 	Email         string `orm:"null"`
 	IdCard        string `orm:null;size(18)`
 	Local         string `orm:"null"`
 	CreateTime    string
 	LastloginTime string `orm:"null"`
 	Token         string
+	Platform      string `orm:"null"`
 }
 
 type Goodsinfo struct {
@@ -118,12 +120,12 @@ type ExpenseLog struct {
 }
 
 type Online struct {
-	Id         int64 `orm:"pk;auto"`
-	Uid        int64
-	Uname      string
-	Type       int8
-	Statues    int8
-	SessionKey string
+	Id      int64 `orm:"pk;auto"`
+	Uid     int64
+	Uname   string
+	Type    int8
+	Statues int8
+	Token   string
 }
 
 type Address struct {

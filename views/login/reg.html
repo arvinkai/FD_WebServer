@@ -125,7 +125,8 @@
 						pw: regInfo.password,
 						nickname: regInfo.nickname,
 						email: regInfo.email,
-						telNum: regInfo.tel
+						telNum: regInfo.tel,
+						platform:'self'
 					}, function(data) {
 						if (data.result) {
 							mui.toast('注册成功！');

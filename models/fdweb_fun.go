@@ -254,8 +254,8 @@ func CheckUserName(uname string) (bool, error) {
 	return true, nil
 }
 
-func CreateUser(uname string, pw string, nickname string, email string, tel string) (int64, bool, error) {
-	newUser := &Character{Uname: uname, Nickname: nickname, Pw: pw, Email: email, Phone: tel}
+func CreateUser(uname string, pw string, nickname string, email string, tel string, platform string) (int64, bool, error) {
+	newUser := &Character{Uname: uname, Nickname: nickname, Pw: pw, Type: 0, Email: email, Phone: tel, Platform: platform, Token: pw}
 	o := orm.NewOrm()
 	qs := o.QueryTable("character")
 	count, err := qs.Filter("uname", uname).Count()
@@ -293,4 +293,52 @@ func UserLogin(uname string, pw string) *Character {
 	}
 
 	return user
+}
+
+func GetUserInfo(uname string, token string) (*Character, int32) {
+	o := orm.NewOrm()
+	qs := o.QueryTable("character")
+	user := &Character{}
+	err := qs.Filter("uname", uname).One(user)
+	if err != nil {
+		return nil, 1
+	}
+
+	if user.Token != token {
+		return nil, 2
+	}
+
+	return user, 0
+}
+
+func GetOnlineUser(uname string, token string) (*Online, int32) {
+	o := orm.NewOrm()
+	qs := o.QueryTable("online")
+	useronline := &Online{}
+	err := qs.Filter("uname", uname).One(useronline)
+	if err != nil {
+		return nil, 1
+	}
+	if useronline.Token != token {
+		return nil, 2
+	}
+	return useronline, 0
+}
+
+func OperatOnline(useronline *Online, op string) {
+	o := orm.NewOrm()
+	qs := o.QueryTable("online")
+	count, _ := qs.Filter("uname", useronline.Uname).Count()
+	if count != 0 {
+		op = "update"
+	}
+	switch op {
+	case "add":
+		o.Insert(useronline)
+	case "del":
+		o.Delete(useronline)
+	case "update":
+		o.Update(useronline)
+	}
+
 }

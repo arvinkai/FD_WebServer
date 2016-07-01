@@ -132,7 +132,6 @@
 			});
 
 			$.plusReady(function() {
-				// app.setUser(null);
 				plus.screen.lockOrientation("portrait-primary");
 				var settings = app.getSettings();
 				var state = app.getState();
@@ -145,7 +144,6 @@
 					setTimeout(function() {
 						$.openWindow({
 							id: 'userpage',
-							//url: 'http://{{.ServerHost}}:{{.ServerPort}}/setting',
 							show: {
 								aniShow: 'pop-in'
 							},
@@ -157,6 +155,12 @@
 				};
 				//检查 "登录状态/锁屏状态" 开始
 				if (settings.autoLogin && state.token) {
+					// $.post('http://{{.ServerHost}}:{{.ServerPort}}/login/addonline',{
+					// 	uname:authRegInfo.uname,
+					// 	token:authRegInfo.token
+					// },function(data){
+
+					// },'json');
 					toUser();
 				} else {
 					app.setState(null);
@@ -197,48 +201,80 @@
 									var authRegInfo = {
 											nick:name,
 											token:auth.authResult.access_token,
-											openid:auth.authResult.openid,
+											uname:auth.authResult.openid,
+											platform:auth.id
 										}	
 										
-										//发送到服务器没有注册则首次注册注册过直接登录$.post('http://{{.ServerHost}}:{{.ServerPort}}/regist/check',{
-//										},function(){},'json');
-// alert(JSON.stringify(auth.authResult));
-
 										$.post('http://{{.ServerHost}}:{{.ServerPort}}/regist/checkuname',{
-											uName:authRegInfo.openid
+											uName:authRegInfo.uname
 										},function(data){
 											
 											if (data.CanUse) {
 												mui.post('http://{{.ServerHost}}:{{.ServerPort}}/regist/reginfo', {
-													uname: authRegInfo.openid,
+													uname: authRegInfo.uname,
 													pw: authRegInfo.token,
 													nickname: authRegInfo.nick,
+													platform:authRegInfo.platform
 												}, function(data) {
 													if (data.result) {
 														mui.toast('注册成功！');
+														mui.post('http://{{.ServerHost}}:{{.ServerPort}}/login/addonline',{
+															uname:authRegInfo.uname,
+															token:authRegInfo.token
+														},function(data){
+
+														},'json');
+
+														app.createState(authRegInfo, function() {
+															var character = {
+																uname:authRegInfo.nick,//为了显示好看特殊修改
+																nick:authRegInfo.nick,
+																qqnum:'',
+																phone:'',
+																email:'',
+																token:authRegInfo.token,
+																platform:authRegInfo.platform
+															}
+
+															app.login(character, function(err) {
+																if (err) {
+																	plus.nativeUI.toast(err);
+																	return;
+																}
+																toUser();
+															});
+														});
 													} else {
 														mui.toast('注册失败！');
 													}
 												}, 'json');
-											}
-											app.createState(authRegInfo, function() {
-												var character = {
-													uname:authRegInfo.nick,
-													nick:authRegInfo.nick,
-													qqnum:'',
-													phone:'',
-													email:'',
+											}else{
+												mui.post('http://{{.ServerHost}}:{{.ServerPort}}/login/addonline',{
+													uname:authRegInfo.uname,
 													token:authRegInfo.token
-												}
+												},function(data){
 
-												app.login(character, function(err) {
-													if (err) {
-														plus.nativeUI.toast(err);
-														return;
+												},'json');
+												app.createState(authRegInfo, function() {
+													var character = {
+														uname:authRegInfo.nick,
+														nick:authRegInfo.nick,
+														qqnum:'',
+														phone:'',
+														email:'',
+														token:authRegInfo.token,
+														platform:authRegInfo.platform
 													}
-													toUser();
+
+													app.login(character, function(err) {
+														if (err) {
+															plus.nativeUI.toast(err);
+															return;
+														}
+														toUser();
+													});
 												});
-											});
+											}
 										},'json');
 
 								}, function(e) {
@@ -292,15 +328,42 @@
 								qqnum:data.qq,
 								phone:data.phone,
 								email:data.email,
-								token:data.token
+								token:data.token,
+								platform:'self'
 							}
 
-							app.login(character, function(err) {
-								if (err) {
-									plus.nativeUI.toast(err);
-									return;
+							var stateInfo = {
+									nick:data.nick,
+									token:data.token,
+									uname:data.uname,
+									platform:'self'
+							}
+
+							// mui.post('http://{{.ServerHost}}:{{.ServerPort}}/login/addonline',{
+							// 	uname:authRegInfo.uname,
+							// 	token:authRegInfo.token
+							// },function(data){
+
+							// },'json');
+
+							app.createState(stateInfo, function() {
+								var character = {
+									uname:stateInfo.nick,
+									nick:stateInfo.nick,
+									qqnum:'',
+									phone:'',
+									email:'',
+									token:stateInfo.token,
+									platform:stateInfo.platform
 								}
-								toUser();
+
+								app.login(character, function(err) {
+									if (err) {
+										plus.nativeUI.toast(err);
+										return;
+									}
+									toUser();
+								});
 							});
 						}
 					},'json');			

@@ -9,22 +9,22 @@
 	 **/
 	owner.login = function(character, callback) {
 		callback = callback || $.noop;
-		//var users = JSON.parse(localStorage.getItem('$users') || '[]');
-		//users.push(character);
 		localStorage.setItem('$users',JSON.stringify(character));
 		
 		return owner.createState(character,callback);
 	};
 	
-	owner.logout = function(character, callback) {
-		callback = callback || $.noop;
+	owner.logout = function() {
 		owner.setUser(null);	
+		owner.setSettings(null);
 	};
 
 	owner.createState = function(authRegInfo, callback) {
 		var state = owner.getState();
-		state.uname = authRegInfo.nick;
+		state.uname = authRegInfo.uname;
 		state.token = authRegInfo.token;
+		state.nick = authRegInfo.nick;
+		state.platform = authRegInfo.platform;
 		owner.setState(state);
 		return callback();
 	};
