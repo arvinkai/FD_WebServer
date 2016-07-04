@@ -216,7 +216,7 @@
 					<div class="mui-scroll">
 						<ul class="mui-table-view mui-table-view-chevron">
 							<li class="mui-table-view-cell mui-media">
-								<a class="mui-navigate-right" href="#account">
+								<a class="mui-navigate-right" id="userInfo">
 									<img class="mui-media-object mui-pull-left head-img" id="head-img" src="../static/img/images/logo.png">
 									<div id="fnick" class="mui-media-body">
 										Hello MUI
@@ -818,7 +818,6 @@
 			checkUser();
 			window.addEventListener('show',function(){
 				var character = app.getUser();
-				alert('show1' + JSON.stringify(character));
 				var fNickshow = document.getElementById('fnick');
 				var Nickshow = document.getElementById('nick');
 				var Unameshow = document.getElementById('uname');
@@ -832,51 +831,55 @@
 				Qqnumshow.innerHTML = character.qqnum;
 				Phoneshow.innerHTML = character.phone;
 				Emailshow.innerHTML = character.email;
-				// $.openWindow({
-				// 			id: 'http://172.19.254.70:8080/setting',
-				// 			id: 'http://172.19.254.70:8080/setting',
-				// 			show: {
-				// 				aniShow: 'pop-in'
-				// 			},
-				// 			waiting: {
-				// 				autoShow: false
-				// 			}
-				// 		});
+				document.getElementById('fnick').parentNode.href = '#account';
 			},false);
 		}(mui,document));
 
 		function checkUser(){
+				 mui.preload({
+								"id": 'loginpage',
+								"url":'http://{{.ServerHost}}:{{.ServerPort}}/login',
+							});
 				var settings = app.getSettings();
 				var state = app.getState();
-				var character = app.getUser();
-				var fNickshow = document.getElementById('fnick');
-				var Nickshow = document.getElementById('nick');
-				var Unameshow = document.getElementById('uname');
-				var Qqnumshow = document.getElementById('qqnum');
-				var Phoneshow = document.getElementById('phone');
-				var Emailshow = document.getElementById('email');
 
-				fNickshow.innerHTML = character.nick+'<p class="mui-ellipsis">账号:'+ character.uname + '</p>';
-				Nickshow.innerHTML = character.nick;
-				Unameshow.innerHTML = character.uname;
-				Qqnumshow.innerHTML = character.qqnum;
-				Phoneshow.innerHTML = character.phone;
-				Emailshow.innerHTML = character.email;
+				if (settings.autoLogin && state.token) {
+					var character = app.getUser();		
+					var fNickshow = document.getElementById('fnick');
+					var Nickshow = document.getElementById('nick');
+					var Unameshow = document.getElementById('uname');
+					var Qqnumshow = document.getElementById('qqnum');
+					var Phoneshow = document.getElementById('phone');
+					var Emailshow = document.getElementById('email');
 
-				// if (settings.autoLogin && state.token) {
-				// 	setTimeout(function() {
-				// 		mui.openWindow({
-				// 			id: 'http://172.19.254.70:8080/setting',
-				// 			show: {
-				// 				aniShow: 'pop-in'
-				// 			},
-				// 			waiting: {
-				// 				autoShow: true
-				// 			}
-				// 		});
-				// 	}, 0);
-				// }
+					fNickshow.innerHTML = character.nick+'<p class="mui-ellipsis">账号:'+ character.uname + '</p>';
+					Nickshow.innerHTML = character.nick;
+					Unameshow.innerHTML = character.uname;
+					Qqnumshow.innerHTML = character.qqnum;
+					Phoneshow.innerHTML = character.phone;
+					Emailshow.innerHTML = character.email;
+
+					document.getElementById('fnick').parentNode.href = '#account';
+				}else{
+					var fNickshow = document.getElementById('fnick');
+					fNickshow.innerHTML = '<h3>登录/注册</h3>';
+				}
 			};
+
+			document.getElementById('userInfo').addEventListener('tap',function(){
+				var state = app.getState();
+				if (!state.token) {
+					mui.openWindow({
+						id: 'loginpage',
+						show: {
+							aniShow: 'pop-in'
+						},
+						waiting: {
+							autoShow: false
+						}
+					})
+				} 
+			});
 	</script>
 
 </html>

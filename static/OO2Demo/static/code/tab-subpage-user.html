@@ -185,11 +185,11 @@
 					<div class="mui-scroll">
 						<ul class="mui-table-view mui-table-view-chevron">
 							<li class="mui-table-view-cell mui-media">
-								<a class="mui-navigate-right" href="#account">
-									<img class="mui-media-object mui-pull-left head-img" id="head-img" src="../images/logo.png">
-									<div class="mui-media-body">
+								<a class="mui-navigate-right" >
+									<img class="mui-media-object mui-pull-left head-img" id="head-img" src="../static/img/images/logo.png">
+									<div id="fnick" class="mui-media-body">
 										Hello MUI
-										<p class="mui-ellipsis">账号:hellomui</p>
+										<p class='mui-ellipsis'>账号: hellomui</p>
 									</div>
 								</a>
 							</li>
@@ -769,6 +769,14 @@
 				outLine("获取登录认证失败：" + e.message);
 			});
 		};
+		document.getElementById('fnick').parentNode.href = '#account';
+//		document.getElementById('userInfo').addEventListener('tap',function(){
+//			if () {
+//				document.getElementById('fnick')
+//			} else{
+//				
+//			}
+//		});
 	</script>
 
 </html>

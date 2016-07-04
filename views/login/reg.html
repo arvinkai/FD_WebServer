@@ -130,19 +130,7 @@
 					}, function(data) {
 						if (data.result) {
 							mui.toast('注册成功！');
-							mui.openWindow({
-								url: 'http://{{.ServerHost}}:{{.ServerPort}}/login',
-								id: 'loginpage',
-								show: {
-									aniShow: 'pop-in'
-								},
-								styles: {
-									popGesture: 'hide'
-								},
-								waiting: {
-									autoShow: false
-								}
-							});
+							mui.back();
 						} else {
 							mui.toast('注册失败！');
 							passwordBox.value = '';

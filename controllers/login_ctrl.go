@@ -25,14 +25,15 @@ func (this *LoginController) Userlogin() {
 	result := 0
 	if userInfo == nil {
 		result = 1
+		this.Data["json"] = map[string]interface{}{"rel": result}
+	} else {
+		if pw != userInfo.Pw {
+			result = 2
+		}
+		this.Data["json"] = map[string]interface{}{"rel": result, "uname": userInfo.Uname, "nick": userInfo.Nickname,
+			"qq": userInfo.Qqnum, "phone": userInfo.Phone, "email": userInfo.Email, "token": userInfo.Token}
 	}
 
-	if pw != userInfo.Pw {
-		result = 2
-	}
-
-	this.Data["json"] = map[string]interface{}{"rel": result, "uname": userInfo.Uname, "nick": userInfo.Nickname,
-		"qq": userInfo.Qqnum, "phone": userInfo.Phone, "email": userInfo.Email, "token": userInfo.Token}
 	this.ServeJSON()
 }
 

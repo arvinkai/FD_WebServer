@@ -128,68 +128,38 @@
 		<script>
 		(function($, doc) {
 			$.init({
-				statusBarBackground: '#f7f7f7'
+				statusBarBackground: '#f7f7f7',
+				swipeBack:true
 			});
 
 			$.plusReady(function() {
 				plus.screen.lockOrientation("portrait-primary");
 				var settings = app.getSettings();
 				var state = app.getState();
-				var userweb = $.preload({
-					"id": 'userpage',
-					"url":'http://{{.ServerHost}}:{{.ServerPort}}/setting',
-				});
-				  // var userweb = plus.webview.getWebviewById('http://172.19.254.70:8080/setting');
-				  // var subpage_style = {
-				  // 	top: '0px',
-				  // 	bottom: '51px'
-				  // };
-				  // var par = plus.webview.parentWindow();
-				  // var sub = plus.webview.create('http://{{.ServerHost}}:{{.ServerPort}}/setting', 'userpage', subpage_style);
-				  // par.append(sub);
 
+				var userweb = plus.webview.getWebviewById('settingpage');
+				var thispage = plus.webview.getWebviewById('loginpage');
 				var toUser = function() {
 					$.fire(userweb, 'show', null);
 					setTimeout(function() {
-						$.openWindow({
-							id: 'userpage',
-							show: {
-								aniShow: 'pop-in'
-							},
-							waiting: {
-								autoShow: false
-							}
-						});
-					}, 10);
+					$.openWindow({
+						id: 'settingpage',
+						url: 'http://192.168.80.105:8080/setting',
+
+						show: {
+							aniShow: 'pop-in'
+						},
+						waiting: {
+							autoShow: false
+						}
+					});
+					}, 0);
+
+					thispage.hide();
 				};
 				//检查 "登录状态/锁屏状态" 开始
-				if (settings.autoLogin && state.token) {
-					$.post('http://{{.ServerHost}}:{{.ServerPort}}/login/addonline',{
-						uname:state.uname,
-						token:state.token
-					},function(data){
-						if (data.rel == 0) {
-							var character = {
-								uname:state.uname,//为了显示好看特殊修改
-								nick:state.nick,
-								qqnum:'',
-								phone:'',
-								email:'',
-								token:state.token,
-								platform:state.platform
-							}
+				if (settings.autoLogin && state.token) {//自动登录改由settingpage加载页面的时候做处理
 
-							app.login(character, function(err) {
-								if (err) {
-									plus.nativeUI.toast(err);
-									return;
-								}
-								toUser();
-							});
-						} else {
-							alert('用户登录数据有误,错误码：'+ data.rel);
-						}
-					},'json');
 				} else {
 					app.setState(null);
 					//第三方登录
