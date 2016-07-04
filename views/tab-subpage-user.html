@@ -653,6 +653,36 @@
 			}
 		});
 
+		var logoutBtn = document.getElementById('logout');
+		logoutBtn.addEventListener('tap',function(){
+			alert('logoutBtn');
+			AuthLogout();
+		});
+
+		function AuthLogout() {
+			plus.oauth.getServices(function(services) {
+				for (var i in services) {
+					var service = services[i];
+					service.logout(function() {
+						// alert(service.description+'退出');
+					}, function(e) {
+						alert('AuthLogout4');
+					});
+				}
+				app.logout();
+				// var character = app.getUser();
+				// alert(JSON.stringify(character));
+				// mui.post('http://{{.ServerHost}}:{{.ServerPort}}/login/delonline',{
+				// 	uname:character.uname,
+				// 	token:character.token
+				// },function(data){
+				// 	app.logout();
+				// 	plus.webview.getWebviewById('http://{{.ServerHost}}:{{.ServerPort}}/login').reload(true);
+				// },'json');
+			}, function(e) {
+				alert('AuthLogout2');
+			});
+		};
 		function getImage() {
 			var c = plus.camera.getCamera();
 			c.captureImage(function(e) {
@@ -783,23 +813,41 @@
 			document.getElementById("check_update").display = "none";
 		}
 
-		function AuthLogout() {
-			plus.oauth.getServices(function(services) {
-				for (var i in services) {
-					var service = services[i];
-					service.logout(function() {
-						outLine("退出\"" + service.description + "\"成功");
-					}, function(e) {
-						outLine("退出\"" + service.description + "\"失败" + e.message);
-					});
-				}
-			}, function(e) {
-				outLine("获取登录认证失败：" + e.message);
-			});
-		};
 
 		(function($,doc){
+			checkUser();
 			window.addEventListener('show',function(){
+				var character = app.getUser();
+				alert('show1' + JSON.stringify(character));
+				var fNickshow = document.getElementById('fnick');
+				var Nickshow = document.getElementById('nick');
+				var Unameshow = document.getElementById('uname');
+				var Qqnumshow = document.getElementById('qqnum');
+				var Phoneshow = document.getElementById('phone');
+				var Emailshow = document.getElementById('email');
+
+				fNickshow.innerHTML = character.nick+'<p class="mui-ellipsis">账号:'+ character.uname + '</p>';
+				Nickshow.innerHTML = character.nick;
+				Unameshow.innerHTML = character.uname;
+				Qqnumshow.innerHTML = character.qqnum;
+				Phoneshow.innerHTML = character.phone;
+				Emailshow.innerHTML = character.email;
+				// $.openWindow({
+				// 			id: 'http://172.19.254.70:8080/setting',
+				// 			id: 'http://172.19.254.70:8080/setting',
+				// 			show: {
+				// 				aniShow: 'pop-in'
+				// 			},
+				// 			waiting: {
+				// 				autoShow: false
+				// 			}
+				// 		});
+			},false);
+		}(mui,document));
+
+		function checkUser(){
+				var settings = app.getSettings();
+				var state = app.getState();
 				var character = app.getUser();
 				var fNickshow = document.getElementById('fnick');
 				var Nickshow = document.getElementById('nick');
@@ -815,54 +863,20 @@
 				Phoneshow.innerHTML = character.phone;
 				Emailshow.innerHTML = character.email;
 
-				alert('addonline');
-								$.post('http://{{.ServerHost}}:{{.ServerPort}}/setting/addonline',{
-									uname:character.uname,
-									token:character.token
-								},function(data){
-
-								},'json');
-			},false);
-
-
-			var auths = {};
-			plus.oauth.getServices(function(services) {
-				for (var i in services) {
-					var service = services[i];
-					auths[service.id] = service;
-					}
-			}, function(e) {
-				plus.nativeUI.toast("获取登录认证失败：" + e.message);
-			});
-		}(mui,document));
-
-		var logoutBtn = document.getElementById('logout');
-		logoutBtn.addEventListener('tap',function(){
-			mui.post('http://{{.ServerHost}}:{{.ServerPort}}/setting/addonline',{
-				uname:character.uname,
-				token:character.token
-			},function(data){
-
-			},'json');
-			for (var i in auths){
-				auths[i].logout(function(){
-						outLine("注销\""+auth.description+"\"成功");
-						var character = app.getUser();
-									alert('delonline');
-						$.post('http://{{.ServerHost}}:{{.ServerPort}}/login/delonline',{
-							uname:character.uname,
-							token:character.token
-						},function(data){
-							plus.webview.getWebviewById('http://{{.ServerHost}}:{{.ServerPort}}/login').reload(true);
-						},'json');
-						app.logout();
-					},function(e){
-						outLine("注销\""+auth.description+"\"失败："+e.message);
-				});
-			}
-
-		});
-
+				// if (settings.autoLogin && state.token) {
+				// 	setTimeout(function() {
+				// 		mui.openWindow({
+				// 			id: 'http://172.19.254.70:8080/setting',
+				// 			show: {
+				// 				aniShow: 'pop-in'
+				// 			},
+				// 			waiting: {
+				// 				autoShow: true
+				// 			}
+				// 		});
+				// 	}, 0);
+				// }
+			};
 	</script>
 
 </html>

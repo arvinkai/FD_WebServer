@@ -139,6 +139,15 @@
 					"id": 'userpage',
 					"url":'http://{{.ServerHost}}:{{.ServerPort}}/setting',
 				});
+				  // var userweb = plus.webview.getWebviewById('http://172.19.254.70:8080/setting');
+				  // var subpage_style = {
+				  // 	top: '0px',
+				  // 	bottom: '51px'
+				  // };
+				  // var par = plus.webview.parentWindow();
+				  // var sub = plus.webview.create('http://{{.ServerHost}}:{{.ServerPort}}/setting', 'userpage', subpage_style);
+				  // par.append(sub);
+
 				var toUser = function() {
 					$.fire(userweb, 'show', null);
 					setTimeout(function() {
@@ -151,17 +160,36 @@
 								autoShow: false
 							}
 						});
-					}, 0);
+					}, 10);
 				};
 				//检查 "登录状态/锁屏状态" 开始
 				if (settings.autoLogin && state.token) {
-					// $.post('http://{{.ServerHost}}:{{.ServerPort}}/login/addonline',{
-					// 	uname:authRegInfo.uname,
-					// 	token:authRegInfo.token
-					// },function(data){
+					$.post('http://{{.ServerHost}}:{{.ServerPort}}/login/addonline',{
+						uname:state.uname,
+						token:state.token
+					},function(data){
+						if (data.rel == 0) {
+							var character = {
+								uname:state.uname,//为了显示好看特殊修改
+								nick:state.nick,
+								qqnum:'',
+								phone:'',
+								email:'',
+								token:state.token,
+								platform:state.platform
+							}
 
-					// },'json');
-					toUser();
+							app.login(character, function(err) {
+								if (err) {
+									plus.nativeUI.toast(err);
+									return;
+								}
+								toUser();
+							});
+						} else {
+							alert('用户登录数据有误,错误码：'+ data.rel);
+						}
+					},'json');
 				} else {
 					app.setState(null);
 					//第三方登录
@@ -222,12 +250,43 @@
 															uname:authRegInfo.uname,
 															token:authRegInfo.token
 														},function(data){
+															if (data.rel == 0) {
+																app.createState(authRegInfo, function() {
+																	var character = {
+																		uname:authRegInfo.uname,//为了显示好看特殊修改
+																		nick:authRegInfo.nick,
+																		qqnum:'',
+																		phone:'',
+																		email:'',
+																		token:authRegInfo.token,
+																		platform:authRegInfo.platform
+																	}
 
-														},'json');
-
+																	app.login(character, function(err) {
+																		if (err) {
+																			plus.nativeUI.toast(err);
+																			return;
+																		}
+																		toUser();
+																	});
+																});
+															} else {
+																alert('用户登录数据有误,错误码：'+data.rel);
+															}
+														},'json');														
+													} else {
+														mui.toast('注册失败！');
+													}
+												}, 'json');
+											}else{
+												mui.post('http://{{.ServerHost}}:{{.ServerPort}}/login/addonline',{
+													uname:authRegInfo.uname,
+													token:authRegInfo.token
+												},function(data){
+													if (data.rel == 0) {
 														app.createState(authRegInfo, function() {
 															var character = {
-																uname:authRegInfo.nick,//为了显示好看特殊修改
+																uname:authRegInfo.uname,//为了显示好看特殊修改
 																nick:authRegInfo.nick,
 																qqnum:'',
 																phone:'',
@@ -245,35 +304,9 @@
 															});
 														});
 													} else {
-														mui.toast('注册失败！');
+														alert('用户登录数据有误,错误码：'+ data.rel);
 													}
-												}, 'json');
-											}else{
-												mui.post('http://{{.ServerHost}}:{{.ServerPort}}/login/addonline',{
-													uname:authRegInfo.uname,
-													token:authRegInfo.token
-												},function(data){
-
 												},'json');
-												app.createState(authRegInfo, function() {
-													var character = {
-														uname:authRegInfo.nick,
-														nick:authRegInfo.nick,
-														qqnum:'',
-														phone:'',
-														email:'',
-														token:authRegInfo.token,
-														platform:authRegInfo.platform
-													}
-
-													app.login(character, function(err) {
-														if (err) {
-															plus.nativeUI.toast(err);
-															return;
-														}
-														toUser();
-													});
-												});
 											}
 										},'json');
 
@@ -339,32 +372,34 @@
 									platform:'self'
 							}
 
-							// mui.post('http://{{.ServerHost}}:{{.ServerPort}}/login/addonline',{
-							// 	uname:authRegInfo.uname,
-							// 	token:authRegInfo.token
-							// },function(data){
+							mui.post('http://{{.ServerHost}}:{{.ServerPort}}/login/addonline',{
+								uname:data.uname,
+								token:data.token
+							},function(data){
+								if (data.rel == 0) {
+									app.createState(stateInfo, function() {
+										var character = {
+											uname:stateInfo.uname,
+											nick:stateInfo.nick,
+											qqnum:'',
+											phone:'',
+											email:'',
+											token:stateInfo.token,
+											platform:stateInfo.platform
+										}
 
-							// },'json');
-
-							app.createState(stateInfo, function() {
-								var character = {
-									uname:stateInfo.nick,
-									nick:stateInfo.nick,
-									qqnum:'',
-									phone:'',
-									email:'',
-									token:stateInfo.token,
-									platform:stateInfo.platform
+										app.login(character, function(err) {
+											if (err) {
+												plus.nativeUI.toast(err);
+												return;
+											}
+											toUser();
+										});
+									});
+								} else {
+									alert('用户登录数据有误,错误码：'+ data.rel);
 								}
-
-								app.login(character, function(err) {
-									if (err) {
-										plus.nativeUI.toast(err);
-										return;
-									}
-									toUser();
-								});
-							});
+							},'json');
 						}
 					},'json');			
 				});

@@ -42,11 +42,14 @@ func (this *LoginController) Addonline() {
 
 	userInfo, rel := models.GetUserInfo(uname, token)
 
-	if rel != 0 {
+	if rel != 0 || userInfo == nil {
 		fmt.Println("UserOnline result:", rel)
+
+	} else {
+		onlineuert := &models.Online{Uid: userInfo.Uid, Uname: userInfo.Uname, Type: userInfo.Type, Statues: 1, Token: userInfo.Token}
+		models.OperatOnline(onlineuert, "add")
 	}
-	onlineuert := &models.Online{Uid: userInfo.Uid, Uname: userInfo.Uname, Type: userInfo.Type, Statues: 1, Token: userInfo.Token}
-	models.OperatOnline(onlineuert, "add")
+
 	this.Data["json"] = map[string]interface{}{"rel": rel}
 	this.ServeJSON()
 }
@@ -59,9 +62,10 @@ func (this *LoginController) Delonline() {
 
 	if rel != 0 || onlineUser == nil {
 		fmt.Println("UserOnline result:", rel)
+	} else {
+		models.OperatOnline(onlineUser, "del")
 	}
 
-	models.OperatOnline(onlineUser, "del")
 	this.Data["json"] = map[string]interface{}{"rel": rel}
 	this.ServeJSON()
 }
