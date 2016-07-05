@@ -17,6 +17,7 @@
 	owner.logout = function() {
 		owner.setUser('');	
 		owner.setSettings('');
+		owner.setState('');
 	};
 
 	owner.createState = function(authRegInfo, callback) {

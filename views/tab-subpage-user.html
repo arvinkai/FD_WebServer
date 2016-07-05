@@ -282,12 +282,7 @@
 				</button>
 				<h1 class="mui-title">账号与安全</h1>
 			</header>
-<!-- 			<header class="mui-navbar-inner mui-bar mui-bar-nav" style="height: 55px;background-color: red">
-				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
-					<span class="mui-icon mui-icon-left-nav"></span>
-				</button>
-				<h1 id="title" class="mui-title">账号与安全</h1>
-			</header> -->
+
 			<div class="mui-page-content" style="margin-top: 45px">
 				<div class="mui-scroll-wrapper">
 					<div class="mui-scroll">
@@ -461,7 +456,9 @@
 	<script src="../static/js/feedback-page.js"></script>
 	<script src="../static/js/app.js"></script>
 	<script>
-		mui.init();
+		mui.init({
+				swipeBack: true, //启用右滑关闭功能
+			});
 
 		//初始化单页view
 		var viewApi = mui('#app').view({
@@ -558,7 +555,7 @@
 			}, function(e) {
 				console.log("分享到\"" + share.description + "\"失败: " + e.code + " - " + e.message);
 			});
-		}
+		};
 		//去评分
 		document.getElementById("rate").addEventListener('tap', function() {
 			if (mui.os.ios) {
@@ -655,34 +652,50 @@
 
 		var logoutBtn = document.getElementById('logout');
 		logoutBtn.addEventListener('tap',function(){
-			alert('logoutBtn');
 			AuthLogout();
+			mui.openWindow({
+				id:'homepage',
+				show: {
+					aniShow: 'pop-in'
+				},
+				waiting: {
+					autoShow: false
+				}
+			});
+
+			//获得主页面的webview
+			var main = plus.webview.currentWebview().parent();
+			//触发主页面的gohome事件
+			mui.fire(main,'gohome');
 		});
 
 		function AuthLogout() {
-			plus.oauth.getServices(function(services) {
-				for (var i in services) {
-					var service = services[i];
-					service.logout(function() {
-						// alert(service.description+'退出');
-					}, function(e) {
-						alert('AuthLogout4');
-					});
-				}
-				app.logout();
-				// var character = app.getUser();
-				// alert(JSON.stringify(character));
-				// mui.post('http://{{.ServerHost}}:{{.ServerPort}}/login/delonline',{
-				// 	uname:character.uname,
-				// 	token:character.token
-				// },function(data){
-				// 	app.logout();
-				// 	plus.webview.getWebviewById('http://{{.ServerHost}}:{{.ServerPort}}/login').reload(true);
-				// },'json');
-			}, function(e) {
-				alert('AuthLogout2');
+			plus.oauth.getServices(function(services) {			
+				var character = app.getUser();
+				mui.post('http://{{.ServerHost}}:{{.ServerPort}}/login/delonline',{
+					uname:character.uname,
+					token:character.token
+				},function(data){
+					var state = app.getState();
+					for (var i in services) {
+						var service = services[i];
+						if (state.platform == service.id) {
+							var description = service.description;
+							service.logout(function(){
+								mui.toast(description + '退出登录');
+							},function(e){
+								mui.toast(description + '退出失败' + 'Error Code:' + e);
+							});	
+						}
+					}
+
+					app.logout();
+				},'json');
+
+				
 			});
 		};
+
 		function getImage() {
 			var c = plus.camera.getCamera();
 			c.captureImage(function(e) {
@@ -702,7 +715,7 @@
 			}, {
 				filename: "_doc/head.jpg"
 			})
-		}
+		};
 
 		function galleryImg() {
 			plus.gallery.pick(function(a) {
@@ -765,7 +778,7 @@
 				document.getElementById("head-img").src = '../images/logo.png';
 				document.getElementById("head-img1").src = '../images/logo.png';
 			}
-		}
+		};
 		document.getElementById("head-img1").addEventListener('tap', function(e) {
 			e.stopPropagation();
 		});
@@ -808,10 +821,10 @@
 				document.body.appendChild(slider);
 				var _slider = mui(slider).slider();
 			}
-		}
-		if (mui.os.stream) {
-			document.getElementById("check_update").display = "none";
-		}
+		};
+		//if (mui.os.stream) {
+		//	document.getElementById("check_update").display = "none";
+		//}
 
 
 		(function($,doc){
@@ -840,10 +853,11 @@
 								"id": 'loginpage',
 								"url":'http://{{.ServerHost}}:{{.ServerPort}}/login',
 							});
-				var settings = app.getSettings();
+			
+				var setting = app.getSettings();
 				var state = app.getState();
 
-				if (settings.autoLogin && state.token) {
+				if (setting.autoLogin && state.token) {
 					var character = app.getUser();		
 					var fNickshow = document.getElementById('fnick');
 					var Nickshow = document.getElementById('nick');
@@ -863,12 +877,13 @@
 				}else{
 					var fNickshow = document.getElementById('fnick');
 					fNickshow.innerHTML = '<h3>登录/注册</h3>';
+					app.logout();
 				}
 			};
 
 			document.getElementById('userInfo').addEventListener('tap',function(){
-				var state = app.getState();
-				if (!state.token) {
+				var userInfo = app.getUser();
+				if (!userInfo.token) {
 					mui.openWindow({
 						id: 'loginpage',
 						show: {
@@ -877,7 +892,7 @@
 						waiting: {
 							autoShow: false
 						}
-					})
+					});
 				} 
 			});
 	</script>

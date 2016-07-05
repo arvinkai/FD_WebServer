@@ -29,11 +29,12 @@ func (this *LoginController) Userlogin() {
 	} else {
 		if pw != userInfo.Pw {
 			result = 2
+			this.Data["json"] = map[string]interface{}{"rel": result}
+		} else {
+			this.Data["json"] = map[string]interface{}{"rel": result, "uname": userInfo.Uname, "nick": userInfo.Nickname,
+				"qq": userInfo.Qqnum, "phone": userInfo.Phone, "email": userInfo.Email, "token": userInfo.Token}
 		}
-		this.Data["json"] = map[string]interface{}{"rel": result, "uname": userInfo.Uname, "nick": userInfo.Nickname,
-			"qq": userInfo.Qqnum, "phone": userInfo.Phone, "email": userInfo.Email, "token": userInfo.Token}
 	}
-
 	this.ServeJSON()
 }
 
@@ -67,6 +68,8 @@ func (this *LoginController) Delonline() {
 		models.OperatOnline(onlineUser, "del")
 	}
 
+	//	this.Redirect("http://172.19.254.70:8080/login", 301)
 	this.Data["json"] = map[string]interface{}{"rel": rel}
 	this.ServeJSON()
+
 }

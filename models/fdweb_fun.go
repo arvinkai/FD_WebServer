@@ -329,16 +329,25 @@ func OperatOnline(useronline *Online, op string) {
 	o := orm.NewOrm()
 	qs := o.QueryTable("online")
 	count, _ := qs.Filter("uname", useronline.Uname).Count()
-	if count != 0 {
-		op = "update"
-	}
+
 	switch op {
 	case "add":
-		o.Insert(useronline)
+		{
+			if count != 0 {
+				o.Update(useronline)
+			} else {
+				o.Insert(useronline)
+			}
+		}
 	case "del":
-		o.Delete(useronline)
-	case "update":
-		o.Update(useronline)
-	}
+		{
+			o.Delete(useronline)
+		}
 
+	case "update":
+		{
+			o.Update(useronline)
+		}
+
+	}
 }

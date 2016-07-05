@@ -89,9 +89,13 @@
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
-			<h1 class="mui-title">登录</h1>
-		</header>
+		<div class="mui-navbar-inner mui-bar mui-bar-nav">
+			<a id="loginback" type="button" class="mui-left mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-close"></span>
+			</a>
+			<h1 class="mui-center mui-title">登录</h1>
+		</div>
+
 		<div class="mui-content">
 			<form id='login-form' class="mui-input-group">
 				<div class="mui-input-row">
@@ -128,8 +132,8 @@
 		<script>
 		(function($, doc) {
 			$.init({
-				statusBarBackground: '#f7f7f7',
-				swipeBack:true
+				swipeBack: true, //启用右滑关闭功能
+				//statusBarBackground: '#f7f7f7',
 			});
 
 			$.plusReady(function() {
@@ -193,7 +197,7 @@
 								plus.nativeUI.toast("登录认证成功");
 
 								auth.getUserInfo(function() {
-									plus.nativeUI.toast("获取用户信息成功");
+									// plus.nativeUI.toast("获取用户信息成功");
 
 									var name = auth.userInfo.nickname || auth.userInfo.name;
 									var authRegInfo = {
@@ -220,7 +224,13 @@
 															uname:authRegInfo.uname,
 															token:authRegInfo.token
 														},function(data){
-															if (data.rel == 0) {
+															if (data.rel != 0) {
+																if (data.rel == 1) {
+																	$.toast("账号错误...");
+																} else if (data.rel == 2) {
+																	$.toast("密码错误...");
+																}
+															} else if (data.rel == 0) {
 																app.createState(authRegInfo, function() {
 																	var character = {
 																		uname:authRegInfo.uname,//为了显示好看特殊修改
@@ -243,6 +253,7 @@
 															} else {
 																alert('用户登录数据有误,错误码：'+data.rel);
 															}
+
 														},'json');														
 													} else {
 														mui.toast('注册失败！');
@@ -253,26 +264,32 @@
 													uname:authRegInfo.uname,
 													token:authRegInfo.token
 												},function(data){
-													if (data.rel == 0) {
-														app.createState(authRegInfo, function() {
-															var character = {
-																uname:authRegInfo.uname,//为了显示好看特殊修改
-																nick:authRegInfo.nick,
-																qqnum:'',
-																phone:'',
-																email:'',
-																token:authRegInfo.token,
-																platform:authRegInfo.platform
+													if (data.rel != 0) {
+															if (data.rel == 1) {
+																$.toast("账号错误...");
+															} else if (data.rel == 2) {
+																$.toast("密码错误...");
 															}
-
-															app.login(character, function(err) {
-																if (err) {
-																	plus.nativeUI.toast(err);
-																	return;
+														} else if (data.rel == 0) {
+															app.createState(authRegInfo, function() {
+																var character = {
+																	uname:authRegInfo.uname,//为了显示好看特殊修改
+																	nick:authRegInfo.nick,
+																	qqnum:'',
+																	phone:'',
+																	email:'',
+																	token:authRegInfo.token,
+																	platform:authRegInfo.platform
 																}
-																toUser();
+
+																app.login(character, function(err) {
+																	if (err) {
+																		plus.nativeUI.toast(err);
+																		return;
+																	}
+																	toUser();
+																});
 															});
-														});
 													} else {
 														alert('用户登录数据有误,错误码：'+ data.rel);
 													}
@@ -417,11 +434,11 @@
 						}
 					});
 				}, false);
-				//
+				
 				window.addEventListener('resize', function() {
 					oauthArea.style.display = document.body.clientHeight > 400 ? 'block' : 'none';
 				}, false);
-				//
+				
 				var backButtonPress = 0;
 				$.back = function(event) {
 					backButtonPress++;
@@ -435,6 +452,12 @@
 					}, 1000);
 					return false;
 				};
+			});
+
+			var loginbackBox = document.getElementById('loginback');
+			loginbackBox.addEventListener('tap',function(){
+				var thispage = plus.webview.currentWebview();
+				thispage.hide();
 			});
 		}(mui, document));
 		</script>
