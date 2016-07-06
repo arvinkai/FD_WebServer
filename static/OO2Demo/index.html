@@ -80,7 +80,8 @@
 			//当前激活选项
 			var firstActive = 0;
 			var activeTab = subpagesid[firstActive];
-			var needReload = true;
+			var settingReload = false;
+			var shopcarReload = false;
 			mui('.mui-bar-tab').on('tap', 'a', function(e) {
 				var targetTab = this.id;
 				if (targetTab == activeTab) {
@@ -90,17 +91,20 @@
 				//显示目标选项卡
 				//若为ios平台或非首次显示，则直接显示
 				if (mui.os.ios || aniShow[targetTab]) {
-					plus.webview.show(targetTab);
-					if (targetTab == "shopcarpage") {
+					var nwaiting = plus.nativeUI.showWaiting(); //显示原生等待框
+					if (targetTab == "shopcarpage" && shopcarReload) {
 						plus.webview.getWebviewById(targetTab).reload(true);
+						shopcarReload = false;
 					}
 					if (targetTab == "bookpage") {
 						plus.webview.getWebviewById(targetTab).reload(true);
 					}
-					if (targetTab == "settingpage" && needReload) {
+					if (targetTab == "settingpage" && settingReload) {
 						plus.webview.getWebviewById(targetTab).reload(true);
-						needReload = false;
+						settingReload = false;
 					}
+					plus.webview.show(targetTab);
+					nwaiting.close(); //新webview的载入完毕后关闭等待框
 				} else {
 					var temp = {};
 					temp[targetTab] = "true";
@@ -122,9 +126,39 @@
 					current.classList.remove('mui-active');
 					homeTab.classList.add('mui-active');
 				}
-				needReload = true;
+				settingReload = true;
 			});
 
+			document.addEventListener('gosetting', function() {
+				//模拟我的页面点击
+				var settingTab = document.getElementById("settingpage");
+				settingReload = true;
+				mui.trigger(settingTab, 'tap');
+				//切换选项卡高亮
+				var current = document.querySelector(".mui-bar-tab>.mui-tab-item.mui-active");
+				if (settingTab !== current) {
+					current.classList.remove('mui-active');
+					settingTab.classList.add('mui-active');
+				}
+
+			});
+
+			document.addEventListener('goshopcar', function() {
+				shopcarReload = true;
+				var shopcarTab = document.getElementById("shopcarpage");
+				//模拟首页点击
+				mui.trigger(shopcarTab, 'tap');
+				//切换选项卡高亮
+				var current = document.querySelector(".mui-bar-tab>.mui-tab-item.mui-active");
+				if (shopcarTab !== current) {
+					current.classList.remove('mui-active');
+					shopcarTab.classList.add('mui-active');
+				}
+			});
+			
+			document.addEventListener('flashshopcar', function() {
+				shopcarReload = true;
+			});
 		</script>
 	</body>
 

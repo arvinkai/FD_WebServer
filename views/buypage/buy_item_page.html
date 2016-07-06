@@ -177,9 +177,18 @@
 
 			document.getElementById('shop_car').addEventListener('tap',function(){
 				mui.openWindow({
-					id:'goshopcar',
-					url:'http://{{.ServerHost}}:{{.ServerPort}}/shopcar',
+					id:'shopcarpage',
+					show: {
+						aniShow: 'pop-in'
+					},
+					waiting: {
+						autoShow: false
+					}
 				});
+				var main = plus.webview.getWebviewById('shopcarpage').parent();
+				mui.fire(main,'goshopcar')
+				main.show();
+				plus.webview.currentWebview().hide();
 			});//整一个超链接范围都是tap点击区，反应更迅速
 			document.getElementById('add2car').addEventListener('tap',function(){
 
@@ -189,16 +198,12 @@
 					id:'buyjumppage',//重写把此处放到jump页处理因为传完值后直接跳转本页的话部分功能会失效，所以采用一个跳转页来刷新
 					url:'http://{{.ServerHost}}:{{.ServerPort}}/buyjump?'+'goodsid='+goodsid+'&'+'count='+count,
 				});
-				// var itemID = document.getElementById('ItemID').value;
-				// alert(itemID);//用自动路由功能调用入库函数
-
 			});
 
 			// var m_slider = mui("#slider");
 			// m_slider.slider({
 			// 	interval:3000
 			// });
-
 		</script>
 	</body>
 

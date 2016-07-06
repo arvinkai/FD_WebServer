@@ -16,7 +16,6 @@
 	
 	owner.logout = function() {
 		owner.setUser('');	
-		owner.setSettings('');
 		owner.setState('');
 	};
 

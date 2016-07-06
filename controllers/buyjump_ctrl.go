@@ -16,6 +16,8 @@ type BuyJumpController struct {
 
 func (this *BuyJumpController) Get() {
 	this.Addtocar()
+	this.Data["ServerHost"] = beego.AppConfig.String("ServerHost")
+	this.Data["ServerPort"] = beego.AppConfig.String("ServerPort")
 	this.TplName = "buypage/buy_jump_page.html"
 }
 
