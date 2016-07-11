@@ -110,8 +110,8 @@
 				var titlepay = document.getElementById("titlepay");
 				var discount = document.getElementById('discount');
 				if (checkinput) {
-					allpay.innerText = Number(allpay.outerText) - Number(price);
-					titlepay.innerText = Number(allpay.outerText) + Number(discount.outerText);
+					allpay.innerHTML = Number(allpay.outerText) - Number(price);
+					titlepay.innerHTML = Number(allpay.outerText) + Number(discount.outerText);
 				}
 			});
 			mui('.mui-numbox').on('tap', '.mui-btn-numbox-plus', function() {
@@ -125,8 +125,8 @@
 				var titlepay = document.getElementById("titlepay");
 				var discount = document.getElementById('discount');
 				if (checkinput) {
-					allpay.innerText = Number(price) + Number(allpay.outerText);
-					titlepay.innerText = Number(allpay.outerText) - Number(discount.outerText);
+					allpay.innerHTML = Number(price) + Number(allpay.outerText);
+					titlepay.innerHTML = Number(allpay.outerText) - Number(discount.outerText);
 				}
 			});
 
@@ -158,12 +158,12 @@
 				var strcount = parent_li.id + '_count';
 				var goodscount = document.getElementById(strcount).value;
 				if (e.checked) {
-					allpay.innerText = (Number(price) * Number(goodscount)) + Number(allpay.outerText);
-					titlepay.innerText = Number(allpay.outerText) - Number(discount.outerText);
+					allpay.innerHTML = (Number(price) * Number(goodscount)) + Number(allpay.outerText);
+					titlepay.innerHTML = Number(allpay.outerText) - Number(discount.outerText);
 					//					alert(allpay.innerText);
 				} else {
-					allpay.innerText = Number(allpay.outerText) - (Number(price) * Number(goodscount));
-					titlepay.innerText = Number(allpay.outerText) + Number(discount.outerText);
+					allpay.innerHTML = Number(allpay.outerText) - (Number(price) * Number(goodscount));
+					titlepay.innerHTML = Number(allpay.outerText) + Number(discount.outerText);
 					//					alert(allpay.innerText);
 				}
 			};
