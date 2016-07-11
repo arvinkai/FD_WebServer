@@ -29,13 +29,30 @@
 
 			document.getElementById('gotoshopcar').addEventListener('tap',function(){
 				mui.openWindow({
-					id:'goshopcar',
-					url:'http://192.168.80.105:8080/shopcar',
+					id:'shopcarpage',
+					show: {
+						aniShow: 'pop-in'
+					},
+					waiting: {
+						autoShow: false
+					}
 				});
+				var main = plus.webview.getWebviewById('shopcarpage').parent();
+				mui.fire(main,'goshopcar')
+				main.show();
+				plus.webview.currentWebview().hide();
 			});//整一个超链接范围都是tap点击区，反应更迅速
 			document.getElementById('backtobuy').addEventListener('tap',function(){	
 						mui.back();
-			});			
+			});		
+
+			//重写back函数，调用index里的自定义函数重置shopcar的reload标志
+			var oldback = mui.back;
+			mui.back = function(){
+				var main = plus.webview.getWebviewById('homepage').parent();
+				mui.fire(main,'flashshopcar');
+				oldback();
+			};	
 		</script>
 	</body>
 

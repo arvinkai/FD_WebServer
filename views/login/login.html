@@ -89,13 +89,12 @@
 	</head>
 
 	<body>
-		<div class="mui-navbar-inner mui-bar mui-bar-nav">
-			<a id="loginback" type="button" class="mui-left mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
-				<span class="mui-icon mui-icon-close"></span>
-			</a>
-			<h1 class="mui-center mui-title">登录</h1>
-		</div>
-
+		<header class="mui-navbar-inner mui-bar mui-bar-nav" style="background-color: #EFEFF4;">
+			<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+				<span class="mui-icon mui-icon-left-nav"></span>我的
+			</button>
+			<h1 class="mui-title">登录</h1>
+		</header>
 		<div class="mui-content">
 			<form id='login-form' class="mui-input-group">
 				<div class="mui-input-row">
@@ -142,7 +141,7 @@
 				var state = app.getState();
 
 				var userweb = plus.webview.getWebviewById('settingpage');
-				var thispage = plus.webview.getWebviewById('loginpage');
+
 				var toUser = function() {
 					$.fire(userweb, 'show', null);
 					setTimeout(function() {
@@ -158,113 +157,70 @@
 						}
 					});
 					}, 0);
-
-					thispage.hide();
+					mui.back();
 				};
 				//检查 "登录状态/锁屏状态" 开始
-				if (settings.autoLogin && state.token) {//自动登录改由settingpage加载页面的时候做处理
-
-				} else {
-					app.setState(null);
-					//第三方登录
-					var authBtns = ['qihoo', 'weixin', 'sinaweibo', 'qq']; //配置业务支持的第三方登录
-					var auths = {};
-					var oauthArea = doc.querySelector('.oauth-area');
-					plus.oauth.getServices(function(services) {
-						for (var i in services) {
-							var service = services[i];
-							auths[service.id] = service;
-							if (~authBtns.indexOf(service.id)) {
-								var isInstalled = app.isInstalled(service.id);
-								var btn = document.createElement('div');
-								//如果微信未安装，则为不启用状态
-								btn.setAttribute('class', 'oauth-btn' + (!isInstalled && service.id === 'weixin' ? (' disabled') : ''));
-								btn.authId = service.id;
-								btn.style.backgroundImage = 'url("../../static/img/images/' + service.id + '.png")'
-								oauthArea.appendChild(btn);
-							}
+		 		//自动登录改由settingpage加载页面的时候做处理
+				app.setState(null);
+				//第三方登录
+				var authBtns = ['qihoo', 'weixin', 'sinaweibo', 'qq']; //配置业务支持的第三方登录
+				var auths = {};
+				var oauthArea = doc.querySelector('.oauth-area');
+				plus.oauth.getServices(function(services) {
+					for (var i in services) {
+						var service = services[i];
+						auths[service.id] = service;
+						if (~authBtns.indexOf(service.id)) {
+							var isInstalled = app.isInstalled(service.id);
+							var btn = document.createElement('div');
+							//如果微信未安装，则为不启用状态
+							btn.setAttribute('class', 'oauth-btn' + (!isInstalled && service.id === 'weixin' ? (' disabled') : ''));
+							btn.authId = service.id;
+							btn.style.backgroundImage = 'url("../../static/img/images/' + service.id + '.png")'
+							oauthArea.appendChild(btn);
 						}
+					}
 
-						$(oauthArea).on('tap', '.oauth-btn', function() {
-							if (this.classList.contains('disabled')) {
-								plus.nativeUI.toast('您尚未安装微信客户端');
-								return;
-							}
-							var auth = auths[this.authId];
-							var waiting = plus.nativeUI.showWaiting();
-							auth.login(function() {
-								waiting.close();
-								plus.nativeUI.toast("登录认证成功");
+					$(oauthArea).on('tap', '.oauth-btn', function() {
+						if (this.classList.contains('disabled')) {
+							plus.nativeUI.toast('您尚未安装微信客户端');
+							return;
+						}
+						var auth = auths[this.authId];
+						var waiting = plus.nativeUI.showWaiting();
+						auth.login(function() {
+							waiting.close();
+							plus.nativeUI.toast("登录认证成功");
 
-								auth.getUserInfo(function() {
-									// plus.nativeUI.toast("获取用户信息成功");
+							auth.getUserInfo(function() {
+								// plus.nativeUI.toast("获取用户信息成功");
 
-									var name = auth.userInfo.nickname || auth.userInfo.name;
-									var authRegInfo = {
-											nick:name,
-											token:auth.authResult.access_token,
-											uname:auth.authResult.openid,
-											platform:auth.id
-										}	
+								var name = auth.userInfo.nickname || auth.userInfo.name;
+								var authRegInfo = {
+										nick:name,
+										token:auth.authResult.access_token,
+										uname:auth.authResult.openid,
+										platform:auth.id
+									}	
+									
+									$.post('http://{{.ServerHost}}:{{.ServerPort}}/regist/checkuname',{
+										uName:authRegInfo.uname
+									},function(data){
 										
-										$.post('http://{{.ServerHost}}:{{.ServerPort}}/regist/checkuname',{
-											uName:authRegInfo.uname
-										},function(data){
-											
-											if (data.CanUse) {
-												mui.post('http://{{.ServerHost}}:{{.ServerPort}}/regist/reginfo', {
-													uname: authRegInfo.uname,
-													pw: authRegInfo.token,
-													nickname: authRegInfo.nick,
-													platform:authRegInfo.platform
-												}, function(data) {
-													if (data.result) {
-														mui.toast('注册成功！');
-														mui.post('http://{{.ServerHost}}:{{.ServerPort}}/login/addonline',{
-															uname:authRegInfo.uname,
-															token:authRegInfo.token
-														},function(data){
-															if (data.rel != 0) {
-																if (data.rel == 1) {
-																	$.toast("账号错误...");
-																} else if (data.rel == 2) {
-																	$.toast("密码错误...");
-																}
-															} else if (data.rel == 0) {
-																app.createState(authRegInfo, function() {
-																	var character = {
-																		uname:authRegInfo.uname,//为了显示好看特殊修改
-																		nick:authRegInfo.nick,
-																		qqnum:'',
-																		phone:'',
-																		email:'',
-																		token:authRegInfo.token,
-																		platform:authRegInfo.platform
-																	}
-
-																	app.login(character, function(err) {
-																		if (err) {
-																			plus.nativeUI.toast(err);
-																			return;
-																		}
-																		toUser();
-																	});
-																});
-															} else {
-																alert('用户登录数据有误,错误码：'+data.rel);
-															}
-
-														},'json');														
-													} else {
-														mui.toast('注册失败！');
-													}
-												}, 'json');
-											}else{
-												mui.post('http://{{.ServerHost}}:{{.ServerPort}}/login/addonline',{
-													uname:authRegInfo.uname,
-													token:authRegInfo.token
-												},function(data){
-													if (data.rel != 0) {
+										if (data.CanUse) {
+											mui.post('http://{{.ServerHost}}:{{.ServerPort}}/regist/reginfo', {
+												uname: authRegInfo.uname,
+												pw: authRegInfo.token,
+												nickname: authRegInfo.nick,
+												platform:authRegInfo.platform
+											}, function(data) {
+												if (data.result) {
+													mui.toast('注册成功！');
+													mui.post('http://{{.ServerHost}}:{{.ServerPort}}/login/addonline',{
+														uname:authRegInfo.uname,
+														token:authRegInfo.token
+													},function(data){
+														if (data.rel != 0) {
 															if (data.rel == 1) {
 																$.toast("账号错误...");
 															} else if (data.rel == 2) {
@@ -290,26 +246,66 @@
 																	toUser();
 																});
 															});
-													} else {
-														alert('用户登录数据有误,错误码：'+ data.rel);
-													}
-												},'json');
-											}
-										},'json');
+														} else {
+															alert('用户登录数据有误,错误码：'+data.rel);
+														}
 
-								}, function(e) {
-									plus.nativeUI.toast("获取用户信息失败：" + e.message);
-								});
+													},'json');														
+												} else {
+													mui.toast('注册失败！');
+												}
+											}, 'json');
+										}else{
+											mui.post('http://{{.ServerHost}}:{{.ServerPort}}/login/addonline',{
+												uname:authRegInfo.uname,
+												token:authRegInfo.token
+											},function(data){
+												if (data.rel != 0) {
+														if (data.rel == 1) {
+															$.toast("账号错误...");
+														} else if (data.rel == 2) {
+															$.toast("密码错误...");
+														}
+													} else if (data.rel == 0) {
+														app.createState(authRegInfo, function() {
+															var character = {
+																uname:authRegInfo.uname,//为了显示好看特殊修改
+																nick:authRegInfo.nick,
+																qqnum:'',
+																phone:'',
+																email:'',
+																token:authRegInfo.token,
+																platform:authRegInfo.platform
+															}
+
+															app.login(character, function(err) {
+																if (err) {
+																	plus.nativeUI.toast(err);
+																	return;
+																}
+																toUser();
+															});
+														});
+												} else {
+													alert('用户登录数据有误,错误码：'+ data.rel);
+												}
+											},'json');
+										}
+									},'json');
+
 							}, function(e) {
-								waiting.close();
-								plus.nativeUI.toast("登录认证失败：" + e.message);
+								plus.nativeUI.toast("获取用户信息失败：" + e.message);
 							});
+						}, function(e) {
+							waiting.close();
+							plus.nativeUI.toast("登录认证失败：" + e.message);
 						});
-					}, function(e) {
-						oauthArea.style.display = 'none';
-						plus.nativeUI.toast("获取登录认证失败：" + e.message);
 					});
-				}
+				}, function(e) {
+					oauthArea.style.display = 'none';
+					plus.nativeUI.toast("获取登录认证失败：" + e.message);
+				});
+			
 				
 				// close splash
 				setTimeout(function() {
@@ -439,26 +435,26 @@
 					oauthArea.style.display = document.body.clientHeight > 400 ? 'block' : 'none';
 				}, false);
 				
-				var backButtonPress = 0;
-				$.back = function(event) {
-					backButtonPress++;
-					if (backButtonPress > 1) {
-						plus.runtime.quit();
-					} else {
-						plus.nativeUI.toast('再按一次退出应用');
-					}
-					setTimeout(function() {
-						backButtonPress = 0;
-					}, 1000);
-					return false;
-				};
+				// var backButtonPress = 0;
+				// $.back = function(event) {
+				// 	backButtonPress++;
+				// 	if (backButtonPress > 1) {
+				// 		plus.runtime.quit();
+				// 	} else {
+				// 		plus.nativeUI.toast('再按一次退出应用');
+				// 	}
+				// 	setTimeout(function() {
+				// 		backButtonPress = 0;
+				// 	}, 1000);
+				// 	return false;
+				// };
 			});
 
-			var loginbackBox = document.getElementById('loginback');
-			loginbackBox.addEventListener('tap',function(){
-				var thispage = plus.webview.currentWebview();
-				thispage.hide();
-			});
+			// var loginbackBox = document.getElementById('loginback');
+			// loginbackBox.addEventListener('tap',function(){
+			// 	var thispage = plus.webview.currentWebview();
+			// 	thispage.hide();
+			// });
 		}(mui, document));
 		</script>
 	</body>
