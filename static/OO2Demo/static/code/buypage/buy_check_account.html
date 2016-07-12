@@ -194,7 +194,7 @@
 				<div class="mui-navbar">
 
 				</div>
-				<div class="mui-page" style="margin-top: -10px;">
+				<div class="mui-pages" style="margin-top: -10px;">
 
 				</div>
 			</div>
@@ -208,29 +208,37 @@
 
 			<div class="mui-page-content">
 				<div class="mui-scroll-wrapper">
-					<div class="mui-scroll">
-						<ul class="mui-table-view mui-table-view-chevron">
-							<li class="mui-table-view-cell mui-media">
-								<div class="mui-media-body">
-									Hello MUI
-									<p class='mui-ellipsis'>账号: hellomui</p>
-								</div>
+					<div class="mui-scroll" style="background-color: red;">
+						<ul class="mui-table-view mui-table-view-chevron"style="margin-bottom: 2px;margin-top: 10px;">
+							<li class="mui-table-view-cell mui-media" style=" ">
+
+								<a class="mui-navigate-right">
+									<div class="mui-media-body">
+										<h4>万先生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;182****5475&nbsp;&nbsp;&nbsp;<span>
+										默认
+									</span></h4>
+
+										<p class='mui-h5 mui-ellipsis'><span class="mui-icon mui-icon-location" style="font-size: 15px"></span>上海浦东新区峨山路99号金牛大厦(北)206</p>
+									</div>
+								</a>
+
 							</li>
+							
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
-		<script src="../../../js/mui.min.js"></script>
-			<script src="../../../js/mui.view.js "></script>
-		<script >
-			mui.init();
-			var viewApi = mui('#app').view({
-				defaultPage:'#check'
-			});
-					
-			mui('.mui-scroll-wrapper').scroll();
-		</script>
 	</body>
+	<script src="../../../js/mui.min.js"></script>
+	<script src="../../../js/mui.view.js "></script>
+	<script>
+		mui.init();
+		var viewApi = mui('#app').view({
+			defaultPage: '#check'
+		});
+
+		mui('.mui-scroll-wrapper').scroll();
+	</script>
 
 </html>
