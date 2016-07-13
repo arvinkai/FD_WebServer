@@ -105,19 +105,6 @@
 						ProcessPrice(AllCheckboxs[i]);
 					}
 				}
-
-				//				for (var i = 0; i < AllCheckboxs.length; ++i) {
-				//					if (!AllCheckboxs[i].checked) {
-				//						AllCheckboxs[i].checked = this.checked;
-				//						ProcessPrice(AllCheckboxs[i]);
-				//					} else {
-				//						if (!this.checked) {
-				//							alert('test');
-				//							AllCheckboxs[i].checked = this.checked;
-				//							ProcessPrice(AllCheckboxs[i]);
-				//						}
-				//					}
-				//				}
 				if (this.checked) {
 					document.getElementById('checkpay').value = '去结账(' + AllCheckboxs.length + ')';
 				} else {
