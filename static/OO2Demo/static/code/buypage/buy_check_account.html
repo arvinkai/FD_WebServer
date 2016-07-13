@@ -228,9 +228,8 @@
 							<li class="mui-table-view-cell mui-media">
 								<a>
 									<div class="mui-media-body">
-
+										<!--通过服务器进行辨别如果物品超过1个则只显示图标，图标后显示物品个数，点击后进入展开页，最多显示3个图标-->
 										<img class="mui-col-xs-3" src="../../images/IMG_2239.png" />
-
 										<div class="mui-col-xs-8 mui-pull-right">
 											<h4 style="line-height: 20px;">超级好吃甜甜圈</h4>
 											<h5 style="line-height: 20px;">数量:1&nbsp;&nbsp;&nbsp;生产日期:2016.07.13</h5>
@@ -239,11 +238,22 @@
 									</div>
 								</a>
 							</li>
+							<li class="mui-table-view-cell mui-media">
+								<a class="mui-navigate-right">
+									<div class="mui-media-body">
+										<!--通过服务器进行辨别如果物品超过1个则只显示图标，图标后显示物品个数，点击后进入展开页，最多显示3个图标-->
+										<img class="mui-col-xs-3" src="../../images/IMG_2239.png" />
+										<img class="mui-col-xs-3" src="../../images/IMG_2239.png" />
+										<img class="mui-col-xs-3" src="../../images/IMG_2239.png" />
+										<h4 class="mui-pull-right" style="line-height: 70px;">共3件</h4>
+									</div>
+								</a>
+							</li>
 
 							<li class="mui-table-view-cell mui-media">
 								<a class="mui-navigate-right">
 									<div class="mui-media-body">
-										<h4 class="mui-pull-left">配送时间：</h4>
+										<h4 class="mui-pull-left">配送时间</h4>
 										<h5 class="mui-pull-right">17:00-18:00</h5>
 									</div>
 								</a>
@@ -252,7 +262,7 @@
 							<li class="mui-table-view-cell mui-media">
 								<a class="mui-navigate-right">
 									<div class="mui-media-body">
-										<h4 class="mui-pull-left">支付方式：</h4>
+										<h4 class="mui-pull-left">支付方式</h4>
 										<h5 class="mui-pull-right">微信支付</h5>
 									</div>
 								</a>
@@ -263,19 +273,34 @@
 							<li class="mui-table-view-cell mui-media">
 								<a class="mui-navigate-right">
 									<div class="mui-media-body">
-										<h4 class="mui-pull-left">优惠券：</h4>
-										<h5 class="mui-pull-right">满20减5</h5>
+										<h4 class="mui-pull-left">优惠券</h4>
+										<h5 class="mui-pull-right">-￥5.00</h5>
 									</div>
 								</a>
 							</li>
 							<li class="mui-table-view-cell mui-media">
 								<a class="mui-navigate-right">
 									<div class="mui-media-body">
-										<h4 class="mui-pull-left">使用积分：</h4>
+										<h4 class="mui-pull-left">使用积分</h4>
 										<h5 class="mui-pull-right">100点</h5>
 									</div>
 								</a>
 							</li>
+						</ul>
+
+						<ul class="mui-table-view mui-table-view-chevron" style="margin-bottom: 2px;margin-top: 10px;">
+							<div class="mui-media-body">
+								<h4 class="mui-pull-left" style="text-indent: 1em;">商品金额</h4>
+								<h5 class="mui-pull-right" style="color: red;">￥10.00&nbsp;&nbsp;</h5>
+							</div>
+							<div class="mui-media-body">
+								<h4 class="mui-pull-left" style="text-indent: 1em;">运费</h4>
+								<h5 class="mui-pull-right" style="color: red;">+￥3.00&nbsp;&nbsp;</h5>
+							</div>
+							<div class="mui-media-body">
+								<h4 class="mui-pull-left" style="text-indent: 1em;">优惠券</h4>
+								<h5 class="mui-pull-right" style="color: red;">-￥5.00&nbsp;&nbsp;</h5>
+							</div>
 						</ul>
 					</div>
 				</div>
@@ -284,8 +309,7 @@
 
 		<footer class="mui-bar mui-bar-footer" style="">
 			<div class="mui-pull-left" style="color: red;line-break: normal;line-height: 50px;">
-				<label>实付款：￥10.00</label>
-				<label style="font-size: 70%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;外送费：￥0.00</label>
+				<label>实付款：￥8.00</label>
 			</div>
 			<div class="mui-pull-right">
 				<button type="button" class="mui-btn mui-btn-danger mui-btn-block mui-pull-right" style="width: 100px;">提交订单</button>
