@@ -28,20 +28,20 @@
 				height: 100%;
 				background-color: #efeff4;
 			}
-			
-			.mui-pages {
-				/*top: 40px;*/
-				/*height: auto;*/
-			}
+			/*.mui-pages {
+				top: 40px;
+				height: auto;
+			}*/
 			
 			.mui-scroll-wrapper,
 			.mui-scroll {
 				background-color: #efeff4;
 			}
 			
-			.mui-scroll-wrapper{
+			.mui-scroll-wrapper {
 				margin: 40px 0px 44px 0px;
 			}
+			
 			.mui-page.mui-transitioning {
 				-webkit-transition: -webkit-transform 300ms ease;
 				transition: transform 300ms ease;
@@ -263,10 +263,12 @@
 								</a>
 							</li>
 							<li class="mui-table-view-cell mui-media">
-								<a class="mui-navigate-right">
+								<a id="point" class="mui-navigate-right">
 									<div class="mui-media-body">
-										<h4 class="mui-pull-left">使用积分</h4>
-										<h5 class="mui-pull-right">100点</h5>
+										<label class="mui-pull-left mui-h4" style="font-weight: bold;color: black;">积分&nbsp;&nbsp;&nbsp;</label>
+										<h5 class="mui-pull-right" style="white-space: normal;">
+											共有 <label id="allPoint">10000</label>点，使用 <label id="usePoint">0</label>积分，抵￥<label id="point2Money">0.00</label>
+										</h5>
 									</div>
 								</a>
 							</li>
@@ -325,7 +327,7 @@
 								<div class="mui-table">
 									<div class="mui-table-cell mui-col-xs-10 mui-pull-left">
 										<h4>万先生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;182****5475
-											&nbsp;&nbsp;&nbsp;
+											&nbsp;&nbsp;&nbsp;</h4>
 										<span class="mui-icon mui-icon-location mui-pull-left" style="font-size: 15px;line-height: 25px;"></span>
 										<p class='mui-h5 mui-ellipsis ' style="white-space: normal;line-height: 25px;">上海浦东新区峨山路99号金牛大厦(北)206</p>
 									</div>
@@ -340,7 +342,7 @@
 				</footer>
 			</div>
 		</div>
-		
+
 		<div id="goodslist" class="mui-page">
 			<header class="mui-navbar-inner mui-bar mui-bar-nav" style="background-color: #EFEFF4;">
 				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href=""></a>
@@ -359,10 +361,10 @@
 										<img class="mui-col-xs-3" src="../../images/IMG_2239.png" />
 										<div class="mui-col-xs-8 mui-pull-right">
 											<h4 style="line-height: 20px;">超级好吃甜甜圈</h4>
-										<h5 style="line-height: 20px;">数量:1&nbsp;&nbsp;&nbsp;生产日期:2016.07.13</h5>
-										<h5 style="color: red;font-size: 15px;font-weight: bold;line-height: 20px;">￥10.<lable style="font-size: 85%">00</lable></h5>
+											<h5 style="line-height: 20px;">数量:1&nbsp;&nbsp;&nbsp;生产日期:2016.07.13</h5>
+											<h5 style="color: red;font-size: 15px;font-weight: bold;line-height: 20px;">￥10.<lable style="font-size: 85%">00</lable></h5>
+										</div>
 									</div>
-								</div>
 								</a>
 							</li>
 							<li class="mui-table-view-cell mui-media">
@@ -532,6 +534,33 @@
 
 			document.getElementById('checkType').innerHTML = this.innerHTML;
 			mui('#middlePopover').popover('toggle');
+		});
+
+		var usePoint = document.getElementById('point');
+		usePoint.addEventListener('tap', function(e) {
+			e.detail.gesture.preventDefault();
+			var btnArray = ['撤回点数', '使用点数'];
+			mui.prompt('请输入使用的点数:', '0', '点数使用', btnArray, function(e) {
+				var allpointValue = document.getElementById('allPoint').innerHTML;
+				var usepointValue = document.getElementById('usePoint').innerHTML;
+				var point2moneyValue = document.getElementById('point2Money').innerHTML;
+
+				if(e.index == 1) {
+					document.getElementById('allPoint').innerHTML = Number(allpointValue) - Number(e.value);
+					document.getElementById('usePoint').innerHTML = Number(e.value) + Number(usepointValue);
+					document.getElementById('point2Money').innerHTML = Number(e.value / 100) + Number(point2moneyValue);
+
+				} else {
+					var checkvalue = Number(usepointValue) - Number(e.value);
+					if(checkvalue >= 0) {
+						document.getElementById('allPoint').innerHTML = Number(allpointValue) + Number(e.value);
+						document.getElementById('usePoint').innerHTML = Number(usepointValue) - Number(e.value);
+						document.getElementById('point2Money').innerHTML = Number(point2moneyValue) - Number(e.value / 100);
+					} else {
+						alert('请输入正确的值！');
+					}
+				}
+			});
 		});
 	</script>
 
