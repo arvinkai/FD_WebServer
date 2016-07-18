@@ -23,16 +23,17 @@
 				left: 0;
 				right: 0;
 				top: 0;
-				bottom: 0px;
+				bottom: 0;
 				width: 100%;
 				height: 100%;
 				background-color: #efeff4;
 			}
 			
-			.mui-pages {
-				/*top: 40px;*/
-				/*height: auto;*/
-			}
+		/*//导致footer页脚会出现跳动，进入页面然后返回导致页脚变高		
+	.mui-pages {
+				top: 46px;
+				height: auto;
+			}*/
 			
 			.mui-scroll-wrapper,
 			.mui-scroll {
@@ -42,6 +43,7 @@
 			.mui-scroll-wrapper{
 				margin: 40px 0px 44px 0px;
 			}
+
 			.mui-page.mui-transitioning {
 				-webkit-transition: -webkit-transform 300ms ease;
 				transition: transform 300ms ease;
@@ -149,6 +151,27 @@
 				height: 0;
 			}
 			
+			.head {
+				height: 40px;
+			}
+			
+			#head {
+				line-height: 40px;
+			}
+			
+			.head-img {
+				width: 40px;
+				height: 40px;
+			}
+			
+			#head-img1 {
+				position: absolute;
+				bottom: 10px;
+				right: 40px;
+				width: 40px;
+				height: 40px;
+			}
+			
 			.update {
 				font-style: normal;
 				color: #999999;
@@ -165,10 +188,11 @@
 			.mui-ios .mui-navbar .mui-bar .mui-title {
 				position: static;
 			}
+						
 		</style>
-		<link href="../../../css/mui.min.css" rel="stylesheet" />
-		<link href="../../../css/mui.picker.css" rel="stylesheet" />
-		<link href="../../../css/mui.poppicker.css" rel="stylesheet" />
+		<link href="../../static/css/mui.min.css" rel="stylesheet" />
+		<link href="../../static/css/mui.picker.css" rel="stylesheet" />
+		<link href="../../static/css/mui.poppicker.css" rel="stylesheet" />
 	</head>
 
 	<body class="mui-fullscreen">
@@ -288,15 +312,16 @@
 						</ul>
 					</div>
 				</div>
-				<footer class="mui-bar mui-bar-footer">
-					<div class="mui-pull-left" style="color: red;line-break: normal;line-height: 44px;">
-						<label>实付款：￥8.00</label>
-					</div>
-					<div class="mui-pull-right">
-						<button type="button" class="mui-btn mui-btn-danger mui-btn-block mui-pull-right" style="width: 100px;">提交订单</button>
-					</div>
-				</footer>
 			</div>
+
+			<footer class="mui-bar mui-bar-footer" >
+				<div class="mui-pull-left" style="color: red;line-break: normal;line-height: 44px;">
+					<label>实付款：￥8.00</label>
+				</div>
+				<div class="mui-pull-right">
+					<button type="button" class="mui-btn mui-btn-danger mui-btn-block mui-pull-right" style="width: 100px;">提交订单</button>
+				</div>
+			</footer>
 		</div>
 
 		<div id="address" class="mui-page">
@@ -306,7 +331,7 @@
 			</header>
 
 			<div class="mui-page-content">
-				<div class="mui-scroll-wrapper" style="margin-bottom: 44px;">
+				<div class="mui-scroll-wrapper">
 					<div class="mui-scroll">
 						<ul class="mui-table-view ">
 							<li class="mui-table-view-cell">
@@ -446,10 +471,10 @@
 			</div>
 		</div>
 	</body>
-	<script src="../../../js/mui.min.js"></script>
-	<script src="../../../js/mui.view.js "></script>
-	<script src="../../../js/mui.picker.js"></script>
-	<script src="../../../js/mui.poppicker.js"></script>
+	<script src="../../static/js/mui.min.js"></script>
+	<script src="../../static/js/mui.view.js "></script>
+	<script src="../../static/js/mui.picker.js"></script>
+	<script src="../../static/js/mui.poppicker.js"></script>
 	<script>
 		mui.init({
 			swipeBack: true //启用右滑关闭功能
@@ -512,7 +537,7 @@
 				var showDatePickerButton = doc.getElementById('showDatePicker');
 				var dateResult = doc.getElementById('dateResult');
 				showDatePickerButton.addEventListener('tap', function(event) {
-
+					
 					datePicker.show(function(items) {
 						dateResult.innerText = items[0].text + " " + items[1].text;
 						//返回 false 可以阻止选择框的关闭

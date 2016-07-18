@@ -167,7 +167,20 @@
 			
 			document.getElementById('add2car').addEventListener('tap',function(){
 
+				mui.openWindow({
+							url: 'http://172.19.254.70:8080/checkaccount',
+					id: 'checkaccount',
 
+							show: {
+								aniShow: 'pop-in'
+							},
+							styles: {
+								popGesture: 'hide'
+							},
+							waiting: {
+								autoShow: false
+							}
+						});
 			})
 		</script>
 	</body>

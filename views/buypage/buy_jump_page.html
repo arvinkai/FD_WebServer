@@ -43,7 +43,21 @@
 				plus.webview.currentWebview().hide();
 			});//整一个超链接范围都是tap点击区，反应更迅速
 			document.getElementById('backtobuy').addEventListener('tap',function(){	
-						mui.back();
+						//mui.back();
+										mui.openWindow({
+							url: 'http://172.19.254.70:8080/checkaccount',
+					id: 'checkaccount',
+
+							show: {
+								aniShow: 'pop-in'
+							},
+							styles: {
+								popGesture: 'hide'
+							},
+							waiting: {
+								autoShow: false
+							}
+						});
 			});		
 
 			//重写back函数，调用index里的自定义函数重置shopcar的reload标志
