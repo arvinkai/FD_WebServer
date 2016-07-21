@@ -475,184 +475,104 @@
 
 			$.ready(function() {
 				//配送时间选择器
-				var myDate = new Date();
-				var myMonth = myDate.getMonth() + 1;
-				var myToday = myDate.getDate();
-				var myTomorrow = myDate.getDate() + 1;
-				var myAfterTomorrow = myDate.getDate() + 2;
-
-				if(myDate.getDate() < 10) {
-					myDay = '0' + myDay;
-				}
-				if(myDate.getMonth() < 10) {
-					myMonth = '0' + myMonth;
-				}
-
-				var timedata = [{
-					value: 'now',
-					text: '立即送出',
-					children: [{
-						value: ' ',
-						text: ' '
-					}]
-				}, {
-					value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday,
-					text: myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myToday,
-					children: [{
-						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '001',
-						text: '09:00-12:00'
-					}, {
-						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '002',
-						text: '13:00-17:00'
-					}, {
-						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '003',
-						text: '18:00-20:00'
-					}]
-				}, {
-					value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow,
-					text: myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myTomorrow,
-					children: [{
-						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow + '001',
-						text: '09:00-12:00'
-					}, {
-						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow + '002',
-						text: '13:00-17:00'
-					}, {
-						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow + '003',
-						text: '18:00-20:00'
-					}]
-				}, {
-					value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow,
-					text: myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myAfterTomorrow,
-					children: [{
-						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow + '001',
-						text: '09:00-12:00'
-					}, {
-						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow + '002',
-						text: '13:00-17:00'
-					}, {
-						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow + '003',
-						text: '18:00-20:00'
-					}]
-				}];
-				if(myDate.getHours() > 8) {
-					timedata[1].children = [{
-						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '002',
-						text: '13:00-17:00'
-					}, {
-						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '003',
-						text: '18:00-20:00'
-					}];
-				}
-
-				if(myDate.getHours() > 12) {
-					timedata[1].children = [{
-						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '003',
-						text: '18:00-20:00'
-					}];
-				}
-
-				if(myDate.getHours() > 17) {
-					timedata.splice(1, 1);
-				}
-
-				if(myDate.getHours() > 20) {
-					timedata.splice(0, 1);
-				}
 				//二级联动时间选择器
 				var datePicker = new $.PopPicker({
 					layer: 2
 				});
 
-				datePicker.setData(timedata);
 				var showDatePickerButton = doc.getElementById('showDatePicker');
 				var dateResult = doc.getElementById('dateResult');
 
 				showDatePickerButton.addEventListener('tap', function(event) {
 					//					document.write(JSON.stringify(timedata))
-					//					var myDate = new Date();
-					//					var myMonth = myDate.getMonth() + 1;
-					//					var myToday = myDate.getDate();
-					//					var myTomorrow = myDate.getDate() + 1;
-					//					var myAfterTomorrow = myDate.getDate() + 2;
-					//					if(myDate.getDate() < 10) {
-					//						myDay = '0' + myDay;
-					//					}
-					//					if(myDate.getMonth() < 10) {
-					//						myMonth = '0' + myMonth;
-					//					}
-					//
-					//					var timedata = [{
-					//						value: 'now',
-					//						text: '立即送出',
-					//						children: [{
-					//							value: ' ',
-					//							text: ' '
-					//						}]
-					//					}, {
-					//						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday,
-					//						text: myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myToday,
-					//						children: [{
-					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '001',
-					//							text: '09:00-12:00'
-					//						}, {
-					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '002',
-					//							text: '13:00-17:00'
-					//						}, {
-					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '003',
-					//							text: '18:00-20:00'
-					//						}]
-					//					}, {
-					//						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow,
-					//						text: myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myTomorrow,
-					//						children: [{
-					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow + '001',
-					//							text: '09:00-12:00'
-					//						}, {
-					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow + '002',
-					//							text: '13:00-17:00'
-					//						}, {
-					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow + '003',
-					//							text: '18:00-20:00'
-					//						}]
-					//					}, {
-					//						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow,
-					//						text: myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myAfterTomorrow,
-					//						children: [{
-					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow + '001',
-					//							text: '09:00-12:00'
-					//						}, {
-					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow + '002',
-					//							text: '13:00-17:00'
-					//						}, {
-					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow + '003',
-					//							text: '18:00-20:00'
-					//						}]
-					//					}];
-					//					if(myDate.getHours() > 8) {
-					//						timedata[1].children = [{
-					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '002',
-					//							text: '13:00-17:00'
-					//						}, {
-					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '003',
-					//							text: '18:00-20:00'
-					//						}];
-					//					}
-					//
-					//					if(myDate.getHours() > 12) {
-					//						timedata[1].children = [{
-					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '003',
-					//							text: '18:00-20:00'
-					//						}];
-					//					}
-					//
-					//					if(myDate.getHours() > 17) {
-					//						timedata.splice(1, 1);
-					//					}
-					//
-					//					if(myDate.getHours() > 20) {
-					//						timedata.splice(0, 1);
-					//					}
+					var myDate = new Date();
+					var myMonth = myDate.getMonth() + 1;
+					var myToday = myDate.getDate();
+					var myTomorrow = myDate.getDate() + 1;
+					var myAfterTomorrow = myDate.getDate() + 2;
+
+					if(myDate.getDate() < 10) {
+						myDay = '0' + myDay;
+					}
+					if(myDate.getMonth() < 10) {
+						myMonth = '0' + myMonth;
+					}
+
+					var timedata = [{
+						value: 'now',
+						text: '立即送出',
+						children: [{
+							value: ' ',
+							text: ' '
+						}]
+					}, {
+						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday,
+						text: myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myToday,
+						children: [{
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '001',
+							text: '09:00-12:00'
+						}, {
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '002',
+							text: '13:00-17:00'
+						}, {
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '003',
+							text: '18:00-20:00'
+						}]
+					}, {
+						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow,
+						text: myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myTomorrow,
+						children: [{
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow + '001',
+							text: '09:00-12:00'
+						}, {
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow + '002',
+							text: '13:00-17:00'
+						}, {
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow + '003',
+							text: '18:00-20:00'
+						}]
+					}, {
+						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow,
+						text: myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myAfterTomorrow,
+						children: [{
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow + '001',
+							text: '09:00-12:00'
+						}, {
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow + '002',
+							text: '13:00-17:00'
+						}, {
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow + '003',
+							text: '18:00-20:00'
+						}]
+					}];
+					
+					var todayType = 1;
+					
+					if(myDate.getHours() >= 9) {
+						timedata[todayType].children = [{
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '002',
+							text: '13:00-17:00'
+						}, {
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '003',
+							text: '18:00-20:00'
+						}];
+					}
+
+					if(myDate.getHours() >= 13) {
+						timedata[todayType].children = [{
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '003',
+							text: '18:00-20:00'
+						}];
+					}
+
+					if(myDate.getHours() >= 18) {
+						timedata.splice(1, 1);
+					}
+
+					if(myDate.getHours() >= 20) {
+						timedata.splice(0, 1);
+					}
+					datePicker.setData(timedata);
 
 					datePicker.show(function(items) {
 						dateResult.innerText = items[0].text + " " + items[1].text;
