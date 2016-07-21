@@ -191,7 +191,7 @@
 			</header>
 
 			<div class="mui-page-content">
-				<div class="mui-scroll-wrapper">
+				<div class="mui-scroll-wrapper" style="margin-bottom: 44px;">
 					<div class="mui-scroll">
 						<ul class="mui-table-view mui-table-view-chevron" style="margin-bottom: 2px;margin-top: 10px;">
 							<li class="mui-table-view-cell mui-media" style=" ">
@@ -238,7 +238,7 @@
 								<a id='showDatePicker'>
 									<div class="mui-media-body">
 										<h4 class="mui-pull-left">配送时间</h4>
-										<h5 id='dateResult' class="mui-pull-right">17:00-18:00</h5>
+										<h5 id='dateResult' class="mui-pull-right">立即送出</h5>
 									</div>
 								</a>
 							</li>
@@ -265,7 +265,7 @@
 							<li class="mui-table-view-cell mui-media">
 								<a id="point" class="mui-navigate-right">
 									<div class="mui-media-body">
-										<label class="mui-pull-left mui-h4" style="font-weight: bold;color: black;">积分&nbsp;&nbsp;&nbsp;</label>
+										<label class="mui-pull-left mui-h4" style="font-weight: bold;color: black;">积分&nbsp;</label>
 										<h5 class="mui-pull-right" style="white-space: normal;">
 											共有 <label id="allPoint">10000</label>点，使用 <label id="usePoint">0</label>积分，抵￥<label id="point2Money">0.00</label>
 										</h5>
@@ -475,45 +475,184 @@
 
 			$.ready(function() {
 				//配送时间选择器
+				var myDate = new Date();
+				var myMonth = myDate.getMonth() + 1;
+				var myToday = myDate.getDate();
+				var myTomorrow = myDate.getDate() + 1;
+				var myAfterTomorrow = myDate.getDate() + 2;
+
+				if(myDate.getDate() < 10) {
+					myDay = '0' + myDay;
+				}
+				if(myDate.getMonth() < 10) {
+					myMonth = '0' + myMonth;
+				}
+
 				var timedata = [{
-					value: '110000',
-					text: '2016-07-15',
+					value: 'now',
+					text: '立即送出',
 					children: [{
-						value: '110001',
-						text: '09:00-12:00'
-					}, {
-						value: '110002',
-						text: '13:00-19:00'
+						value: ' ',
+						text: ' '
 					}]
 				}, {
-					value: '120000',
-					text: '2016-07-16',
+					value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday,
+					text: myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myToday,
 					children: [{
-						value: '120001',
+						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '001',
 						text: '09:00-12:00'
 					}, {
-						value: '120002',
-						text: '13:00-19:00'
+						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '002',
+						text: '13:00-17:00'
+					}, {
+						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '003',
+						text: '18:00-20:00'
 					}]
 				}, {
-					value: '130000',
-					text: '2016-07-17',
+					value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow,
+					text: myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myTomorrow,
 					children: [{
-						value: '130001',
+						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow + '001',
 						text: '09:00-12:00'
 					}, {
-						value: '130002',
-						text: '13:00-19:00'
+						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow + '002',
+						text: '13:00-17:00'
+					}, {
+						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow + '003',
+						text: '18:00-20:00'
+					}]
+				}, {
+					value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow,
+					text: myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myAfterTomorrow,
+					children: [{
+						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow + '001',
+						text: '09:00-12:00'
+					}, {
+						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow + '002',
+						text: '13:00-17:00'
+					}, {
+						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow + '003',
+						text: '18:00-20:00'
 					}]
 				}];
+				if(myDate.getHours() > 8) {
+					timedata[1].children = [{
+						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '002',
+						text: '13:00-17:00'
+					}, {
+						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '003',
+						text: '18:00-20:00'
+					}];
+				}
+
+				if(myDate.getHours() > 12) {
+					timedata[1].children = [{
+						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '003',
+						text: '18:00-20:00'
+					}];
+				}
+
+				if(myDate.getHours() > 17) {
+					timedata.splice(1, 1);
+				}
+
+				if(myDate.getHours() > 20) {
+					timedata.splice(0, 1);
+				}
 				//二级联动时间选择器
 				var datePicker = new $.PopPicker({
 					layer: 2
 				});
+
 				datePicker.setData(timedata);
 				var showDatePickerButton = doc.getElementById('showDatePicker');
 				var dateResult = doc.getElementById('dateResult');
+
 				showDatePickerButton.addEventListener('tap', function(event) {
+					//					document.write(JSON.stringify(timedata))
+					//					var myDate = new Date();
+					//					var myMonth = myDate.getMonth() + 1;
+					//					var myToday = myDate.getDate();
+					//					var myTomorrow = myDate.getDate() + 1;
+					//					var myAfterTomorrow = myDate.getDate() + 2;
+					//					if(myDate.getDate() < 10) {
+					//						myDay = '0' + myDay;
+					//					}
+					//					if(myDate.getMonth() < 10) {
+					//						myMonth = '0' + myMonth;
+					//					}
+					//
+					//					var timedata = [{
+					//						value: 'now',
+					//						text: '立即送出',
+					//						children: [{
+					//							value: ' ',
+					//							text: ' '
+					//						}]
+					//					}, {
+					//						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday,
+					//						text: myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myToday,
+					//						children: [{
+					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '001',
+					//							text: '09:00-12:00'
+					//						}, {
+					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '002',
+					//							text: '13:00-17:00'
+					//						}, {
+					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '003',
+					//							text: '18:00-20:00'
+					//						}]
+					//					}, {
+					//						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow,
+					//						text: myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myTomorrow,
+					//						children: [{
+					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow + '001',
+					//							text: '09:00-12:00'
+					//						}, {
+					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow + '002',
+					//							text: '13:00-17:00'
+					//						}, {
+					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow + '003',
+					//							text: '18:00-20:00'
+					//						}]
+					//					}, {
+					//						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow,
+					//						text: myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myAfterTomorrow,
+					//						children: [{
+					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow + '001',
+					//							text: '09:00-12:00'
+					//						}, {
+					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow + '002',
+					//							text: '13:00-17:00'
+					//						}, {
+					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow + '003',
+					//							text: '18:00-20:00'
+					//						}]
+					//					}];
+					//					if(myDate.getHours() > 8) {
+					//						timedata[1].children = [{
+					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '002',
+					//							text: '13:00-17:00'
+					//						}, {
+					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '003',
+					//							text: '18:00-20:00'
+					//						}];
+					//					}
+					//
+					//					if(myDate.getHours() > 12) {
+					//						timedata[1].children = [{
+					//							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '003',
+					//							text: '18:00-20:00'
+					//						}];
+					//					}
+					//
+					//					if(myDate.getHours() > 17) {
+					//						timedata.splice(1, 1);
+					//					}
+					//
+					//					if(myDate.getHours() > 20) {
+					//						timedata.splice(0, 1);
+					//					}
 
 					datePicker.show(function(items) {
 						dateResult.innerText = items[0].text + " " + items[1].text;
@@ -525,13 +664,6 @@
 		})(mui, document);
 
 		mui('#middlePopover').on('tap', 'a', function(e) {
-			//			var str = this.innerHTML;
-			// var reg = />(.+)</;  
-			//      var items = reg.exec(a);  
-			//      alert(reg.exec(b));//弹出结果>test<,test；是一数组  
-			//      alert(items);//弹出结果>xyz<,xyz;是一数组  
-			//      alert(reg.exec(c)[1]);//此获取的是数组的第二个元素，获取结果为asasa  
-
 			document.getElementById('checkType').innerHTML = this.innerHTML;
 			mui('#middlePopover').popover('toggle');
 		});
@@ -546,18 +678,30 @@
 				var point2moneyValue = document.getElementById('point2Money').innerHTML;
 
 				if(e.index == 1) {
-					document.getElementById('allPoint').innerHTML = Number(allpointValue) - Number(e.value);
-					document.getElementById('usePoint').innerHTML = Number(e.value) + Number(usepointValue);
-					document.getElementById('point2Money').innerHTML = Number(e.value / 100) + Number(point2moneyValue);
-
+					if(e.value < 0) {
+						alert('请输入正确的值！');
+						return;
+					}
+					var checkValue = Number(allpointValue) - Number(e.value);
+					if(checkValue >= 0) {
+						document.getElementById('allPoint').innerHTML = Number(allpointValue) - Number(e.value);
+						document.getElementById('usePoint').innerHTML = Number(e.value) + Number(usepointValue);
+						document.getElementById('point2Money').innerHTML = Number(e.value / 100) + Number(point2moneyValue);
+					} else {
+						alert('使用点数输入错误...');
+					}
 				} else {
-					var checkvalue = Number(usepointValue) - Number(e.value);
-					if(checkvalue >= 0) {
+					if(e.value < 0) {
+						alert('请输入正确的值！');
+						return;
+					}
+					var checkValue = Number(usepointValue) - Number(e.value);
+					if(checkValue >= 0) {
 						document.getElementById('allPoint').innerHTML = Number(allpointValue) + Number(e.value);
 						document.getElementById('usePoint').innerHTML = Number(usepointValue) - Number(e.value);
 						document.getElementById('point2Money').innerHTML = Number(point2moneyValue) - Number(e.value / 100);
 					} else {
-						alert('请输入正确的值！');
+						alert('撤回点数输入错误...');
 					}
 				}
 			});
