@@ -243,10 +243,10 @@
 							</li>
 
 							<li class="mui-table-view-cell mui-media">
-								<a class="mui-navigate-right" href="#middlePopover">
+								<a class="mui-navigate-right" href="#payType">
 									<div class="mui-media-body">
 										<h4 class="mui-pull-left">支付方式</h4>
-										<h5 class="mui-pull-right" id="checkType">在线支付</h5>
+										<h5 class="mui-pull-right" id="checkType"><label id="online">在线支付</label></h5>
 									</div>
 								</a>
 							</li>
@@ -319,6 +319,7 @@
 										<span class="mui-icon mui-icon-location mui-pull-left" style="font-size: 15px;line-height: 25px;"></span>
 										<p class='mui-h5 mui-ellipsis ' style="white-space: normal;line-height: 25px;">上海浦东新区峨山路99号金牛大厦(北)206</p>
 									</div>
+									<!--<a class="mui-btn mui-btn-outlined mui-pull-right" style="margin-top: 10px; padding: 0px;" href="#editaddress"><span class="mui-icon mui-icon-compose mui-pull-right"style="font-size: 30px;"></span></a>-->
 									<button type="button" class="mui-btn mui-btn-outlined mui-pull-right" style="margin-top: 10px; padding: 0px;"><span class="mui-icon mui-icon-compose mui-pull-right"style="font-size: 30px;"></span></button>
 								</div>
 							</li>
@@ -352,23 +353,38 @@
 			<div class="mui-page-content">
 				<div class="mui-scroll-wrapper">
 					<div class="mui-scroll">
-						<ul class="mui-table-view mui-table-view-chevron" style="margin-bottom: 2px;margin-top: 10px;">
-							<li class="mui-table-view-cell mui-media">
-								<h4 class="mui-h4 mui-pull-left" style="line-height: 30px;"><span style="color: red;">*</span>收货人:</h4> &nbsp;
-								<input type="text" id="name" value="" style="width: 150px;" />
+						<ul class="mui-table-view mui-table-view-chevron" style="margin-top: 0px;">
+							<li style="padding: 15px 0 0 15px;">
+								<h5 class="mui-h5" style="line-height: 15px;"><span style="color: red;">*</span>收货人:</h5>
+								<input type="text" id="name" value="" style="width: 100px;height: 30px;margin: 8px 0px 10px 0px;" />
 							</li>
-							<li class="mui-table-view-cell mui-media">
 
+							<li style="padding: 15px 0 0 15px;">
+								<h5 class="mui-h5" style="line-height: 15px;"><span style="color: red;">*</span>详细地址:</h5>
+								<input type="text" id="name" value="" style="width: 90%;height: 30px;margin: 8px 0px 10px 0px;" />
 							</li>
-							<li class="mui-table-view-cell mui-media">
 
+							<li style="padding: 15px 0 0 15px;">
+								<label class="mui-h5" style="line-height: 15px;"><span style="color: red;">*</span>手机号码:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<label class="mui-h5" style="line-height: 15px;">固定电话:</label>
+								<input type="text" id="phonNum" value="" style="width: 40%;height: 30px;margin: 8px 0px 10px 0px;" />
+								<label class="mui-h5">或</label>
+								<input type="text" id="fixlineNum" value="" style="width: 45%;height: 30px;margin: 8px 0px 10px 0px;" />
 							</li>
-							<li class="mui-table-view-cell mui-media">
-
+							<li style="padding: 10px 0 0 15px;">
+								<h5 class="mui-h5" style="line-height: 15px;">邮箱:</h5>
+								<input type="text" id="name" value="" style="width: 90%;height: 30px;margin: 10px 0px 10px 0px;" />
+							</li>
+							<li style="padding: 10px 0 0 15px;">
+								<h5 class="mui-h5" style="line-height: 15px;">地址别名:</h5>
+								<input type="text" id="name" value="" style="width: 90%;height: 30px;margin: 10px 20px 10px 0px;" />
 							</li>
 						</ul>
 					</div>
 				</div>
+				<footer class="mui-bar mui-bar-footer" style="">
+					<a class="mui-btn mui-btn-danger mui-btn-block mui-pull-right" href="">保存信息</a>
+				</footer>
 			</div>
 		</div>
 
@@ -424,8 +440,15 @@
 			<div class="mui-page-content">
 				<div class="mui-scroll-wrapper">
 					<div class="mui-scroll">
-						<ul class="mui-table-view mui-table-view-chevron" style="margin-bottom: 2px;margin-top: 10px;">
-							<li class="mui-table-view-cell mui-media">
+						<ul id="tapcoupon" class="mui-table-view mui-table-view-chevron " style="margin-bottom: 2px;margin-top: 10px;">
+							<li class="mui-table-view-cell mui-media ">
+								<div class="mui-input-row mui-checkbox mui-left mui-pull-left">
+									<label class="mui-h2" style="color: red;">￥15</label>
+									<input style="margin-top: 10px;" name="checkbox" value="Item 1" type="checkbox">
+								</div>
+								<label class="mui-h5 mui-pull-right" style="margin-top: 20px;margin-right: 100px;">满20可用</label>
+							</li>
+							<li class="mui-table-view-cell mui-media ">
 								<div class="mui-input-row mui-checkbox mui-left mui-pull-left">
 									<label class="mui-h2" style="color: red;">￥15</label>
 									<input style="margin-top: 10px;" name="checkbox" value="Item 1" type="checkbox">
@@ -435,7 +458,7 @@
 							<li class="mui-table-view-cell mui-media  mui-disabled">
 								<div class="mui-input-row mui-checkbox mui-left mui-pull-left mui-disabled">
 									<label class="mui-h2" style="color: red;">￥15</label>
-									<input style="margin-top: 10px;" name="checkbox" value="Item 1" type="checkbox" disabled="disabled">
+									<input style="margin-top: 10px;" name="checkbox" value="Item 1" type="checkbox" disabled="true">
 								</div>
 								<label class="mui-h5 mui-pull-right" style="margin-top: 20px;margin-right: 100px;">满20可用</label>
 							</li>
@@ -450,27 +473,16 @@
 			</div>
 		</div>
 
-		<div id="date" class="mui-page">
-			<header class="mui-navbar-inner mui-bar mui-bar-nav" style="background-color: #EFEFF4;">
-				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href=""></a>
-				<h1 class="mui-title">时间选择</h1>
-			</header>
-
-			<button id='showCityPicker' class="mui-btn mui-btn-block" type='button'>二级联动示例 ...</button>
-			<div id='cityResult' class="ui-alert"></div>
-
-		</div>
-
-		<div id="middlePopover" class="mui-popover" style="padding: 0px;height: 95px;">
+		<div id="payType" class="mui-popover" style="padding: 0px;height: 95px;">
 			<div class="mui-popover-arrow"></div>
 			<div class="mui-scroll-wrapper" data-scroll="1">
 				<div class="mui-scroll">
 					<ul class="mui-table-view">
 						<li class="mui-table-view-cell">
-							<a class="checkType" href="#">在线支付</a>
+							<a class="checkType" href="#" id="online">在线支付</a>
 						</li>
 						<li class="mui-table-view-cell">
-							<a class="checkType" href="#">货到付款</a>
+							<a class="checkType" href="#" id="delivery">货到付款</a>
 						</li>
 					</ul>
 				</div>
@@ -486,7 +498,7 @@
 			swipeBack: true //启用右滑关闭功能
 		});
 		var viewApi = mui('#app').view({
-			defaultPage: '#editaddress'
+			defaultPage: '#check'
 		});
 
 		mui('.mui-scroll-wrapper').scroll();
@@ -513,7 +525,6 @@
 				var dateResult = doc.getElementById('dateResult');
 
 				showDatePickerButton.addEventListener('tap', function(event) {
-					//					document.write(JSON.stringify(timedata))
 					var myDate = new Date();
 					var myMonth = myDate.getMonth() + 1;
 					var myToday = myDate.getDate();
@@ -612,10 +623,36 @@
 			});
 		})(mui, document);
 
-		mui('#middlePopover').on('tap', 'a', function(e) {
-			document.getElementById('checkType').innerHTML = this.innerHTML;
-			mui('#middlePopover').popover('toggle');
+		mui('#payType').on('tap', 'a', function(e) {
+			document.getElementById('checkType').innerHTML = '<label id="'+ this.id + '">'+this.innerHTML + '</label>';
+			mui('#payType').popover('toggle');
 		});
+
+		mui('#tapcoupon').on('tap', 'li,input', function(e) {
+			var checkBoxNum = 1;
+
+			if(this.nodeName == 'INPUT') {
+				if(!this.checked) {
+					checkCouponChoice(document.getElementById('tapcoupon'), checkBoxNum);
+				}
+				this.checked = this.checked ? false : true;
+			} else if(this.nodeName == 'LI') {
+				if(!this.firstElementChild.children[checkBoxNum].checked) {
+					checkCouponChoice(document.getElementById('tapcoupon'), checkBoxNum);
+				}
+
+				var checkBox = this.firstElementChild.children[checkBoxNum].checked ? false : true;
+				this.firstElementChild.lastElementChild.checked = checkBox;
+			}
+		});
+
+		function checkCouponChoice(e, checkBoxNum) {
+			for(var i = 0; i < e.childElementCount; ++i) {
+				if(e.children[i].firstElementChild.children[checkBoxNum].checked) {
+					e.children[i].firstElementChild.children[checkBoxNum].checked = false;
+				}
+			}
+		};
 
 		var usePoint = document.getElementById('point');
 		usePoint.addEventListener('tap', function(e) {
@@ -635,7 +672,7 @@
 					if(checkValue >= 0) {
 						document.getElementById('allPoint').innerHTML = Number(allpointValue) - Number(e.value);
 						document.getElementById('usePoint').innerHTML = Number(e.value) + Number(usepointValue);
-						document.getElementById('point2Money').innerHTML = Number(e.value / 100) + Number(point2moneyValue);
+						document.getElementById('point2Money').innerHTML = Number(e.value / 100.00) + Number(point2moneyValue);
 					} else {
 						alert('使用点数输入错误...');
 					}
@@ -648,7 +685,7 @@
 					if(checkValue >= 0) {
 						document.getElementById('allPoint').innerHTML = Number(allpointValue) + Number(e.value);
 						document.getElementById('usePoint').innerHTML = Number(usepointValue) - Number(e.value);
-						document.getElementById('point2Money').innerHTML = Number(point2moneyValue) - Number(e.value / 100);
+						document.getElementById('point2Money').innerHTML = Number(point2moneyValue) - Number(e.value / 100.00);
 					} else {
 						alert('撤回点数输入错误...');
 					}
