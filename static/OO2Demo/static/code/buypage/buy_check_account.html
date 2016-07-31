@@ -255,7 +255,7 @@
 						<ul class="mui-table-view mui-table-view-chevron" style="margin-bottom: 2px;margin-top: 10px;">
 							<li class="mui-table-view-cell mui-media">
 								<a class="mui-navigate-right" href="#coupon">
-									<div class="mui-media-body">
+									<div id="usecoupon" class="mui-media-body">
 										<h4 class="mui-pull-left">优惠券</h4>
 										<h5 class="mui-pull-right">-￥5.00</h5>
 									</div>
@@ -364,13 +364,13 @@
 								<input type="text" id="name" class="mui-input-clear" style="width: 70%;padding-left: 0px;" maxlength="11" />
 							</div>
 							<!--<div style="padding-top: 0px;">-->
-								<a id='showCityPicker' class="mui-navigate-right">
-									<div class="mui-input-row">
-										<span class="mui-h5 mui-pull-left" style="margin: 12px 0px 0px 14px;"><span style="color: red;">*</span>所在地:</span>
-										<label id='cityResult' style="width: 70%;padding-left: 10px;margin: 5px 0px 0px 0px;color: black;"></label>
-										<!--<input type="text" id="cityResult" class="mui-input-clear" style="width: 70%;padding-left: 10px;" />-->
-									</div>
-								</a>
+							<a id='showCityPicker' class="mui-navigate-right">
+								<div class="mui-input-row">
+									<span class="mui-h5 mui-pull-left" style="margin: 12px 0px 0px 14px;"><span style="color: red;">*</span>所在地:</span>
+									<label id='cityResult' style="width: 70%;padding-left: 10px;margin: 5px 0px 0px 0px;color: black;"></label>
+									<!--<input type="text" id="cityResult" class="mui-input-clear" style="width: 70%;padding-left: 10px;" />-->
+								</div>
+							</a>
 							<!--</div>-->
 
 							<div class="mui-input-row">
@@ -451,21 +451,21 @@
 						<ul id="tapcoupon" class="mui-table-view mui-table-view-chevron " style="margin-bottom: 2px;margin-top: 10px;">
 							<li class="mui-table-view-cell mui-media ">
 								<div class="mui-input-row mui-checkbox mui-left mui-pull-left">
-									<label class="mui-h2" style="color: red;">￥15</label>
+									<label class="mui-h2" style="color: red;">￥<span>15</span></label>
 									<input style="margin-top: 10px;" name="checkbox" value="Item 1" type="checkbox">
 								</div>
 								<label class="mui-h5 mui-pull-right" style="margin-top: 20px;margin-right: 100px;">满20可用</label>
 							</li>
 							<li class="mui-table-view-cell mui-media ">
 								<div class="mui-input-row mui-checkbox mui-left mui-pull-left">
-									<label class="mui-h2" style="color: red;">￥15</label>
+									<label class="mui-h2" style="color: red;">￥<span>15</span></label>
 									<input style="margin-top: 10px;" name="checkbox" value="Item 1" type="checkbox">
 								</div>
 								<label class="mui-h5 mui-pull-right" style="margin-top: 20px;margin-right: 100px;">满20可用</label>
 							</li>
 							<li class="mui-table-view-cell mui-media  mui-disabled">
 								<div class="mui-input-row mui-checkbox mui-left mui-pull-left mui-disabled">
-									<label class="mui-h2" style="color: red;">￥15</label>
+									<label class="mui-h2" style="color: red;">￥<span>15</span></label>
 									<input style="margin-top: 10px;" name="checkbox" value="Item 1" type="checkbox" disabled="true">
 								</div>
 								<label class="mui-h5 mui-pull-right" style="margin-top: 20px;margin-right: 100px;">满20可用</label>
@@ -475,7 +475,7 @@
 				</div>
 				<footer class="mui-bar mui-bar-footer">
 					<div class="mui-button-row" style="margin-top: -5px;">
-						<button type="button" class="mui-btn" style="background-color: red;color: white;width: 100px;">确认</button>
+						<button id="commitcoupon" type="button" class="mui-btn" style="background-color: red;color: white;width: 100px;">确认</button>
 					</div>
 				</footer>
 			</div>
@@ -654,14 +654,17 @@
 			mui('#payType').popover('toggle');
 		});
 
+		var discount = 0;
 		mui('#tapcoupon').on('tap', 'li,input', function(e) {
 			var checkBoxNum = 1;
-
 			if(this.nodeName == 'INPUT') {
 				if(!this.checked) {
 					checkCouponChoice(document.getElementById('tapcoupon'), checkBoxNum);
 				}
 				this.checked = this.checked ? false : true;
+				if (this.checked) {
+					discount = this.innerHTML;
+				}
 			} else if(this.nodeName == 'LI') {
 				if(!this.firstElementChild.children[checkBoxNum].checked) {
 					checkCouponChoice(document.getElementById('tapcoupon'), checkBoxNum);
@@ -679,6 +682,11 @@
 				}
 			}
 		};
+
+		var newCouponBox = document.getElementById('commitcoupon');
+		newCouponBox.addEventListener('tap', function() {
+			var discount = document.getElementById('')
+		});
 
 		var usePoint = document.getElementById('point');
 		usePoint.addEventListener('tap', function(e) {
