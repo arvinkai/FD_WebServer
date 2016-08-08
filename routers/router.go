@@ -22,5 +22,5 @@ func init() {
 	beego.AutoRouter(&controllers.LoginController{})
 	beego.Router("/regist", &controllers.RegistController{})
 	beego.AutoRouter(&controllers.RegistController{})
-	beego.Router("/checkaccount", &controllers.CheckAccountController{})
+	beego.Router("/checkaccount", &controllers.BuyCheckAccountController{})
 }

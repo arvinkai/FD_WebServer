@@ -132,8 +132,10 @@ type Address struct {
 	Id       int64 `orm:"pk;auto"`
 	Uid      int64
 	Name     string
-	Addr     string `orm:"null;size(1000)"`
-	Postcode string `orm:"null;size(6)"`
+	Location string `orm:"null;size(100)"`
+	Fulladdr string `orm:"null;size(200)"`
+	PhonNum  string `orm:"null;size(20)"`
+	Isdef    int8   `orm:default(0)`
 }
 
 type Poster struct {

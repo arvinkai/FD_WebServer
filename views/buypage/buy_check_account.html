@@ -23,15 +23,13 @@
 				left: 0;
 				right: 0;
 				top: 0;
-				bottom: 0;
+				bottom: 0px;
 				width: 100%;
 				height: 100%;
 				background-color: #efeff4;
 			}
-			
-		/*//导致footer页脚会出现跳动，进入页面然后返回导致页脚变高		
-	.mui-pages {
-				top: 46px;
+			/*.mui-pages {
+				top: 40px;
 				height: auto;
 			}*/
 			
@@ -40,10 +38,10 @@
 				background-color: #efeff4;
 			}
 			
-			.mui-scroll-wrapper{
+			.mui-scroll-wrapper {
 				margin: 40px 0px 44px 0px;
 			}
-
+			
 			.mui-page.mui-transitioning {
 				-webkit-transition: -webkit-transform 300ms ease;
 				transition: transform 300ms ease;
@@ -151,27 +149,6 @@
 				height: 0;
 			}
 			
-			.head {
-				height: 40px;
-			}
-			
-			#head {
-				line-height: 40px;
-			}
-			
-			.head-img {
-				width: 40px;
-				height: 40px;
-			}
-			
-			#head-img1 {
-				position: absolute;
-				bottom: 10px;
-				right: 40px;
-				width: 40px;
-				height: 40px;
-			}
-			
 			.update {
 				font-style: normal;
 				color: #999999;
@@ -188,7 +165,6 @@
 			.mui-ios .mui-navbar .mui-bar .mui-title {
 				position: static;
 			}
-						
 		</style>
 		<link href="../../static/css/mui.min.css" rel="stylesheet" />
 		<link href="../../static/css/mui.picker.css" rel="stylesheet" />
@@ -215,15 +191,14 @@
 			</header>
 
 			<div class="mui-page-content">
-				<div class="mui-scroll-wrapper">
+				<div class="mui-scroll-wrapper" style="margin-bottom: 44px;">
 					<div class="mui-scroll">
 						<ul class="mui-table-view mui-table-view-chevron" style="margin-bottom: 2px;margin-top: 10px;">
-							<li class="mui-table-view-cell mui-media" style=" ">
-
+							<li class="mui-table-view-cell mui-media">
 								<a class="mui-navigate-right" href="#address">
 									<div class="mui-media-body">
 										<h4>万先生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;182****5475
-											&nbsp;&nbsp;&nbsp;
+											&nbsp;&nbsp;
 											<span>默认</span></h4>
 										<span class="mui-icon mui-icon-location mui-pull-left" style="font-size: 15px;line-height: 25px;"></span>
 										<p class='mui-h5 mui-ellipsis ' style="white-space: normal;line-height: 25px;">上海浦东新区峨山路99号金牛大厦(北)206</p>
@@ -237,7 +212,7 @@
 								<a>
 									<div class="mui-media-body">
 										<!--通过服务器进行辨别如果物品超过1个则只显示图标，图标后显示物品个数，点击后进入展开页，最多显示3个图标-->
-										<img class="mui-col-xs-3" src="../../images/IMG_2239.png" />
+										<img class="mui-col-xs-3" src="../../static/img/images/IMG_2239.png" />
 										<div class="mui-col-xs-8 mui-pull-right">
 											<h4 style="line-height: 20px;">超级好吃甜甜圈</h4>
 											<h5 style="line-height: 20px;">数量:1&nbsp;&nbsp;&nbsp;生产日期:2016.07.13</h5>
@@ -250,9 +225,9 @@
 								<a class="mui-navigate-right">
 									<div class="mui-media-body">
 										<!--通过服务器进行辨别如果物品超过1个则只显示图标，图标后显示物品个数，点击后进入展开页，最多显示3个图标-->
-										<img class="mui-col-xs-3" src="../../images/IMG_2239.png" />
-										<img class="mui-col-xs-3" src="../../images/IMG_2239.png" />
-										<img class="mui-col-xs-3" src="../../images/IMG_2239.png" />
+										<img class="mui-col-xs-3" src="../../static/img/images/IMG_2239.png" />
+										<img class="mui-col-xs-3" src="../../static/img/images/IMG_2239.png" />
+										<img class="mui-col-xs-3" src="../../static/img/images/IMG_2239.png" />
 										<h4 class="mui-pull-right" style="line-height: 70px;">共3件</h4>
 									</div>
 								</a>
@@ -262,16 +237,16 @@
 								<a id='showDatePicker'>
 									<div class="mui-media-body">
 										<h4 class="mui-pull-left">配送时间</h4>
-										<h5 id='dateResult' class="mui-pull-right">17:00-18:00</h5>
+										<h5 id='dateResult' class="mui-pull-right">立即送出</h5>
 									</div>
 								</a>
 							</li>
 
 							<li class="mui-table-view-cell mui-media">
-								<a class="mui-navigate-right" href="#middlePopover">
+								<a class="mui-navigate-right" href="#payType">
 									<div class="mui-media-body">
 										<h4 class="mui-pull-left">支付方式</h4>
-										<h5 class="mui-pull-right" id="checkType">在线支付</h5>
+										<h5 class="mui-pull-right" id="checkType"><label id="online">在线支付</label></h5>
 									</div>
 								</a>
 							</li>
@@ -280,17 +255,19 @@
 						<ul class="mui-table-view mui-table-view-chevron" style="margin-bottom: 2px;margin-top: 10px;">
 							<li class="mui-table-view-cell mui-media">
 								<a class="mui-navigate-right" href="#coupon">
-									<div class="mui-media-body">
+									<div id="usecoupon" class="mui-media-body">
 										<h4 class="mui-pull-left">优惠券</h4>
 										<h5 class="mui-pull-right">-￥5.00</h5>
 									</div>
 								</a>
 							</li>
 							<li class="mui-table-view-cell mui-media">
-								<a class="mui-navigate-right">
+								<a id="point" class="mui-navigate-right">
 									<div class="mui-media-body">
-										<h4 class="mui-pull-left">使用积分</h4>
-										<h5 class="mui-pull-right">100点</h5>
+										<label class="mui-pull-left mui-h4" style="font-weight: bold;color: black;">积分&nbsp;</label>
+										<h5 class="mui-pull-right" style="white-space: normal;">
+											共有 <label id="allPoint">10000</label>点，使用 <label id="usePoint">0</label>积分，抵￥<label id="point2Money">0.00</label>
+										</h5>
 									</div>
 								</a>
 							</li>
@@ -312,37 +289,37 @@
 						</ul>
 					</div>
 				</div>
+				<footer class="mui-bar mui-bar-footer">
+					<div class="mui-pull-left" style="color: red;line-break: normal;line-height: 44px;">
+						<label>实付款：￥8.00</label>
+					</div>
+					<div class="mui-pull-right">
+						<button type="button" class="mui-btn mui-btn-danger mui-btn-block mui-pull-right" style="width: 100px;">提交订单</button>
+					</div>
+				</footer>
 			</div>
-
-			<footer class="mui-bar mui-bar-footer" >
-				<div class="mui-pull-left" style="color: red;line-break: normal;line-height: 44px;">
-					<label>实付款：￥8.00</label>
-				</div>
-				<div class="mui-pull-right">
-					<button type="button" class="mui-btn mui-btn-danger mui-btn-block mui-pull-right" style="width: 100px;">提交订单</button>
-				</div>
-			</footer>
 		</div>
 
 		<div id="address" class="mui-page">
 			<header class="mui-navbar-inner mui-bar mui-bar-nav" style="background-color: #EFEFF4;">
-				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href=""></a>
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 				<h1 class="mui-title">收货地址</h1>
 			</header>
 
 			<div class="mui-page-content">
-				<div class="mui-scroll-wrapper">
+				<div class="mui-scroll-wrapper" style="margin-bottom: 44px;">
 					<div class="mui-scroll">
 						<ul class="mui-table-view ">
 							<li class="mui-table-view-cell">
 								<div class="mui-table">
 									<div class="mui-table-cell mui-col-xs-10 mui-pull-left">
-										<h4>万先生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;182****5475
+										<h4>万先生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;182****5475
 											&nbsp;&nbsp;&nbsp;
 											<span>默认</span></h4>
 										<span class="mui-icon mui-icon-location mui-pull-left" style="font-size: 15px;line-height: 25px;"></span>
 										<p class='mui-h5 mui-ellipsis ' style="white-space: normal;line-height: 25px;">上海浦东新区峨山路99号金牛大厦(北)206</p>
 									</div>
+									<!--<a class="mui-btn mui-btn-outlined mui-pull-right" style="margin-top: 10px; padding: 0px;" href="#editaddress"><span class="mui-icon mui-icon-compose mui-pull-right"style="font-size: 30px;"></span></a>-->
 									<button type="button" class="mui-btn mui-btn-outlined mui-pull-right" style="margin-top: 10px; padding: 0px;"><span class="mui-icon mui-icon-compose mui-pull-right"style="font-size: 30px;"></span></button>
 								</div>
 							</li>
@@ -350,7 +327,7 @@
 								<div class="mui-table">
 									<div class="mui-table-cell mui-col-xs-10 mui-pull-left">
 										<h4>万先生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;182****5475
-											&nbsp;&nbsp;&nbsp;
+											&nbsp;&nbsp;&nbsp;</h4>
 										<span class="mui-icon mui-icon-location mui-pull-left" style="font-size: 15px;line-height: 25px;"></span>
 										<p class='mui-h5 mui-ellipsis ' style="white-space: normal;line-height: 25px;">上海浦东新区峨山路99号金牛大厦(北)206</p>
 									</div>
@@ -361,11 +338,64 @@
 					</div>
 				</div>
 				<footer class="mui-bar mui-bar-footer" style="">
-					<button type="button" class="mui-btn mui-btn-danger mui-btn-block mui-pull-right">+ 新建地址</button>
+					<a class="mui-btn mui-btn-danger mui-btn-block mui-pull-right" href="#editaddress">+ 新建地址</a>
+					<!--<button type="button" class="mui-btn mui-btn-danger mui-btn-block mui-pull-right">+ 新建地址</button>-->
 				</footer>
 			</div>
 		</div>
-		
+
+		<div id="editaddress" class="mui-page">
+			<header class="mui-navbar-inner mui-bar mui-bar-nav" style="background-color: #EFEFF4;">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+				<h1 class="mui-title">编辑地址</h1>
+				<a class="mui-btn mui-btn-blue mui-btn-link mui-pull-right" style="color: #999999">删除</a>
+			</header>
+
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<form class="mui-input-group">
+							<div class="mui-input-row" style="margin-top: 5px;">
+								<span class="mui-h5" style="margin-left: 14px;"><span style="color: red;">*</span>收货人:</span>
+								<input type="text" id="name" class="mui-input-clear" style="width: 70%;padding-left: 0px;" maxlength="8" />
+							</div>
+							<div class="mui-input-row">
+								<span class="mui-h5" style="line-height: 15px;margin-left: 14px;"><span style="color: red;">*</span>联系方式:</span>
+								<input type="text" id="name" class="mui-input-clear" style="width: 70%;padding-left: 0px;" maxlength="11" />
+							</div>
+							<!--<div style="padding-top: 0px;">-->
+							<a id='showCityPicker' class="mui-navigate-right">
+								<div class="mui-input-row">
+									<span class="mui-h5 mui-pull-left" style="margin: 12px 0px 0px 14px;"><span style="color: red;">*</span>所在地:</span>
+									<label id='cityResult' style="width: 70%;padding-left: 10px;margin: 5px 0px 0px 0px;color: black;"></label>
+									<!--<input type="text" id="cityResult" class="mui-input-clear" style="width: 70%;padding-left: 10px;" />-->
+								</div>
+							</a>
+							<!--</div>-->
+
+							<div class="mui-input-row">
+								<span class="mui-h5" style="line-height: 15px;margin-left: 14px;"><span style="color: red;">*</span>详细地址:</span>
+								<input type="text" id="name" class="mui-input-clear" style="width: 70%;padding-left: 0px;" />
+							</div>
+							<div class="mui-input-row" style="margin: 10px 0px 0px 0px;">
+
+								<div class="mui-input-row">
+									<span class="mui-h5" style="line-height: 15px;margin-left: 18px;">设为默认地址</span>
+									<div class="mui-switch mui-active mui-switch-blue" style="margin-top: 0px;">
+										<div class="mui-switch-handle"></div>
+									</div>
+								</div>
+
+							</div>
+						</form>
+					</div>
+				</div>
+				<footer class="mui-bar mui-bar-footer" style="">
+					<a class="mui-btn mui-btn-danger mui-btn-block mui-pull-right" href="">保存信息</a>
+				</footer>
+			</div>
+		</div>
+
 		<div id="goodslist" class="mui-page">
 			<header class="mui-navbar-inner mui-bar mui-bar-nav" style="background-color: #EFEFF4;">
 				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href=""></a>
@@ -384,10 +414,10 @@
 										<img class="mui-col-xs-3" src="../../images/IMG_2239.png" />
 										<div class="mui-col-xs-8 mui-pull-right">
 											<h4 style="line-height: 20px;">超级好吃甜甜圈</h4>
-										<h5 style="line-height: 20px;">数量:1&nbsp;&nbsp;&nbsp;生产日期:2016.07.13</h5>
-										<h5 style="color: red;font-size: 15px;font-weight: bold;line-height: 20px;">￥10.<lable style="font-size: 85%">00</lable></h5>
+											<h5 style="line-height: 20px;">数量:1&nbsp;&nbsp;&nbsp;生产日期:2016.07.13</h5>
+											<h5 style="color: red;font-size: 15px;font-weight: bold;line-height: 20px;">￥10.<lable style="font-size: 85%">00</lable></h5>
+										</div>
 									</div>
-								</div>
 								</a>
 							</li>
 							<li class="mui-table-view-cell mui-media">
@@ -418,18 +448,25 @@
 			<div class="mui-page-content">
 				<div class="mui-scroll-wrapper">
 					<div class="mui-scroll">
-						<ul class="mui-table-view mui-table-view-chevron" style="margin-bottom: 2px;margin-top: 10px;">
-							<li class="mui-table-view-cell mui-media">
+						<ul id="tapcoupon" class="mui-table-view mui-table-view-chevron " style="margin-bottom: 2px;margin-top: 10px;">
+							<li class="mui-table-view-cell mui-media ">
 								<div class="mui-input-row mui-checkbox mui-left mui-pull-left">
-									<label class="mui-h2" style="color: red;">￥15</label>
+									<label class="mui-h2" style="color: red;">￥<span>15</span></label>
+									<input style="margin-top: 10px;" name="checkbox" value="Item 1" type="checkbox">
+								</div>
+								<label class="mui-h5 mui-pull-right" style="margin-top: 20px;margin-right: 100px;">满20可用</label>
+							</li>
+							<li class="mui-table-view-cell mui-media ">
+								<div class="mui-input-row mui-checkbox mui-left mui-pull-left">
+									<label class="mui-h2" style="color: red;">￥<span>15</span></label>
 									<input style="margin-top: 10px;" name="checkbox" value="Item 1" type="checkbox">
 								</div>
 								<label class="mui-h5 mui-pull-right" style="margin-top: 20px;margin-right: 100px;">满20可用</label>
 							</li>
 							<li class="mui-table-view-cell mui-media  mui-disabled">
 								<div class="mui-input-row mui-checkbox mui-left mui-pull-left mui-disabled">
-									<label class="mui-h2" style="color: red;">￥15</label>
-									<input style="margin-top: 10px;" name="checkbox" value="Item 1" type="checkbox" disabled="disabled">
+									<label class="mui-h2" style="color: red;">￥<span>15</span></label>
+									<input style="margin-top: 10px;" name="checkbox" value="Item 1" type="checkbox" disabled="true">
 								</div>
 								<label class="mui-h5 mui-pull-right" style="margin-top: 20px;margin-right: 100px;">满20可用</label>
 							</li>
@@ -438,33 +475,22 @@
 				</div>
 				<footer class="mui-bar mui-bar-footer">
 					<div class="mui-button-row" style="margin-top: -5px;">
-						<button type="button" class="mui-btn" style="background-color: red;color: white;width: 100px;">确认</button>
+						<button id="commitcoupon" type="button" class="mui-btn" style="background-color: red;color: white;width: 100px;">确认</button>
 					</div>
 				</footer>
 			</div>
 		</div>
 
-		<div id="date" class="mui-page">
-			<header class="mui-navbar-inner mui-bar mui-bar-nav" style="background-color: #EFEFF4;">
-				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href=""></a>
-				<h1 class="mui-title">时间选择</h1>
-			</header>
-
-			<button id='showCityPicker' class="mui-btn mui-btn-block" type='button'>二级联动示例 ...</button>
-			<div id='cityResult' class="ui-alert"></div>
-
-		</div>
-
-		<div id="middlePopover" class="mui-popover" style="padding: 0px;height: 95px;">
+		<div id="payType" class="mui-popover" style="padding: 0px;height: 95px;">
 			<div class="mui-popover-arrow"></div>
 			<div class="mui-scroll-wrapper" data-scroll="1">
 				<div class="mui-scroll">
 					<ul class="mui-table-view">
 						<li class="mui-table-view-cell">
-							<a class="checkType" href="#">在线支付</a>
+							<a class="checkType" href="#" id="online">在线支付</a>
 						</li>
 						<li class="mui-table-view-cell">
-							<a class="checkType" href="#">货到付款</a>
+							<a class="checkType" href="#" id="delivery">货到付款</a>
 						</li>
 					</ul>
 				</div>
@@ -475,6 +501,7 @@
 	<script src="../../static/js/mui.view.js "></script>
 	<script src="../../static/js/mui.picker.js"></script>
 	<script src="../../static/js/mui.poppicker.js"></script>
+	<script src="../../static/js/city.data-3.js"></script>
 	<script>
 		mui.init({
 			swipeBack: true //启用右滑关闭功能
@@ -497,47 +524,122 @@
 			};
 
 			$.ready(function() {
+				//级联示例
+				//地址编辑所在地选择三级联动
+				var cityPicker3 = new $.PopPicker({
+					layer: 3
+				});
+				cityPicker3.setData(cityData3);
+				var showCityPickerButton = doc.getElementById('showCityPicker');
+				var cityResult3 = doc.getElementById('cityResult');
+				showCityPickerButton.addEventListener('tap', function(event) {
+					cityPicker3.show(function(items) {
+						cityResult3.innerText = (items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text;
+						//													cityResult3.value = (items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text;
+						//返回 false 可以阻止选择框的关闭
+						//return false;
+					});
+				}, false);
+
 				//配送时间选择器
-				var timedata = [{
-					value: '110000',
-					text: '2016-07-15',
-					children: [{
-						value: '110001',
-						text: '09:00-12:00'
-					}, {
-						value: '110002',
-						text: '13:00-19:00'
-					}]
-				}, {
-					value: '120000',
-					text: '2016-07-16',
-					children: [{
-						value: '120001',
-						text: '09:00-12:00'
-					}, {
-						value: '120002',
-						text: '13:00-19:00'
-					}]
-				}, {
-					value: '130000',
-					text: '2016-07-17',
-					children: [{
-						value: '130001',
-						text: '09:00-12:00'
-					}, {
-						value: '130002',
-						text: '13:00-19:00'
-					}]
-				}];
 				//二级联动时间选择器
 				var datePicker = new $.PopPicker({
 					layer: 2
 				});
-				datePicker.setData(timedata);
+
 				var showDatePickerButton = doc.getElementById('showDatePicker');
 				var dateResult = doc.getElementById('dateResult');
+
 				showDatePickerButton.addEventListener('tap', function(event) {
-					
+					var myDate = new Date();
+					var myMonth = myDate.getMonth() + 1;
+					var myToday = myDate.getDate();
+					var myTomorrow = myDate.getDate() + 1;
+					var myAfterTomorrow = myDate.getDate() + 2;
+
+					if(myDate.getDate() < 10) {
+						myToday = '0' + myToday;
+					}
+					if(myDate.getMonth() < 10) {
+						myMonth = '0' + myMonth;
+					}
+
+					var timedata = [{
+						value: 'now',
+						text: '立即送出',
+						children: [{
+							value: ' ',
+							text: ' '
+						}]
+					}, {
+						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday,
+						text: myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myToday,
+						children: [{
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '001',
+							text: '09:00-12:00'
+						}, {
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '002',
+							text: '13:00-17:00'
+						}, {
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '003',
+							text: '18:00-20:00'
+						}]
+					}, {
+						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow,
+						text: myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myTomorrow,
+						children: [{
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow + '001',
+							text: '09:00-12:00'
+						}, {
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow + '002',
+							text: '13:00-17:00'
+						}, {
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myTomorrow + '003',
+							text: '18:00-20:00'
+						}]
+					}, {
+						value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow,
+						text: myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myAfterTomorrow,
+						children: [{
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow + '001',
+							text: '09:00-12:00'
+						}, {
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow + '002',
+							text: '13:00-17:00'
+						}, {
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myAfterTomorrow + '003',
+							text: '18:00-20:00'
+						}]
+					}];
+
+					var todayType = 1;
+
+					if(myDate.getHours() >= 9) {
+						timedata[todayType].children = [{
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '002',
+							text: '13:00-17:00'
+						}, {
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '003',
+							text: '18:00-20:00'
+						}];
+					}
+
+					if(myDate.getHours() >= 13) {
+						timedata[todayType].children = [{
+							value: myDate.getFullYear() + '0' + (myDate.getMonth() + 1) + myToday + '003',
+							text: '18:00-20:00'
+						}];
+					}
+
+					if(myDate.getHours() >= 18) {
+						timedata.splice(1, 1);
+					}
+
+					if(myDate.getHours() >= 20) {
+						timedata.splice(0, 1);
+					}
+					datePicker.setData(timedata);
+
 					datePicker.show(function(items) {
 						dateResult.innerText = items[0].text + " " + items[1].text;
 						//返回 false 可以阻止选择框的关闭
@@ -547,16 +649,82 @@
 			});
 		})(mui, document);
 
-		mui('#middlePopover').on('tap', 'a', function(e) {
-			//			var str = this.innerHTML;
-			// var reg = />(.+)</;  
-			//      var items = reg.exec(a);  
-			//      alert(reg.exec(b));//弹出结果>test<,test；是一数组  
-			//      alert(items);//弹出结果>xyz<,xyz;是一数组  
-			//      alert(reg.exec(c)[1]);//此获取的是数组的第二个元素，获取结果为asasa  
+		mui('#payType').on('tap', 'a', function(e) {
+			document.getElementById('checkType').innerHTML = '<label id="' + this.id + '">' + this.innerHTML + '</label>';
+			mui('#payType').popover('toggle');
+		});
 
-			document.getElementById('checkType').innerHTML = this.innerHTML;
-			mui('#middlePopover').popover('toggle');
+		var discount = 0;
+		mui('#tapcoupon').on('tap', 'li,input', function(e) {
+			var checkBoxNum = 1;
+			if(this.nodeName == 'INPUT') {
+				if(!this.checked) {
+					checkCouponChoice(document.getElementById('tapcoupon'), checkBoxNum);
+				}
+				this.checked = this.checked ? false : true;
+				if (this.checked) {
+					discount = this.innerHTML;
+				}
+			} else if(this.nodeName == 'LI') {
+				if(!this.firstElementChild.children[checkBoxNum].checked) {
+					checkCouponChoice(document.getElementById('tapcoupon'), checkBoxNum);
+				}
+
+				var checkBox = this.firstElementChild.children[checkBoxNum].checked ? false : true;
+				this.firstElementChild.lastElementChild.checked = checkBox;
+			}
+		});
+
+		function checkCouponChoice(e, checkBoxNum) {
+			for(var i = 0; i < e.childElementCount; ++i) {
+				if(e.children[i].firstElementChild.children[checkBoxNum].checked) {
+					e.children[i].firstElementChild.children[checkBoxNum].checked = false;
+				}
+			}
+		};
+
+		var newCouponBox = document.getElementById('commitcoupon');
+		newCouponBox.addEventListener('tap', function() {
+			var discount = document.getElementById('')
+		});
+
+		var usePoint = document.getElementById('point');
+		usePoint.addEventListener('tap', function(e) {
+			e.detail.gesture.preventDefault();
+			var btnArray = ['撤回点数', '使用点数'];
+			mui.prompt('请输入使用的点数:', '0', '点数使用', btnArray, function(e) {
+				var allpointValue = document.getElementById('allPoint').innerHTML;
+				var usepointValue = document.getElementById('usePoint').innerHTML;
+				var point2moneyValue = document.getElementById('point2Money').innerHTML;
+
+				if(e.index == 1) {
+					if(e.value < 0) {
+						alert('请输入正确的值！');
+						return;
+					}
+					var checkValue = Number(allpointValue) - Number(e.value);
+					if(checkValue >= 0) {
+						document.getElementById('allPoint').innerHTML = Number(allpointValue) - Number(e.value);
+						document.getElementById('usePoint').innerHTML = Number(e.value) + Number(usepointValue);
+						document.getElementById('point2Money').innerHTML = Number(e.value / 100.00) + Number(point2moneyValue);
+					} else {
+						alert('使用点数输入错误...');
+					}
+				} else {
+					if(e.value < 0) {
+						alert('请输入正确的值！');
+						return;
+					}
+					var checkValue = Number(usepointValue) - Number(e.value);
+					if(checkValue >= 0) {
+						document.getElementById('allPoint').innerHTML = Number(allpointValue) + Number(e.value);
+						document.getElementById('usePoint').innerHTML = Number(usepointValue) - Number(e.value);
+						document.getElementById('point2Money').innerHTML = Number(point2moneyValue) - Number(e.value / 100.00);
+					} else {
+						alert('撤回点数输入错误...');
+					}
+				}
+			});
 		});
 	</script>
 
