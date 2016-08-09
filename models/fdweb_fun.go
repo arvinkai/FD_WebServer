@@ -348,6 +348,13 @@ func OperatOnline(useronline *Online, op string) {
 		{
 			o.Update(useronline)
 		}
-
 	}
+}
+
+func GetAddress(uid int64) (int64, error) {
+	o := orm.NewOrm()
+	qs := o.QueryTable("address")
+	Addresses := make([]*Address, 0)
+	count, err := qs.Filter("uid", uid).All(&Addresses)
+	return count, err
 }

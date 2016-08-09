@@ -107,6 +107,7 @@ type DiscountCoupon struct {
 	Couponid   int64
 	Uid        int64
 	Count      int32
+	Price      int32
 	Starttime  string
 	Endtime    string
 	CouponType int32
