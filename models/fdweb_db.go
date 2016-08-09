@@ -41,18 +41,21 @@ type Goodsinfo struct {
 	Tourl           string `orm:"null"`
 }
 
-type Book struct {
-	Bkid       int64 `orm:"pk;auto"`
-	Uid        int64
-	Goodsid    int64
-	Name       string `orm:"size(50)"`
-	Count      int32
-	Addr       string `orm:"size(100)"`
-	Statues    int16
-	Price      int32
-	Postage    int32 `orm:"default(0)"`
-	Createtime string
-	Endtime    string `orm:"null"`
+type Orderbook struct {
+	Id          int64 `orm:"pk;auto"`
+	Bid         int64
+	Uid         int64
+	Goodsid     string `orm:size(500)`
+	Addressid   int64
+	Paytype     int8
+	Costpoint   int64
+	Postage     int32
+	Titlemoney  int64
+	Paymoney    int64
+	Couponmoney int32
+	Bookingdate string
+	PostDate    string
+	Status      int8
 }
 
 type Picture struct {
